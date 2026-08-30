@@ -1,0 +1,44 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx biome:*)",
+      "Bash(npx tsc:*)",
+      "Bash(yarn lint)",
+      "Bash(yarn format)",
+      "Bash(yarn build)",
+      "Bash(yarn dev)",
+      "Bash(git status)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git branch:*)",
+      "Bash(git switch:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(gh pr create:*)",
+      "Bash(gh pr view:*)",
+      "Bash(gh pr status:*)",
+      "mcp__next-devtools__init",
+      "mcp__next-devtools__nextjs_docs",
+      "mcp__next-devtools__nextjs_index",
+      "mcp__next-devtools__browser_eval"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh .claude/hooks/biome-fix.sh"
+          },
+          {
+            "type": "command",
+            "command": "sh .claude/hooks/comment-guard.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
