@@ -1,4 +1,8 @@
-# Current slice: foundation and application shell
+# Current slice: components-example
+
+## History
+
+- Foundation and application shell slice merged via [PR #2](https://github.com/mericlomlu/reusable-list-page-architecture/pull/2) (`feat/foundation-shell`): foundation tokens, fonts, shadcn initialization, light/dark/system theme, root layout, responsive navigation, and route placeholders.
 
 ## Confirmed
 
@@ -11,18 +15,18 @@
 
 ## Implement now
 
-- Foundation tokens and fonts from `Design System.dc.html` using `next/font`.
-- shadcn initialization and only the primitives required by the shell and Components slice.
-- Light/dark/system theme foundation.
-- Semantic root layout, responsive sidebar/mobile navigation, and shared page container.
-- Route placeholders needed to make navigation valid, without prematurely implementing later pages.
-- Overview shell only when required to validate navigation; do not complete all route content in this slice.
+- Import `Components.dc.html` from the approved Claude Design project as the visual and behavioral reference for `/examples/components`.
+- Typed `ListPageShell` composition and the reusable list-page feature: `ListToolbar`, `FilterPanel`, `SortMenu`, `ViewSwitcher`, `ResultsView`, `PaginationControls`, `useListQueryState`.
+- `/examples/components` as the first reusable vertical slice, with category, framework, and status filters, search, sort, and list/grid views.
+- `/api/components` Route Handler with server-side filtering, sorting, pagination, controlled latency, and explicit demo-state query parameters.
+- Loading, empty, filtered-empty, and error-with-retry states.
+- Fictional English mock component data.
 
 ## Do not combine yet
 
-- Components list architecture and Route Handler belong to the next slice.
 - Issues, Deployments, Packages, Templates, Building Blocks, and Architecture each receive later scoped slices.
 - Favicon, OG assets, metadata, sitemap, manifest, and structured data are a dedicated metadata slice.
+- Final Overview content is out of scope.
 - Vercel linking and deployment happen only after the local build is complete.
 
-When foundation and shell are merged, update this file to `components-example`.
+When components-example is merged, update this file to the next scoped slice.
