@@ -110,6 +110,9 @@ export function IssueBoard({ records, view }: IssueBoardProps) {
           ref={feedbackRef}
           tabIndex={-1}
           role={feedback.type === "error" ? "alert" : "status"}
+          // Not cn(): tailwind-merge misclassifies the custom text-body-sm
+          // font-size token as a text-color utility and drops the adjacent
+          // text-destructive/text-foreground class.
           className={[
             "mb-3.5 flex items-center justify-between gap-3 rounded-lg border px-4 py-2.5 text-body-sm outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring",
             feedback.type === "error"
