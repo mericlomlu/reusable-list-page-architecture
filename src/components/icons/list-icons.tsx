@@ -15,6 +15,8 @@ export const ChevronRightIcon = createStrokeIcon(
 
 export const CheckIcon = createStrokeIcon(<path d="M3.5 8.2l3 3L12.5 5" />);
 
+export const MinusIcon = createStrokeIcon(<path d="M3.5 8h9" />);
+
 export const SortIcon = createStrokeIcon(
   <path d="M8 3v10M8 13l-3-3M8 13l3-3" />,
 );

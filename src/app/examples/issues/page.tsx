@@ -1,11 +1,58 @@
-import { RoutePlaceholder } from "@/components/layout/route-placeholder";
+import { redirect } from "next/navigation";
+import { ISSUE_LIST_QUERY_CONFIG } from "@/features/issues-example/config";
+import { IssuesResults } from "@/features/issues-example/issues-results";
+import { IssuesToolbar } from "@/features/issues-example/issues-toolbar";
+import { queryIssues } from "@/features/issues-example/query-service";
+import type {
+  IssueFilterKey,
+  IssueSortKey,
+} from "@/features/issues-example/types";
+import { parseDemoState } from "@/features/list-page/demo-state";
+import { ListPageShell } from "@/features/list-page/list-page-shell";
+import { PaginationControls } from "@/features/list-page/pagination-controls";
+import {
+  buildListQueryString,
+  parseListQuery,
+  toSearchParams,
+} from "@/features/list-page/query-state";
 
-export default function IssuesPage() {
+export default async function IssuesPage(props: PageProps<"/examples/issues">) {
+  const rawSearchParams = await props.searchParams;
+  const searchParams = toSearchParams(rawSearchParams);
+  const demoState = parseDemoState(searchParams);
+  const query = parseListQuery<IssueSortKey, IssueFilterKey>(
+    searchParams,
+    ISSUE_LIST_QUERY_CONFIG,
+  );
+  const { records, total, page } = await queryIssues(query, demoState);
+
+  const buildHref = (targetPage: number) =>
+    `/examples/issues${buildListQueryString(
+      { ...query, page: targetPage },
+      ISSUE_LIST_QUERY_CONFIG,
+    )}`;
+
+  if (page !== query.page) {
+    redirect(buildHref(page));
+  }
+
   return (
-    <RoutePlaceholder
+    <ListPageShell
       eyebrow="Examples / Issues"
       title="Issues"
-      description="The issue tracking list example is implemented in a later slice."
-    />
+      description="Track and triage work across the workspace. Select rows to change status on several issues at once."
+      toolbar={<IssuesToolbar />}
+      pagination={
+        <PaginationControls
+          page={page}
+          pageSize={ISSUE_LIST_QUERY_CONFIG.pageSize}
+          total={total}
+          buildHref={buildHref}
+          itemLabel="issues"
+        />
+      }
+    >
+      <IssuesResults records={records} query={{ ...query, page }} />
+    </ListPageShell>
   );
 }

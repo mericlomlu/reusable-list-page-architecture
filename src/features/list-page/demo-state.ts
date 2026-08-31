@@ -7,16 +7,27 @@ const DEMO_STATES: readonly DemoState[] = [
   "error",
 ];
 
+export function isDemoState(value: unknown): value is DemoState {
+  return (
+    typeof value === "string" &&
+    (DEMO_STATES as readonly string[]).includes(value)
+  );
+}
+
 /**
- * Reads the optional `demoState` query parameter mock Route Handlers expose
- * for testing loading/empty/error UI. Not part of the shareable list query
- * state — normal URLs never carry it.
+ * Reads an optional demo-state query parameter (`demoState` by default)
+ * mock Route Handlers expose for testing loading/empty/error UI. Not part
+ * of the shareable list query state — normal URLs never carry it. Pass a
+ * different `paramName` to expose a second, independent demo toggle (for
+ * example a bulk-action endpoint that shouldn't share the list's own
+ * `demoState`).
  */
-export function parseDemoState(searchParams: URLSearchParams): DemoState {
-  const value = searchParams.get("demoState");
-  return (DEMO_STATES as readonly string[]).includes(value ?? "")
-    ? (value as DemoState)
-    : "default";
+export function parseDemoState(
+  searchParams: URLSearchParams,
+  paramName = "demoState",
+): DemoState {
+  const value = searchParams.get(paramName);
+  return isDemoState(value) ? value : "default";
 }
 
 export function simulateLatency(ms: number): Promise<void> {
