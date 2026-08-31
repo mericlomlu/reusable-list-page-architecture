@@ -1,11 +1,72 @@
-import { RoutePlaceholder } from "@/components/layout/route-placeholder";
+import { PageContainer } from "@/components/layout/page-container";
+import {
+  CONTROLS_CATEGORY,
+  PAGINATION_FILTERS_CATEGORY,
+  QUERY_NAVIGATION_CATEGORY,
+  SELECTION_CATEGORY,
+  STRUCTURE_RESULTS_CATEGORY,
+  SYSTEM_STATES_CATEGORY,
+} from "@/features/building-blocks-reference/block-catalog";
+import { BlockCatalogSection } from "@/features/building-blocks-reference/block-catalog-section";
+import {
+  ControlsPreview,
+  PaginationFiltersPreview,
+  QueryPreview,
+  SelectionCategoryPreview,
+  StructurePreview,
+  SystemStatesPreview,
+} from "@/features/building-blocks-reference/category-previews";
+import { PageOwnedNote } from "@/features/building-blocks-reference/page-owned-note";
+import { QueryBoundaryExample } from "@/features/building-blocks-reference/query-boundary-example";
+import { ReferencePageHeader } from "@/features/reference-ui/reference-page-header";
 
 export default function BuildingBlocksPage() {
   return (
-    <RoutePlaceholder
-      eyebrow="Reference / Building Blocks"
-      title="Building Blocks"
-      description="The catalog of reusable list building blocks is documented in a later slice."
-    />
+    <PageContainer>
+      <ReferencePageHeader
+        eyebrow="Reference / Building Blocks"
+        title="Building Blocks"
+        description={
+          <>
+            Templates shows how these compose into four layers. This page turns
+            that around: every primitive in{" "}
+            <code className="font-mono text-caption">
+              src/features/list-page/
+            </code>{" "}
+            on its own — what it renders, whether it&apos;s a Server Component,
+            a Client Component, or a client hook, and which examples actually
+            use it.
+          </>
+        }
+      />
+
+      <BlockCatalogSection category={STRUCTURE_RESULTS_CATEGORY}>
+        <StructurePreview />
+      </BlockCatalogSection>
+
+      <BlockCatalogSection category={QUERY_NAVIGATION_CATEGORY}>
+        <QueryPreview />
+      </BlockCatalogSection>
+
+      <BlockCatalogSection category={CONTROLS_CATEGORY}>
+        <ControlsPreview />
+      </BlockCatalogSection>
+
+      <BlockCatalogSection category={PAGINATION_FILTERS_CATEGORY}>
+        <PaginationFiltersPreview />
+      </BlockCatalogSection>
+
+      <BlockCatalogSection category={SELECTION_CATEGORY}>
+        <SelectionCategoryPreview />
+      </BlockCatalogSection>
+
+      <BlockCatalogSection category={SYSTEM_STATES_CATEGORY}>
+        <SystemStatesPreview />
+      </BlockCatalogSection>
+
+      <QueryBoundaryExample />
+
+      <PageOwnedNote />
+    </PageContainer>
   );
 }
