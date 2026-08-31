@@ -39,7 +39,7 @@ export default function TemplatesPage() {
         <div className="mt-5 flex flex-col gap-4">
           <TemplateLayerCard
             title="Basic List"
-            description="ListPageShell composed with ResultsView and PaginationControls only — no toolbar, no filters, no client state. Every other layer is this same shell with more passed into its toolbar prop and children."
+            description="ListPageShell composed with ResultsView and PaginationControls. toolbar is a required prop, but a basic composition can pass it null or minimal content — every other layer just puts more into that same slot and into children."
             buildingBlocks={[
               "ListPageShell",
               "ResultsView",
@@ -56,7 +56,7 @@ export default function TemplatesPage() {
 
           <TemplateLayerCard
             title="Search & Filters"
-            description="A page-owned toolbar composes SearchField, SingleSelectFilter or MultiSelectFilter, SortMenu, and ViewSwitcher, then calls useListQueryState once. Every keystroke, filter toggle, sort change, and view switch reads and writes the same URL, so the browser back button and a copied link always restore the same list."
+            description="A page-owned toolbar composes SearchField, SingleSelectFilter or MultiSelectFilter, SortMenu, and ViewSwitcher, then calls useListQueryState once. Debounced search replaces the current URL entry, while filter, sort, view, and pagination changes each push a new, navigable one — so the back button and a copied link still restore the right list."
             buildingBlocks={[
               "SearchField",
               "SingleSelectFilter",
@@ -76,7 +76,7 @@ export default function TemplatesPage() {
 
           <TemplateLayerCard
             title="Selection & Bulk Actions"
-            description="Adds row-level selection that is deliberately kept out of the URL — it's page state, not shareable list state. SelectionToolbar appears once anything is checked and exposes page-owned bulk actions; the page renders its own selectable rows since checkbox wiring doesn't fit ResultsView's render-prop shape."
+            description="Adds row-level selection that is deliberately kept out of the URL — it's page state, not shareable list state. SelectionToolbar appears once anything is checked and exposes page-owned bulk actions; the page renders its own selectable table because ResultsView doesn't model table headers, select-all, or indeterminate selection."
             buildingBlocks={["useSelection", "SelectionToolbar"]}
             example={{
               label: "Issues is the only example that needs it",

@@ -2,11 +2,12 @@ const PAGE_EXAMPLE = `export default async function WidgetsPage(
   props: PageProps<"/examples/widgets">,
 ) {
   const searchParams = toSearchParams(await props.searchParams);
+  const demoState = parseDemoState(searchParams);
   const query = parseListQuery<WidgetSortKey, WidgetFilterKey>(
     searchParams,
     WIDGET_LIST_QUERY_CONFIG,
   );
-  const { records, total, page } = await queryWidgets(query);
+  const { records, total, page } = await queryWidgets(query, demoState);
 
   const buildHref = (target: number) =>
     "/examples/widgets" +
@@ -14,6 +15,10 @@ const PAGE_EXAMPLE = `export default async function WidgetsPage(
       { ...query, page: target },
       WIDGET_LIST_QUERY_CONFIG,
     );
+
+  if (page !== query.page) {
+    redirect(buildHref(page));
+  }
 
   return (
     <ListPageShell
