@@ -1,4 +1,4 @@
-# Current slice: building-blocks-reference
+# Current slice: architecture-reference
 
 ## History
 
@@ -9,6 +9,8 @@
 - Deployments example slice merged via [PR #7](https://github.com/mericlomlu/reusable-list-page-architecture/pull/7) (`feat/deployments-example`): `/examples/deployments` reusing the shared list-page architecture, deployment status presentation with icon/shape plus text, `/api/deployments` with filtering, sorting, pagination, and demo-state parameters, and a shared `useDemoErrorRecovery` hook extracted from the third consumer.
 - Packages example slice merged via [PR #8](https://github.com/mericlomlu/reusable-list-page-architecture/pull/8) (`feat/packages-example`): `/examples/packages` as the fourth reusable vertical slice, package-specific config, types, mock data, query service, and renderers under `src/features/packages-example/`, and `/api/packages` sharing the reusable query service.
 - Templates reference slice merged via [PR #9](https://github.com/mericlomlu/reusable-list-page-architecture/pull/9) (`feat/templates-reference`): `/reference/templates` as a static presentation page documenting the shared list-page composition layers, with content verified against `src/features/list-page/`.
+- Building blocks reference slice merged via [PR #10](https://github.com/mericlomlu/reusable-list-page-architecture/pull/10) (`feat/building-blocks-reference`): `/reference/building-blocks` cataloging every reusable primitive in `src/features/list-page/` on its own, with boundary tags, previews, and consumer references verified against the implementation.
+- Architecture reference slice (`feat/architecture-reference`): `/reference/architecture` as a static presentation page walking the request-to-render flow (URL → shared parser → page-owned query service → server-rendered results), the client interaction path back into the URL, server/client boundaries, shared-core-vs-page-owned composition, the six-step data pipeline, page/Route Handler API parity, and selection as a deliberate URL-state exception — all verified against `src/features/list-page/` and `src/features/issues-example/`.
 
 ## Confirmed
 
@@ -20,22 +22,16 @@
 - The warm bone/graphite/coral direction, Manrope + IBM Plex Mono pairing, sidebar shell, long list records, design tokens, icon concept, and responsive notes are approved.
 - The reusable list-page architecture from components-example (`src/features/list-page/`), proven again by issues-example, deployments-example, and packages-example, is approved as the shared foundation for further examples.
 - The shared `useDemoErrorRecovery` hook, extracted from Components, Issues, and Deployments, is approved for reuse by further examples.
+- The three-page reference section (Templates, Building Blocks, Architecture) is now complete, sharing `ReferencePageHeader`, `PageContainer`, and the warm/restrained diagram style established across all three.
 
 ## Implement now
 
-- Import `Building Blocks.dc.html` from the approved Claude Design project as the visual and content reference for `/reference/building-blocks`.
-- `/reference/building-blocks` as an English-only, static presentation/reference page documenting the project's actual reusable primitives (components, hooks, functions, types) rather than the composition layers already covered by `/reference/templates`.
-- Every documented block name, prop, type, and behavior claim must match the current repository implementation (`src/features/list-page/`) exactly. Do not document components or capabilities that do not exist.
-- Group real exports into concise categories (structure/results, query/navigation, search/filters/sorting/views, pagination/active filters, selection/bulk actions, loading/empty/error/demo-state recovery).
-- Accurately describe server/client boundaries and primary consumers for each block.
-- Accessible labels for visual previews, semantic headings/sections/lists/figures/captions, and native `<pre><code>` blocks for any code samples (no syntax-highlighting library).
-- Reuse Templates presentation components only where an exact shared presentation pattern is proven; otherwise keep new reference-only components scoped to a clearly named shared reference feature.
+No slice is currently scoped. The remaining known work is listed under "Do not combine yet" below; wait for explicit owner scoping before starting any of it.
 
 ## Do not combine yet
 
-- Architecture receives a later scoped slice.
 - Favicon, OG assets, metadata, sitemap, manifest, and structured data are a dedicated metadata slice.
 - Final Overview content is out of scope.
 - Vercel linking and deployment happen only after the local build is complete.
 
-When building-blocks-reference is merged, update this file to the next scoped slice.
+When architecture-reference is merged, update this file to the next scoped slice.
