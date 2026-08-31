@@ -19,6 +19,7 @@ const SKELETON_COLUMN_KEYS = [
   "col-d",
   "col-e",
   "col-f",
+  "col-g",
 ] as const;
 
 interface ListSkeletonProps {
