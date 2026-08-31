@@ -12,4 +12,5 @@ description: Adds a Components, Issues, Deployments, or Packages example using t
 5. Configure shared list behavior and implement a page-owned item renderer.
 6. Preserve URL state across refresh and browser navigation.
 7. Cover loading, empty, filtered-empty, error, mobile, and dark-mode states.
-8. Run Biome, TypeScript, build, and browser inspection.
+8. Apply `.claude/rules/tailwind-readability.md` to any new or touched className strings.
+9. Run Biome, TypeScript, build, and browser inspection.

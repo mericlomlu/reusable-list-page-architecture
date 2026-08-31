@@ -10,4 +10,5 @@
 - Do not use gradients, glassmorphism, excessive pills, nested preview cards, decorative icon repetition, or cold SaaS blue.
 - Support light, dark, and system preference. System is the default.
 - Keep visual and interaction tokens centralized; do not repeat arbitrary Tailwind values across features.
+- Follow `.claude/rules/tailwind-readability.md` for how to structure Tailwind class strings (cva, `cn()`, grouped constants, theme tokens, when to extract) once a component exists.
 - Repository rules override design copy where they conflict. Do not use the invented `reusable-list-architecture.dev` domain, do not add a site-search `SearchAction`, and use “multiple list pages” rather than “five different list pages.”
