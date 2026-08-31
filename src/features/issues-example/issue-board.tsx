@@ -20,6 +20,7 @@ import { RESULTS_GRID_CLASS_NAME } from "@/features/list-page/results-view";
 import { SelectionToolbar } from "@/features/list-page/selection-toolbar";
 import type { ViewMode } from "@/features/list-page/types";
 import { useSelection } from "@/features/list-page/use-selection";
+import { cn } from "@/lib/utils";
 
 interface IssueBoardProps {
   records: readonly IssueRecord[];
@@ -110,15 +111,12 @@ export function IssueBoard({ records, view }: IssueBoardProps) {
           ref={feedbackRef}
           tabIndex={-1}
           role={feedback.type === "error" ? "alert" : "status"}
-          // Not cn(): tailwind-merge misclassifies the custom text-body-sm
-          // font-size token as a text-color utility and drops the adjacent
-          // text-destructive/text-foreground class.
-          className={[
+          className={cn(
             "mb-3.5 flex items-center justify-between gap-3 rounded-lg border px-4 py-2.5 text-body-sm outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring",
             feedback.type === "error"
               ? "border-destructive/30 bg-destructive/5 text-destructive"
               : "border-success/30 bg-success/10 text-foreground",
-          ].join(" ")}
+          )}
         >
           {feedback.message}
           <button

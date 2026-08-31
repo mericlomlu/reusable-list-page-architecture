@@ -7,6 +7,7 @@
 - Use `cn()` for conditional composition.
 - Keep static Tailwind class names as complete literals so Tailwind CSS 4 can detect them. Never build class names through string interpolation.
 - Move repeated design decisions into Tailwind CSS 4 theme tokens when they are genuinely part of the design system.
+- Every custom `--text-*` theme token added to `globals.css` must also be registered in the project's `tailwind-merge` text theme configuration (`src/lib/utils.ts`), so `cn()` resolves font-size conflicts against it correctly instead of dropping it. Prefer fixing the merge configuration centrally over bypassing `cn()` with a local workaround.
 - Do not move ordinary component styling into `globals.css`. Avoid broad `@apply` abstractions and generic classes such as `.card`, `.row`, or `.container`.
 - Do not create large style-object files that merely relocate every class string.
 - Avoid unnecessary abstraction: repeated exact strings are candidates for extraction only when they represent a meaningful reusable visual concept. Repetition alone does not justify an abstraction, and it does not justify inventing a variant matrix, cva config, or subcomponent for styling that only looks similar. When in doubt, leave a dense-but-correct primitive string alone and say why in review notes rather than force an abstraction that does not fit.
