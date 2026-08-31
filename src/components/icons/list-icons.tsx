@@ -48,3 +48,10 @@ export const ErrorIcon = createStrokeIcon(
     <path d="M8 5.5v3.5M8 11.2v.2" />
   </>,
 );
+
+export const ClockIcon = createStrokeIcon(
+  <>
+    <circle cx={8} cy={8} r={5.5} />
+    <path d="M8 5.2v3l2 1.2" />
+  </>,
+);
