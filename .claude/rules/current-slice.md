@@ -1,4 +1,4 @@
-# Current slice: templates-reference
+# Current slice: building-blocks-reference
 
 ## History
 
@@ -8,6 +8,7 @@
 - Tailwind readability refactor merged via [PR #5](https://github.com/mericlomlu/reusable-list-page-architecture/pull/5) (`refactor/tailwind-readability`): grouped class-string constants, `cva` variants, and `tailwind-merge` text-token registration across existing components, with no visual or behavioral change.
 - Deployments example slice merged via [PR #7](https://github.com/mericlomlu/reusable-list-page-architecture/pull/7) (`feat/deployments-example`): `/examples/deployments` reusing the shared list-page architecture, deployment status presentation with icon/shape plus text, `/api/deployments` with filtering, sorting, pagination, and demo-state parameters, and a shared `useDemoErrorRecovery` hook extracted from the third consumer.
 - Packages example slice merged via [PR #8](https://github.com/mericlomlu/reusable-list-page-architecture/pull/8) (`feat/packages-example`): `/examples/packages` as the fourth reusable vertical slice, package-specific config, types, mock data, query service, and renderers under `src/features/packages-example/`, and `/api/packages` sharing the reusable query service.
+- Templates reference slice merged via [PR #9](https://github.com/mericlomlu/reusable-list-page-architecture/pull/9) (`feat/templates-reference`): `/reference/templates` as a static presentation page documenting the shared list-page composition layers, with content verified against `src/features/list-page/`.
 
 ## Confirmed
 
@@ -22,18 +23,19 @@
 
 ## Implement now
 
-- Import `Templates.dc.html` from the approved Claude Design project as the visual and content reference for `/reference/templates`.
-- `/reference/templates` as an English-only, static presentation/reference page explaining the project's actual reusable list-page templates and composition patterns.
-- Every documented template name, prop, type, and architectural claim must match the current repository implementation (`src/features/list-page/`) exactly. Do not document components or capabilities that do not exist.
-- Concise presentation-oriented sections showing how reusable structure and page-specific configuration fit together, with short code samples based on this project's own APIs.
-- Accessible labels for visual template previews, semantic headings/sections/lists/figures/captions, and native `<pre><code>` blocks for any code samples (no syntax-highlighting library).
-- Reused presentation components only where a repeated pattern is evident; do not over-generalize before Building Blocks or Architecture exist as second consumers.
+- Import `Building Blocks.dc.html` from the approved Claude Design project as the visual and content reference for `/reference/building-blocks`.
+- `/reference/building-blocks` as an English-only, static presentation/reference page documenting the project's actual reusable primitives (components, hooks, functions, types) rather than the composition layers already covered by `/reference/templates`.
+- Every documented block name, prop, type, and behavior claim must match the current repository implementation (`src/features/list-page/`) exactly. Do not document components or capabilities that do not exist.
+- Group real exports into concise categories (structure/results, query/navigation, search/filters/sorting/views, pagination/active filters, selection/bulk actions, loading/empty/error/demo-state recovery).
+- Accurately describe server/client boundaries and primary consumers for each block.
+- Accessible labels for visual previews, semantic headings/sections/lists/figures/captions, and native `<pre><code>` blocks for any code samples (no syntax-highlighting library).
+- Reuse Templates presentation components only where an exact shared presentation pattern is proven; otherwise keep new reference-only components scoped to a clearly named shared reference feature.
 
 ## Do not combine yet
 
-- Building Blocks and Architecture each receive later scoped slices.
+- Architecture receives a later scoped slice.
 - Favicon, OG assets, metadata, sitemap, manifest, and structured data are a dedicated metadata slice.
 - Final Overview content is out of scope.
 - Vercel linking and deployment happen only after the local build is complete.
 
-When templates-reference is merged, update this file to the next scoped slice.
+When building-blocks-reference is merged, update this file to the next scoped slice.

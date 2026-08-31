@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { ChevronRightIcon } from "@/components/icons/list-icons";
+import { DecorativePreviewFigure } from "@/features/reference-ui/decorative-preview-figure";
 
 interface TemplateExampleLink {
   readonly label: string;
@@ -52,12 +53,12 @@ export function TemplateLayerCard({
           </Link>
         ) : null}
       </div>
-      <figure className="m-0 flex flex-col justify-center gap-2 border-t border-border bg-background px-5 py-5 sm:border-t-0 sm:border-l">
-        <figcaption className="sr-only">{previewLabel}</figcaption>
-        <div aria-hidden="true" className="flex flex-col gap-2">
-          {children}
-        </div>
-      </figure>
+      <DecorativePreviewFigure
+        label={previewLabel}
+        className="border-t border-border bg-background sm:border-t-0 sm:border-l"
+      >
+        {children}
+      </DecorativePreviewFigure>
     </article>
   );
 }

@@ -1,4 +1,5 @@
 import { PageContainer } from "@/components/layout/page-container";
+import { ReferencePageHeader } from "@/features/reference-ui/reference-page-header";
 import { CompositionExample } from "@/features/templates-reference/composition-example";
 import {
   BasicListPreview,
@@ -11,18 +12,11 @@ import { TemplateLayerCard } from "@/features/templates-reference/template-layer
 export default function TemplatesPage() {
   return (
     <PageContainer>
-      <header className="mb-8 flex flex-col gap-1.5">
-        <p className="font-mono text-eyebrow text-muted-foreground uppercase tracking-wide">
-          Reference / Templates
-        </p>
-        <h1 className="text-2xl font-extrabold tracking-tight text-foreground sm:text-[28px]">
-          Templates
-        </h1>
-        <p className="max-w-xl text-sm text-muted-foreground">
-          Four composition layers, from a bare list to a fully-stateful page.
-          Every example route in this project builds on some or all of them.
-        </p>
-      </header>
+      <ReferencePageHeader
+        eyebrow="Reference / Templates"
+        title="Templates"
+        description="Four composition layers, from a bare list to a fully-stateful page. Every example route in this project builds on some or all of them."
+      />
 
       <section aria-labelledby="layers-heading">
         <h2 id="layers-heading" className="text-lg font-bold text-foreground">
