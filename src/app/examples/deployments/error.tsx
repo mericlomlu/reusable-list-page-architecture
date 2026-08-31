@@ -5,7 +5,7 @@ import { ListPageShell } from "@/features/list-page/list-page-shell";
 import { ListErrorState } from "@/features/list-page/list-states";
 import { useDemoErrorRecovery } from "@/features/list-page/use-demo-error-recovery";
 
-export default function IssuesError({
+export default function DeploymentsError({
   reset,
   retry,
 }: {
@@ -17,14 +17,14 @@ export default function IssuesError({
 
   return (
     <ListPageShell
-      eyebrow="Examples / Issues"
-      title="Issues"
-      description="Track and triage work across the workspace. Select rows to change status on several issues at once."
+      eyebrow="Examples / Deployments"
+      title="Deployments"
+      description="Every build across environments, with status shown as icon and label — never color alone."
       toolbar={<div aria-hidden="true" className="h-9" />}
     >
       <ListErrorState
-        title="Couldn't load issues"
-        description="Something went wrong while loading the issue list. Try again."
+        title="Couldn't load deployments"
+        description="Something went wrong while loading the deployment list. Try again."
         action={<Button onClick={handleRetry}>Retry</Button>}
       />
     </ListPageShell>
