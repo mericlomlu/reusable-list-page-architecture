@@ -1,25 +1,7 @@
-import type { ReactElement, SVGProps } from "react";
+import type { SVGProps } from "react";
+import { createStrokeIcon, type IconComponent } from "@/components/icons/icon";
 
-export type NavIconComponent = (props: SVGProps<SVGSVGElement>) => ReactElement;
-
-function createStrokeIcon(paths: ReactElement) {
-  return function StrokeIcon(props: SVGProps<SVGSVGElement>) {
-    return (
-      <svg
-        viewBox="0 0 16 16"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={1.6}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-        {...props}
-      >
-        {paths}
-      </svg>
-    );
-  };
-}
+export type NavIconComponent = IconComponent;
 
 export const OverviewIcon = createStrokeIcon(
   <>

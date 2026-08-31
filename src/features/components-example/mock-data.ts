@@ -1,0 +1,298 @@
+import type { ComponentRecord } from "@/features/components-example/types";
+
+export const COMPONENT_MOCK_RECORDS: readonly ComponentRecord[] = [
+  {
+    id: "command-palette",
+    name: "Command Palette",
+    description:
+      "Keyboard-first action launcher with fuzzy match and recent commands.",
+    category: "overlays",
+    framework: "react",
+    status: "stable",
+    updatedAt: "2026-08-28",
+  },
+  {
+    id: "toast-stack",
+    name: "Toast Stack",
+    description:
+      "Queued, auto-dismissing notifications with a pause-on-hover affordance.",
+    category: "feedback",
+    framework: "react",
+    status: "stable",
+    updatedAt: "2026-08-25",
+  },
+  {
+    id: "modal-dialog",
+    name: "Modal Dialog",
+    description:
+      "Focus-trapped dialog with Escape-to-close and scroll locking.",
+    category: "overlays",
+    framework: "react",
+    status: "stable",
+    updatedAt: "2026-08-21",
+  },
+  {
+    id: "breadcrumb-trail",
+    name: "Breadcrumb Trail",
+    description:
+      "Truncating breadcrumb path with an overflow menu for deep routes.",
+    category: "navigation",
+    framework: "react",
+    status: "stable",
+    updatedAt: "2026-08-27",
+  },
+  {
+    id: "tab-group",
+    name: "Tab Group",
+    description:
+      "Roving-tabindex tab list with automatic and manual activation modes.",
+    category: "navigation",
+    framework: "vue",
+    status: "beta",
+    updatedAt: "2026-08-20",
+  },
+  {
+    id: "tooltip",
+    name: "Tooltip",
+    description:
+      "Hover and focus tooltip with configurable delay and collision avoidance.",
+    category: "overlays",
+    framework: "react",
+    status: "stable",
+    updatedAt: "2026-08-14",
+  },
+  {
+    id: "avatar-stack",
+    name: "Avatar Stack",
+    description: "Overlapping avatar group with an overflow count badge.",
+    category: "data-display",
+    framework: "react",
+    status: "beta",
+    updatedAt: "2026-08-23",
+  },
+  {
+    id: "progress-ring",
+    name: "Progress Ring",
+    description:
+      "Circular progress indicator with determinate and indeterminate modes.",
+    category: "feedback",
+    framework: "svelte",
+    status: "beta",
+    updatedAt: "2026-08-10",
+  },
+  {
+    id: "skeleton-block",
+    name: "Skeleton Block",
+    description:
+      "Shimmering placeholder block that respects reduced-motion preferences.",
+    category: "feedback",
+    framework: "react",
+    status: "stable",
+    updatedAt: "2026-08-26",
+  },
+  {
+    id: "date-range-picker",
+    name: "Date Range Picker",
+    description: "Two-month calendar picker with keyboard range selection.",
+    category: "forms",
+    framework: "react",
+    status: "beta",
+    updatedAt: "2026-08-18",
+  },
+  {
+    id: "combobox",
+    name: "Combobox",
+    description:
+      "Filterable, single-select combobox with async option loading.",
+    category: "forms",
+    framework: "vue",
+    status: "stable",
+    updatedAt: "2026-08-12",
+  },
+  {
+    id: "range-slider",
+    name: "Range Slider",
+    description:
+      "Dual-handle range slider with step snapping and value tooltip.",
+    category: "forms",
+    framework: "react",
+    status: "stable",
+    updatedAt: "2026-08-05",
+  },
+  {
+    id: "switch-control",
+    name: "Switch Control",
+    description:
+      "Binary toggle switch superseded by the new Checkbox Group variant.",
+    category: "forms",
+    framework: "angular",
+    status: "deprecated",
+    updatedAt: "2026-07-15",
+  },
+  {
+    id: "radio-group",
+    name: "Radio Group",
+    description: "Accessible radio group with arrow-key roving focus.",
+    category: "forms",
+    framework: "react",
+    status: "stable",
+    updatedAt: "2026-08-22",
+  },
+  {
+    id: "checkbox-group",
+    name: "Checkbox Group",
+    description:
+      "Composable checkbox group with an indeterminate parent state.",
+    category: "forms",
+    framework: "vue",
+    status: "stable",
+    updatedAt: "2026-08-16",
+  },
+  {
+    id: "disclosure-panel",
+    name: "Disclosure Panel",
+    description:
+      "Single or multi-open accordion with animated height transitions.",
+    category: "overlays",
+    framework: "svelte",
+    status: "beta",
+    updatedAt: "2026-08-08",
+  },
+  {
+    id: "split-button",
+    name: "Split Button",
+    description: "Primary action button paired with a secondary dropdown menu.",
+    category: "forms",
+    framework: "react",
+    status: "beta",
+    updatedAt: "2026-08-19",
+  },
+  {
+    id: "segmented-control",
+    name: "Segmented Control",
+    description:
+      "Single-select segmented control for compact view or mode switches.",
+    category: "navigation",
+    framework: "react",
+    status: "stable",
+    updatedAt: "2026-08-24",
+  },
+  {
+    id: "rating-input",
+    name: "Rating Input",
+    description: "Star rating input replaced by the numeric feedback scale.",
+    category: "forms",
+    framework: "vue",
+    status: "deprecated",
+    updatedAt: "2026-07-02",
+  },
+  {
+    id: "file-dropzone",
+    name: "File Dropzone",
+    description: "Drag-and-drop upload zone with per-file progress and retry.",
+    category: "forms",
+    framework: "react",
+    status: "beta",
+    updatedAt: "2026-08-11",
+  },
+  {
+    id: "color-swatch-picker",
+    name: "Color Swatch Picker",
+    description:
+      "Preset swatch picker retired in favor of the token-aware theme picker.",
+    category: "forms",
+    framework: "svelte",
+    status: "deprecated",
+    updatedAt: "2026-07-20",
+  },
+  {
+    id: "step-indicator",
+    name: "Step Indicator",
+    description:
+      "Linear step indicator for multi-page forms with completed-state markers.",
+    category: "navigation",
+    framework: "angular",
+    status: "stable",
+    updatedAt: "2026-08-06",
+  },
+  {
+    id: "timeline-list",
+    name: "Timeline List",
+    description:
+      "Vertical timeline for activity history with collapsible entries.",
+    category: "data-display",
+    framework: "react",
+    status: "stable",
+    updatedAt: "2026-08-17",
+  },
+  {
+    id: "banner-alert",
+    name: "Banner Alert",
+    description:
+      "Page-level banner for announcements with a dismiss affordance.",
+    category: "feedback",
+    framework: "react",
+    status: "stable",
+    updatedAt: "2026-08-29",
+  },
+  {
+    id: "context-menu",
+    name: "Context Menu",
+    description:
+      "Right-click context menu with nested submenus and keyboard support.",
+    category: "overlays",
+    framework: "vue",
+    status: "beta",
+    updatedAt: "2026-08-09",
+  },
+  {
+    id: "resizable-split-view",
+    name: "Resizable Split View",
+    description:
+      "Draggable split panes with a minimum-width collapse threshold.",
+    category: "data-display",
+    framework: "angular",
+    status: "beta",
+    updatedAt: "2026-07-28",
+  },
+  {
+    id: "virtualized-table",
+    name: "Virtualized Table",
+    description:
+      "Windowed table renderer for large datasets with sticky headers.",
+    category: "data-display",
+    framework: "react",
+    status: "stable",
+    updatedAt: "2026-08-13",
+  },
+  {
+    id: "multi-select",
+    name: "Multi Select",
+    description:
+      "Tag-style multi-select input with keyboard removal and paste support.",
+    category: "forms",
+    framework: "svelte",
+    status: "beta",
+    updatedAt: "2026-08-04",
+  },
+  {
+    id: "inline-editor",
+    name: "Inline Editor",
+    description:
+      "Click-to-edit inline text field superseded by the form drawer pattern.",
+    category: "data-display",
+    framework: "vue",
+    status: "deprecated",
+    updatedAt: "2026-07-10",
+  },
+  {
+    id: "keyboard-shortcut-hint",
+    name: "Keyboard Shortcut Hint",
+    description:
+      "Inline key-combo badge that adapts to the detected operating system.",
+    category: "overlays",
+    framework: "react",
+    status: "stable",
+    updatedAt: "2026-08-30",
+  },
+];
