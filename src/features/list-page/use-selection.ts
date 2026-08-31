@@ -8,6 +8,7 @@ export interface UseSelectionResult {
   isSelected(id: string): boolean;
   toggle(id: string): void;
   selectAll(ids: readonly string[]): void;
+  removeMany(ids: readonly string[]): void;
   clear(): void;
 }
 
@@ -43,6 +44,15 @@ export function useSelection(): UseSelectionResult {
     setSelectedIds(new Set(ids));
   }, []);
 
+  const removeMany = useCallback((ids: readonly string[]) => {
+    if (ids.length === 0) return;
+    setSelectedIds((current) => {
+      const next = new Set(current);
+      for (const id of ids) next.delete(id);
+      return next;
+    });
+  }, []);
+
   const clear = useCallback(() => setSelectedIds(new Set()), []);
 
   return {
@@ -51,6 +61,7 @@ export function useSelection(): UseSelectionResult {
     isSelected,
     toggle,
     selectAll,
+    removeMany,
     clear,
   };
 }

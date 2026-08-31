@@ -84,5 +84,9 @@ export function isIssueStatus(value: string): value is IssueStatus {
   return VALID_ISSUE_STATUSES.has(value);
 }
 
-export const ISSUE_LIST_SKELETON_GRID_COLUMNS = "1fr 96px 84px 96px 60px 84px";
-export const ISSUE_LIST_SKELETON_COLUMN_COUNT = 6;
+// Widths mirror the real table's columns in issue-table.tsx: checkbox (w-11),
+// issue (flexible), status (w-28), priority (w-24), label (w-28), assignee
+// (w-16), updated (w-24).
+export const ISSUE_LIST_SKELETON_GRID_COLUMNS =
+  "44px 1fr 112px 96px 112px 64px 96px";
+export const ISSUE_LIST_SKELETON_COLUMN_COUNT = 7;

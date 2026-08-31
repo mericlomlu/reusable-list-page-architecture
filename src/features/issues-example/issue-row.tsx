@@ -12,9 +12,15 @@ interface IssueRowProps {
   record: IssueRecord;
   selected: boolean;
   onToggle: () => void;
+  disabled?: boolean;
 }
 
-export function IssueRow({ record, selected, onToggle }: IssueRowProps) {
+export function IssueRow({
+  record,
+  selected,
+  onToggle,
+  disabled = false,
+}: IssueRowProps) {
   return (
     <tr
       aria-selected={selected}
@@ -27,6 +33,7 @@ export function IssueRow({ record, selected, onToggle }: IssueRowProps) {
         <Checkbox
           checked={selected}
           onCheckedChange={onToggle}
+          disabled={disabled}
           aria-label={`Select issue #${record.number}: ${record.title}`}
         />
       </td>

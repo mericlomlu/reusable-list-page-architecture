@@ -11,12 +11,14 @@ interface IssueGridCardProps {
   record: IssueRecord;
   selected: boolean;
   onToggle: () => void;
+  disabled?: boolean;
 }
 
 export function IssueGridCard({
   record,
   selected,
   onToggle,
+  disabled = false,
 }: IssueGridCardProps) {
   return (
     <li className="flex flex-col gap-2.5 rounded-lg border border-border bg-card p-[18px]">
@@ -25,6 +27,7 @@ export function IssueGridCard({
         <Checkbox
           checked={selected}
           onCheckedChange={onToggle}
+          disabled={disabled}
           aria-label={`Select issue #${record.number}: ${record.title}`}
           className="mt-0.5 shrink-0"
         />

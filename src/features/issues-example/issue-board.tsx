@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CloseIcon } from "@/components/icons/nav-icons";
 import { Button } from "@/components/ui/button";
 import {
@@ -43,6 +43,16 @@ export function IssueBoard({ records, view }: IssueBoardProps) {
   >({});
   const [feedback, setFeedback] = useState<Feedback | null>(null);
   const [pending, setPending] = useState(false);
+  const feedbackRef = useRef<HTMLDivElement>(null);
+
+  // The control that started the bulk action is disabled (and, on success,
+  // often unmounted along with the whole selection toolbar) by the time this
+  // fires, so move focus to the outcome instead of leaving it dropped.
+  useEffect(() => {
+    if (feedback) {
+      feedbackRef.current?.focus();
+    }
+  }, [feedback]);
 
   const effectiveRecords = records.map((record) =>
     statusOverrides[record.id]
@@ -56,6 +66,8 @@ export function IssueBoard({ records, view }: IssueBoardProps) {
   const someSelected = selection.selectedCount > 0 && !allSelected;
 
   async function applyBulkStatus(status: IssueStatus) {
+    if (pending) return;
+
     const ids = [...selection.selectedIds];
     if (ids.length === 0) return;
 
@@ -78,7 +90,7 @@ export function IssueBoard({ records, view }: IssueBoardProps) {
           result.updatedIds.length === 1 ? "issue" : "issues"
         } (demo only — not saved).`,
       });
-      selection.clear();
+      selection.removeMany(result.updatedIds);
     } catch (error) {
       setFeedback({
         type: "error",
@@ -96,9 +108,11 @@ export function IssueBoard({ records, view }: IssueBoardProps) {
     <>
       {feedback ? (
         <div
+          ref={feedbackRef}
+          tabIndex={-1}
           role={feedback.type === "error" ? "alert" : "status"}
           className={cn(
-            "mb-3.5 flex items-center justify-between gap-3 rounded-lg border px-4 py-2.5 text-[13px]",
+            "mb-3.5 flex items-center justify-between gap-3 rounded-lg border px-4 py-2.5 text-[13px] outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring",
             feedback.type === "error"
               ? "border-destructive/30 bg-destructive/5 text-destructive"
               : "border-success/30 bg-success/10 text-foreground",
@@ -121,6 +135,7 @@ export function IssueBoard({ records, view }: IssueBoardProps) {
         itemLabel="issues"
         onSelectAllVisible={() => selection.selectAll(visibleIds)}
         onClear={selection.clear}
+        pending={pending}
         actions={
           <>
             <DropdownMenu>
@@ -164,6 +179,7 @@ export function IssueBoard({ records, view }: IssueBoardProps) {
               record={record}
               selected={selection.isSelected(record.id)}
               onToggle={() => selection.toggle(record.id)}
+              disabled={pending}
             />
           ))}
         </ul>
@@ -181,6 +197,7 @@ export function IssueBoard({ records, view }: IssueBoardProps) {
               selection.selectAll(visibleIds);
             }
           }}
+          disabled={pending}
         />
       )}
     </>

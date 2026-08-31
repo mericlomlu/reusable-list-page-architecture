@@ -11,6 +11,7 @@ interface IssueTableProps {
   allSelected: boolean;
   someSelected: boolean;
   onToggleAll: () => void;
+  disabled?: boolean;
 }
 
 export function IssueTable({
@@ -20,6 +21,7 @@ export function IssueTable({
   allSelected,
   someSelected,
   onToggleAll,
+  disabled = false,
 }: IssueTableProps) {
   return (
     <div className="overflow-x-auto rounded-lg border border-border">
@@ -32,6 +34,7 @@ export function IssueTable({
                 checked={allSelected}
                 indeterminate={someSelected}
                 onCheckedChange={onToggleAll}
+                disabled={disabled}
                 aria-label={
                   allSelected
                     ? "Deselect all issues on this page"
@@ -66,6 +69,7 @@ export function IssueTable({
               record={record}
               selected={isSelected(record.id)}
               onToggle={() => onToggle(record.id)}
+              disabled={disabled}
             />
           ))}
         </tbody>
