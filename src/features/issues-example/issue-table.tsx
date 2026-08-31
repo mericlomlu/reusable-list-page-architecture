@@ -28,7 +28,7 @@ export function IssueTable({
       <table className="w-full min-w-[760px] border-collapse text-left">
         <caption className="sr-only">Issues</caption>
         <thead>
-          <tr className="border-b border-border bg-muted/50 font-mono text-[11px] font-bold tracking-wide text-muted-foreground uppercase">
+          <tr className="border-b border-border bg-muted/50 font-mono text-label font-bold tracking-wide text-muted-foreground uppercase">
             <th scope="col" className="w-11 px-3 py-2.5">
               <Checkbox
                 checked={allSelected}

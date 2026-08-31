@@ -55,6 +55,18 @@ function ToggleGroup({
   );
 }
 
+// Zero-spacing groups render as a single connected control (no gaps between
+// items), so items need their own rounding/border removed in favor of one
+// rounded outline on the group; the `group-data-*` selectors below read that
+// state from the ancestor `ToggleGroup` rather than from local props.
+const TOGGLE_GROUP_ITEM_BASE_CLASS = "shrink-0 focus:z-10 focus-visible:z-10";
+const TOGGLE_GROUP_ITEM_CONNECTED_CLASS =
+  "group-data-[spacing=0]/toggle-group:rounded-none group-data-[spacing=0]/toggle-group:px-2 group-data-[spacing=0]/toggle-group:has-data-[icon=inline-end]:pr-1.5 group-data-[spacing=0]/toggle-group:has-data-[icon=inline-start]:pl-1.5";
+const TOGGLE_GROUP_ITEM_CONNECTED_ENDS_CLASS =
+  "group-data-horizontal/toggle-group:data-[spacing=0]:first:rounded-l-lg group-data-vertical/toggle-group:data-[spacing=0]:first:rounded-t-lg group-data-horizontal/toggle-group:data-[spacing=0]:last:rounded-r-lg group-data-vertical/toggle-group:data-[spacing=0]:last:rounded-b-lg";
+const TOGGLE_GROUP_ITEM_CONNECTED_OUTLINE_CLASS =
+  "group-data-horizontal/toggle-group:data-[spacing=0]:data-[variant=outline]:border-l-0 group-data-vertical/toggle-group:data-[spacing=0]:data-[variant=outline]:border-t-0 group-data-horizontal/toggle-group:data-[spacing=0]:data-[variant=outline]:first:border-l group-data-vertical/toggle-group:data-[spacing=0]:data-[variant=outline]:first:border-t";
+
 function ToggleGroupItem({
   className,
   children,
@@ -71,7 +83,10 @@ function ToggleGroupItem({
       data-size={context.size || size}
       data-spacing={context.spacing}
       className={cn(
-        "shrink-0 group-data-[spacing=0]/toggle-group:rounded-none group-data-[spacing=0]/toggle-group:px-2 focus:z-10 focus-visible:z-10 group-data-[spacing=0]/toggle-group:has-data-[icon=inline-end]:pr-1.5 group-data-[spacing=0]/toggle-group:has-data-[icon=inline-start]:pl-1.5 group-data-horizontal/toggle-group:data-[spacing=0]:first:rounded-l-lg group-data-vertical/toggle-group:data-[spacing=0]:first:rounded-t-lg group-data-horizontal/toggle-group:data-[spacing=0]:last:rounded-r-lg group-data-vertical/toggle-group:data-[spacing=0]:last:rounded-b-lg group-data-horizontal/toggle-group:data-[spacing=0]:data-[variant=outline]:border-l-0 group-data-vertical/toggle-group:data-[spacing=0]:data-[variant=outline]:border-t-0 group-data-horizontal/toggle-group:data-[spacing=0]:data-[variant=outline]:first:border-l group-data-vertical/toggle-group:data-[spacing=0]:data-[variant=outline]:first:border-t",
+        TOGGLE_GROUP_ITEM_BASE_CLASS,
+        TOGGLE_GROUP_ITEM_CONNECTED_CLASS,
+        TOGGLE_GROUP_ITEM_CONNECTED_ENDS_CLASS,
+        TOGGLE_GROUP_ITEM_CONNECTED_OUTLINE_CLASS,
         toggleVariants({
           variant: context.variant || variant,
           size: context.size || size,

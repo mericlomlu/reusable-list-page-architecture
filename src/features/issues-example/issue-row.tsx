@@ -39,7 +39,7 @@ export function IssueRow({
       </td>
       <td className="px-3 py-3 align-top">
         <p className="text-[14px] font-bold text-foreground">{record.title}</p>
-        <p className="mt-0.5 font-mono text-[11.5px] text-muted-foreground">
+        <p className="mt-0.5 font-mono text-meta text-muted-foreground">
           #{record.number}
         </p>
       </td>
@@ -50,14 +50,14 @@ export function IssueRow({
         <PriorityLabel priority={record.priority} />
       </td>
       <td className="px-3 py-3 align-top">
-        <span className="inline-flex rounded-md border border-border px-2 py-0.5 font-mono text-[11px] text-muted-foreground">
+        <span className="inline-flex rounded-md border border-border px-2 py-0.5 font-mono text-label text-muted-foreground">
           {record.label}
         </span>
       </td>
       <td className="px-3 py-3 align-top">
         <AssigneeAvatar assignee={record.assignee} />
       </td>
-      <td className="px-3 py-3 align-top font-mono text-[11.5px] text-muted-foreground">
+      <td className="px-3 py-3 align-top font-mono text-meta text-muted-foreground">
         <span className="sr-only">Updated </span>
         {formatRelativeTime(record.updatedAt)}
       </td>

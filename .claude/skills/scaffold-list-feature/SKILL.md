@@ -13,4 +13,5 @@ description: Scaffolds or extends the shared reusable list-page feature with typ
 6. Use semantic elements and shadcn primitives where they improve behavior and accessibility.
 7. Default to Server Components; isolate interaction in small Client Components.
 8. Add loading, empty, error, disabled, and responsive behavior appropriate to the component.
-9. Run Biome and TypeScript and report the consumers proving reuse.
+9. Apply `.claude/rules/tailwind-readability.md` to any new or touched className strings.
+10. Run Biome and TypeScript and report the consumers proving reuse.

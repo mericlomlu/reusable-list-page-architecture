@@ -48,7 +48,7 @@ export function MultiSelectFilter({
         }
       />
       <PopoverContent align="start" className="w-52 p-2.5">
-        <p className="px-1.5 pb-2 font-mono text-[11px] font-bold tracking-wider text-muted-foreground uppercase">
+        <p className="px-1.5 pb-2 font-mono text-label font-bold tracking-wider text-muted-foreground uppercase">
           {label}
         </p>
         <div className="flex flex-col gap-1">
@@ -58,7 +58,7 @@ export function MultiSelectFilter({
               <label
                 key={option.value}
                 htmlFor={checkboxId}
-                className="flex items-center gap-2 rounded-md px-1.5 py-1.5 text-[13.5px] text-foreground hover:bg-accent"
+                className="flex items-center gap-2 rounded-md px-1.5 py-1.5 text-body text-foreground hover:bg-accent"
               >
                 <Checkbox
                   id={checkboxId}

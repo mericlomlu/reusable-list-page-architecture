@@ -78,8 +78,10 @@ export function ListEmptyState({
   return (
     <div className="flex flex-col items-center gap-2.5 rounded-lg border border-border bg-card px-6 py-16 text-center">
       <SearchIcon className="size-8 text-muted-foreground" strokeWidth={1.3} />
-      <p className="mt-1.5 text-[15px] font-bold text-foreground">{title}</p>
-      <p className="max-w-[340px] text-[13.5px] text-muted-foreground">
+      <p className="mt-1.5 text-record-title font-bold text-foreground">
+        {title}
+      </p>
+      <p className="max-w-[340px] text-body text-muted-foreground">
         {description}
       </p>
       {action ? <div className="mt-2">{action}</div> : null}
@@ -104,8 +106,10 @@ export function ListErrorState({
       className="flex flex-col items-center gap-2.5 rounded-lg border border-destructive/30 bg-destructive/5 px-6 py-16 text-center"
     >
       <ErrorIcon className="size-8 text-destructive" strokeWidth={1.3} />
-      <p className="mt-1.5 text-[15px] font-bold text-foreground">{title}</p>
-      <p className="max-w-[340px] text-[13.5px] text-muted-foreground">
+      <p className="mt-1.5 text-record-title font-bold text-foreground">
+        {title}
+      </p>
+      <p className="max-w-[340px] text-body text-muted-foreground">
         {description}
       </p>
       <div className="mt-2">{action}</div>

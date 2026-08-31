@@ -49,7 +49,7 @@ export function SearchField({
         placeholder={placeholder}
         value={draft}
         onChange={(event) => setDraft(event.target.value)}
-        className="h-auto border-none bg-transparent p-0 text-[13.5px] shadow-none focus-visible:ring-0"
+        className="h-auto border-none bg-transparent p-0 text-body shadow-none focus-visible:ring-0"
       />
     </div>
   );

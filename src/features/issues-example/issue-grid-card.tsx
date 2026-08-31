@@ -23,7 +23,9 @@ export function IssueGridCard({
   return (
     <li className="flex flex-col gap-2.5 rounded-lg border border-border bg-card p-[18px]">
       <div className="flex items-start justify-between gap-2">
-        <p className="text-[15px] font-bold text-foreground">{record.title}</p>
+        <p className="text-record-title font-bold text-foreground">
+          {record.title}
+        </p>
         <Checkbox
           checked={selected}
           onCheckedChange={onToggle}
@@ -32,19 +34,19 @@ export function IssueGridCard({
           className="mt-0.5 shrink-0"
         />
       </div>
-      <p className="font-mono text-[11.5px] text-muted-foreground">
+      <p className="font-mono text-meta text-muted-foreground">
         #{record.number}
       </p>
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
         <StatusBadge status={record.status} />
         <PriorityLabel priority={record.priority} />
-        <span className="inline-flex rounded-md border border-border px-2 py-0.5 font-mono text-[11px] text-muted-foreground">
+        <span className="inline-flex rounded-md border border-border px-2 py-0.5 font-mono text-label text-muted-foreground">
           {record.label}
         </span>
       </div>
       <div className="mt-1 flex items-center justify-between">
         <AssigneeAvatar assignee={record.assignee} />
-        <p className="font-mono text-[11.5px] text-muted-foreground">
+        <p className="font-mono text-meta text-muted-foreground">
           <span className="sr-only">Updated </span>
           {formatRelativeTime(record.updatedAt)}
         </p>

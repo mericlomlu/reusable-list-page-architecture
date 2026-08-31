@@ -1,4 +1,5 @@
 import { PageContainer } from "@/components/layout/page-container";
+import { cn } from "@/lib/utils";
 
 interface RoutePlaceholderProps {
   eyebrow?: string;
@@ -19,11 +20,10 @@ export function RoutePlaceholder({
         </p>
       ) : null}
       <h1
-        className={
-          eyebrow
-            ? "mt-2 text-2xl font-extrabold tracking-tight text-foreground"
-            : "text-3xl font-extrabold tracking-tight text-foreground"
-        }
+        className={cn(
+          "font-extrabold tracking-tight text-foreground",
+          eyebrow ? "mt-2 text-2xl" : "text-3xl",
+        )}
       >
         {title}
       </h1>
