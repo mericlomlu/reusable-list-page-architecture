@@ -2,9 +2,9 @@ const PIPELINE_STEPS: readonly string[] = [
   "Parse and normalize URL state",
   "Search and filter records",
   "Sort the filtered set",
-  "Paginate the sorted set",
-  "Return records and pagination metadata",
-  "Redirect when the requested page exceeds the valid range",
+  "Clamp the requested page to a valid range",
+  "Paginate the sorted set and return the served page",
+  "Compare the served page to the requested page, then redirect if they differ",
 ];
 
 export function PipelineSteps() {
@@ -14,9 +14,10 @@ export function PipelineSteps() {
         Data-processing pipeline
       </h2>
       <p className="mt-1.5 max-w-2xl text-body-sm text-muted-foreground">
-        Each page-owned query service runs the parsed query through the same six
-        steps, in order, whether it's called from a Server Component or a Route
-        Handler.
+        A page request runs through six steps, in order. The middle four run
+        inside the page-owned query service — shared by the matching Route
+        Handler — and only the page performs the final step, comparing the
+        served page to the requested one and redirecting when they differ.
       </p>
 
       <ol className="mt-5 flex flex-col divide-y divide-border rounded-lg border border-border bg-card lg:flex-row lg:divide-x lg:divide-y-0">

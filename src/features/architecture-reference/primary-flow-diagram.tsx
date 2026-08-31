@@ -93,8 +93,9 @@ export function PrimaryFlowDiagram() {
         Request-to-render flow
       </h2>
       <p className="mt-1.5 max-w-2xl text-body-sm text-muted-foreground">
-        Every example page and Route Handler pulls list state from the same
-        place and pushes it through the same two steps before anything renders.
+        An example page (<span className="font-mono">page.tsx</span>) pulls its
+        list state from the URL and pushes it through the same two steps below
+        before rendering results on the server.
       </p>
 
       <div className="mt-5">
