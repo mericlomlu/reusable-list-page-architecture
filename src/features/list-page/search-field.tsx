@@ -44,12 +44,13 @@ export function SearchField({
       )}
     >
       <SearchIcon className="size-[15px] shrink-0 text-muted-foreground" />
+      {/* md:text-body repeats text-body's value; it exists only to out-rank Input's own md:text-sm default in tailwind-merge, not because the size changes at md. */}
       <Input
         aria-label={label}
         placeholder={placeholder}
         value={draft}
         onChange={(event) => setDraft(event.target.value)}
-        className="h-auto border-none bg-transparent p-0 text-body shadow-none focus-visible:ring-0"
+        className="h-auto border-none bg-transparent p-0 text-body shadow-none focus-visible:ring-0 md:text-body"
       />
     </div>
   );
