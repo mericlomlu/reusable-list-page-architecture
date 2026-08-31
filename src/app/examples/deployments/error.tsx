@@ -24,7 +24,7 @@ export default function DeploymentsError({
     >
       <ListErrorState
         title="Couldn't load deployments"
-        description="The deployments API returned an error. Try again in a moment."
+        description="Something went wrong while loading the deployment list. Try again."
         action={<Button onClick={handleRetry}>Retry</Button>}
       />
     </ListPageShell>
