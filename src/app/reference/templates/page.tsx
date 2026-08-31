@@ -1,5 +1,6 @@
 import { PageContainer } from "@/components/layout/page-container";
 import { ReferencePageHeader } from "@/features/reference-ui/reference-page-header";
+import { ReferenceSummary } from "@/features/reference-ui/reference-summary";
 import { CompositionExample } from "@/features/templates-reference/composition-example";
 import {
   BasicListPreview,
@@ -17,6 +18,8 @@ export default function TemplatesPage() {
         title="Templates"
         description="Four composition layers, from a bare list to a fully-stateful page. Every example route in this project builds on some or all of them."
       />
+
+      <ReferenceSummary summary="Start with the shared page shell, then add URL-driven controls, selection when the domain needs it, and explicit loading, empty, and error states." />
 
       <section aria-labelledby="layers-heading">
         <h2 id="layers-heading" className="text-lg font-bold text-foreground">

@@ -19,6 +19,7 @@ import {
 import { PageOwnedNote } from "@/features/building-blocks-reference/page-owned-note";
 import { QueryBoundaryExample } from "@/features/building-blocks-reference/query-boundary-example";
 import { ReferencePageHeader } from "@/features/reference-ui/reference-page-header";
+import { ReferenceSummary } from "@/features/reference-ui/reference-summary";
 
 export default function BuildingBlocksPage() {
   return (
@@ -39,6 +40,8 @@ export default function BuildingBlocksPage() {
           </>
         }
       />
+
+      <ReferenceSummary summary="The shared core provides query state, controls, result layouts, pagination, selection primitives, and system states; each feature supplies its own records and domain presentation." />
 
       <BlockCatalogSection category={STRUCTURE_RESULTS_CATEGORY}>
         <StructurePreview />
