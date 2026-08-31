@@ -50,16 +50,26 @@ export function useListQueryState<
   );
 
   const navigate = useCallback(
-    (next: ParsedListQuery<TSortKey, TFilterKey>) => {
-      router.push(`${pathname}${buildListQueryString(next, config)}`, {
-        scroll: false,
-      });
+    (
+      next: ParsedListQuery<TSortKey, TFilterKey>,
+      mode: "push" | "replace" = "push",
+    ) => {
+      const href = `${pathname}${buildListQueryString(next, config)}`;
+      if (mode === "replace") {
+        router.replace(href, { scroll: false });
+      } else {
+        router.push(href, { scroll: false });
+      }
     },
     [pathname, router, config],
   );
 
   const setSearch = useCallback(
-    (value: string) => navigate({ ...query, search: value, page: 1 }),
+    // Each keystroke commits a new URL once debounced upstream; replacing
+    // rather than pushing keeps that from flooding browser history with
+    // one entry per debounced update.
+    (value: string) =>
+      navigate({ ...query, search: value, page: 1 }, "replace"),
     [navigate, query],
   );
 
