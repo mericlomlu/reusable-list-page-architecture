@@ -19,7 +19,7 @@ export function ComponentListRow({ record }: { record: ComponentRecord }) {
       <p className="text-record-title font-bold text-foreground">
         {record.name}
       </p>
-      <p className="truncate text-body text-muted-foreground">
+      <p className="truncate text-body-sm text-muted-foreground">
         {record.description}
       </p>
       <StatusDot status={record.status} />

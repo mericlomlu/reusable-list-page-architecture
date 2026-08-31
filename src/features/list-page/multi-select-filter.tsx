@@ -58,7 +58,7 @@ export function MultiSelectFilter({
               <label
                 key={option.value}
                 htmlFor={checkboxId}
-                className="flex items-center gap-2 rounded-md px-1.5 py-1.5 text-body-sm text-foreground hover:bg-accent"
+                className="flex items-center gap-2 rounded-md px-1.5 py-1.5 text-body text-foreground hover:bg-accent"
               >
                 <Checkbox
                   id={checkboxId}

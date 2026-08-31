@@ -81,7 +81,7 @@ export function ListEmptyState({
       <p className="mt-1.5 text-record-title font-bold text-foreground">
         {title}
       </p>
-      <p className="max-w-[340px] text-body-sm text-muted-foreground">
+      <p className="max-w-[340px] text-body text-muted-foreground">
         {description}
       </p>
       {action ? <div className="mt-2">{action}</div> : null}
@@ -109,7 +109,7 @@ export function ListErrorState({
       <p className="mt-1.5 text-record-title font-bold text-foreground">
         {title}
       </p>
-      <p className="max-w-[340px] text-body-sm text-muted-foreground">
+      <p className="max-w-[340px] text-body text-muted-foreground">
         {description}
       </p>
       <div className="mt-2">{action}</div>

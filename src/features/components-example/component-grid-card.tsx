@@ -8,7 +8,7 @@ export function ComponentGridCard({ record }: { record: ComponentRecord }) {
       <p className="text-record-title font-bold text-foreground">
         {record.name}
       </p>
-      <p className="text-body leading-relaxed text-muted-foreground">
+      <p className="text-body-sm leading-relaxed text-muted-foreground">
         {record.description}
       </p>
       <div className="mt-1 flex items-center justify-between">
