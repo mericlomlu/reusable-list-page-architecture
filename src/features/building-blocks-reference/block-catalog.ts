@@ -1,5 +1,6 @@
 export type BlockBoundary =
   | "Server Component"
+  | "Shared Component"
   | "Client Component"
   | "Client Hook"
   | "Universal";
@@ -23,17 +24,17 @@ export const STRUCTURE_RESULTS_CATEGORY: BuildingBlockCategory = {
   id: "structure-results",
   title: "Structure & Results",
   description:
-    "The two blocks that give every list page its outer shape and render its records, without knowing anything about what a record contains.",
+    "The blocks that give every list page its outer shape, render its records, and format the metadata inside them — without knowing anything else about what a record contains.",
   previewLabel:
     "Preview: a schematic page shell with a toolbar strip, two result rows, and a pagination strip.",
   blocks: [
     {
       name: "ListPageShell",
-      boundary: "Server Component",
+      boundary: "Shared Component",
       summary:
-        "Page-level layout: a title/description header, a slot for the page's own toolbar, the results as children, and an optional pagination slot.",
+        'Page-level layout: a title/description header, a slot for the page\'s own toolbar, the results as children, and an optional pagination slot. It carries no "use client" directive itself, so it renders safely from both a Server Component page.tsx and a Client Component error.tsx.',
       consumers:
-        "every example page (Components, Issues, Deployments, Packages)",
+        "every example's page.tsx, loading.tsx, and error.tsx (Components, Issues, Deployments, Packages)",
     },
     {
       name: "ResultsView",
@@ -42,6 +43,13 @@ export const STRUCTURE_RESULTS_CATEGORY: BuildingBlockCategory = {
         "Switches between the list and grid layout for a set of items, generic over the item type and delegating each item's markup back to the page through renderListItem and renderGridItem.",
       consumers:
         "Components, Deployments, and Packages results components — Issues renders its own selectable table instead, reusing the exported RESULTS_GRID_CLASS_NAME constant to keep its grid breakpoints identical",
+    },
+    {
+      name: "formatRelativeTime",
+      boundary: "Universal",
+      summary:
+        'Formats one of the project\'s date-only ISO strings (e.g. "2026-08-15") into a short relative label such as "3d ago" or "today", by comparing it against today\'s date.',
+      consumers: "Components' and Issues' list-row and grid-card renderers",
     },
   ],
 };
@@ -198,10 +206,10 @@ export const SYSTEM_STATES_CATEGORY: BuildingBlockCategory = {
     },
     {
       name: "ListErrorState",
-      boundary: "Server Component",
+      boundary: "Shared Component",
       summary:
-        "Same shape as the empty state, styled for failure, with a required action — always the retry button driven by useDemoErrorRecovery.",
-      consumers: "every example's error.tsx",
+        'Same shape as the empty state, styled for failure, with a required action — always the retry button driven by useDemoErrorRecovery. It carries no "use client" directive itself; every current consumer happens to be a Client Component only because Next.js requires error.tsx itself to opt into the client runtime.',
+      consumers: "every example's error.tsx (a Client Component)",
     },
     {
       name: "useDemoErrorRecovery",

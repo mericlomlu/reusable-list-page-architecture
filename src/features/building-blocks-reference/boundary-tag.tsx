@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 
 const BOUNDARY_DOT_CLASS_NAME: Record<BlockBoundary, string> = {
   "Server Component": "bg-muted-foreground",
+  "Shared Component": "bg-muted-foreground",
   "Client Component": "bg-primary",
   "Client Hook": "bg-primary",
   Universal: "bg-muted-foreground",
