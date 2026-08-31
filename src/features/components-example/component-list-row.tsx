@@ -16,8 +16,10 @@ export function ComponentListRow({ record }: { record: ComponentRecord }) {
       className="grid items-center gap-4 border-t border-border bg-card px-[18px] py-4 first:border-t-0"
       style={{ gridTemplateColumns: COMPONENT_LIST_GRID_COLUMNS }}
     >
-      <p className="text-[15px] font-bold text-foreground">{record.name}</p>
-      <p className="truncate text-[13px] text-muted-foreground">
+      <p className="text-record-title font-bold text-foreground">
+        {record.name}
+      </p>
+      <p className="truncate text-body text-muted-foreground">
         {record.description}
       </p>
       <StatusDot status={record.status} />

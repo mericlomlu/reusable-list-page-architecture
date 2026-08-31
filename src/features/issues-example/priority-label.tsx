@@ -15,7 +15,7 @@ const PRIORITY_DOT_CLASS: Record<IssuePriority, string> = {
 
 export function PriorityLabel({ priority }: { priority: IssuePriority }) {
   return (
-    <span className="inline-flex items-center gap-1.5 text-[12.5px] font-semibold text-foreground">
+    <span className="inline-flex items-center gap-1.5 text-caption font-semibold text-foreground">
       <span
         aria-hidden="true"
         className={cn("size-[7px] rounded-full", PRIORITY_DOT_CLASS[priority])}

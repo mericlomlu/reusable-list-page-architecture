@@ -20,7 +20,7 @@ export function ActiveFilters({ pills, clearHref }: ActiveFiltersProps) {
       {pills.map((pill) => (
         <span
           key={pill.key}
-          className="inline-flex items-center gap-1.5 rounded-full border border-primary/25 bg-primary/10 py-1 pr-1.5 pl-2.5 text-[12.5px] text-foreground"
+          className="inline-flex items-center gap-1.5 rounded-full border border-primary/25 bg-primary/10 py-1 pr-1.5 pl-2.5 text-caption text-foreground"
         >
           {pill.label}
           <Link
@@ -36,7 +36,7 @@ export function ActiveFilters({ pills, clearHref }: ActiveFiltersProps) {
       <Link
         href={clearHref}
         scroll={false}
-        className="text-[12.5px] text-muted-foreground underline decoration-muted-foreground/50 underline-offset-2 hover:text-foreground"
+        className="text-caption text-muted-foreground underline decoration-muted-foreground/50 underline-offset-2 hover:text-foreground"
       >
         Clear all
       </Link>

@@ -112,7 +112,7 @@ export function IssueBoard({ records, view }: IssueBoardProps) {
           tabIndex={-1}
           role={feedback.type === "error" ? "alert" : "status"}
           className={cn(
-            "mb-3.5 flex items-center justify-between gap-3 rounded-lg border px-4 py-2.5 text-[13px] outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring",
+            "mb-3.5 flex items-center justify-between gap-3 rounded-lg border px-4 py-2.5 text-body outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring",
             feedback.type === "error"
               ? "border-destructive/30 bg-destructive/5 text-destructive"
               : "border-success/30 bg-success/10 text-foreground",

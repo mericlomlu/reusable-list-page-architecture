@@ -51,7 +51,7 @@ export function PaginationControls({
 
   return (
     <div className="flex flex-col items-center justify-between gap-3 sm:flex-row">
-      <p aria-live="polite" className="text-[12.5px] text-muted-foreground">
+      <p aria-live="polite" className="text-caption text-muted-foreground">
         {total === 0
           ? `No ${itemLabel} to show`
           : `Showing ${rangeStart}–${rangeEnd} of ${total} ${itemLabel}`}
