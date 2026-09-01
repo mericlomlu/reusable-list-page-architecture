@@ -1,4 +1,4 @@
-# Current slice: reference-tldr
+# Current slice: overview-page
 
 ## History
 
@@ -11,6 +11,8 @@
 - Templates reference slice merged via [PR #9](https://github.com/mericlomlu/reusable-list-page-architecture/pull/9) (`feat/templates-reference`): `/reference/templates` as a static presentation page documenting the shared list-page composition layers, with content verified against `src/features/list-page/`.
 - Building blocks reference slice merged via [PR #10](https://github.com/mericlomlu/reusable-list-page-architecture/pull/10) (`feat/building-blocks-reference`): `/reference/building-blocks` cataloging every reusable primitive in `src/features/list-page/` on its own, with boundary tags, previews, and consumer references verified against the implementation.
 - Architecture reference slice merged via [PR #11](https://github.com/mericlomlu/reusable-list-page-architecture/pull/11) (`feat/architecture-reference`): `/reference/architecture` as a static presentation page walking the request-to-render flow (URL → shared parser → page-owned query service → server-rendered results), the client interaction path back into the URL, server/client boundaries, shared-core-vs-page-owned composition, the six-step data pipeline, page/Route Handler API parity, and selection as a deliberate URL-state exception — all verified against `src/features/list-page/` and `src/features/issues-example/`.
+- Reference TL;DR slice merged via [PR #12](https://github.com/mericlomlu/reusable-list-page-architecture/pull/12) (`feat/reference-tldr`): a shared `ReferenceSummary` component (`src/features/reference-ui/reference-summary.tsx`) rendering a concise TL;DR strip below `ReferencePageHeader` on `/reference/templates`, `/reference/building-blocks`, and `/reference/architecture`.
+- Overview page slice opened via [PR #13](https://github.com/mericlomlu/reusable-list-page-architecture/pull/13) (`feat/overview-page`): `/` as the project's landing page — hero, the shared `ReferenceSummary` TL;DR, a four-example showcase, a shared-core-vs-page-owned comparison, an editorial architecture-principles list, reference navigation, and a closing statement, all under `src/features/overview/`.
 
 ## Confirmed
 
@@ -26,12 +28,11 @@
 
 ## Implement now
 
-`reference-tldr`: a shared `ReferenceSummary` component (`src/features/reference-ui/reference-summary.tsx`) rendering a concise TL;DR strip directly below `ReferencePageHeader` on `/reference/templates`, `/reference/building-blocks`, and `/reference/architecture`. No new dependency, no page architecture change, no Claude Design import.
+`overview-page` (in review, [PR #13](https://github.com/mericlomlu/reusable-list-page-architecture/pull/13)): the `/` landing page, composed under `src/features/overview/` and reusing `ReferenceSummary` for its TL;DR.
 
 ## Do not combine yet
 
 - Favicon, OG assets, metadata, sitemap, manifest, and structured data are a dedicated metadata slice.
-- Final Overview content is out of scope.
 - Vercel linking and deployment happen only after the local build is complete.
 
-When reference-tldr is merged, update this file to the next scoped slice.
+When overview-page is merged, update this file to the next scoped slice.
