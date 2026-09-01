@@ -1,4 +1,4 @@
-# Current slice: metadata-assets
+# Current slice: project-readme
 
 ## History
 
@@ -13,6 +13,7 @@
 - Architecture reference slice merged via [PR #11](https://github.com/mericlomlu/reusable-list-page-architecture/pull/11) (`feat/architecture-reference`): `/reference/architecture` as a static presentation page walking the request-to-render flow (URL → shared parser → page-owned query service → server-rendered results), the client interaction path back into the URL, server/client boundaries, shared-core-vs-page-owned composition, the six-step data pipeline, page/Route Handler API parity, and selection as a deliberate URL-state exception — all verified against `src/features/list-page/` and `src/features/issues-example/`.
 - Reference TL;DR slice merged via [PR #12](https://github.com/mericlomlu/reusable-list-page-architecture/pull/12) (`feat/reference-tldr`): a shared `ReferenceSummary` component (`src/features/reference-ui/reference-summary.tsx`) rendering a concise TL;DR strip below `ReferencePageHeader` on `/reference/templates`, `/reference/building-blocks`, and `/reference/architecture`.
 - Overview page slice merged via [PR #13](https://github.com/mericlomlu/reusable-list-page-architecture/pull/13) (`feat/overview-page`): `/` as the project's landing page — hero, the shared `ReferenceSummary` TL;DR, a four-example showcase, a shared-core-vs-page-owned comparison, an editorial architecture-principles list, reference navigation, and a closing statement, all under `src/features/overview/`.
+- Metadata and assets slice merged via [PR #14](https://github.com/mericlomlu/reusable-list-page-architecture/pull/14) (`feat/metadata-assets`): favicon, application icon, Apple touch icon, root and route metadata, Open Graph image, Twitter metadata, web app manifest, sitemap, robots rules, canonical URLs, and Overview-page `SoftwareSourceCode` structured data, built on a centralized `src/lib/site-url.ts` resolving `NEXT_PUBLIC_SITE_URL` → `VERCEL_PROJECT_PRODUCTION_URL` → the confirmed production Vercel origin (`https://reusable-list-page-architecture.vercel.app`).
 
 ## Confirmed
 
@@ -28,10 +29,10 @@
 
 ## Implement now
 
-`metadata-assets` (in review, [PR #14](https://github.com/mericlomlu/reusable-list-page-architecture/pull/14)): favicon, application icon, Apple touch icon, root and route metadata, Open Graph image, Twitter metadata, web app manifest, sitemap, robots rules, canonical URLs, and Overview-page `SoftwareSourceCode` structured data — built on a centralized `src/lib/site-url.ts` resolving `NEXT_PUBLIC_SITE_URL` → `VERCEL_PROJECT_PRODUCTION_URL` → a local fallback.
+`project-readme`: replace the default `create-next-app` `README.md` with a portfolio-quality README documenting the architecture, the four live examples, URL-state behavior, demo parameters, accessibility, technology, local development, deployment, and trade-offs — verified against `package.json`, `src/features/list-page/`, the four example feature folders, and the reference pages.
 
 ## Do not combine yet
 
 - Vercel linking and deployment happen only after the local build is complete.
 
-When metadata-assets is merged, update this file to the next scoped slice.
+When project-readme is merged, update this file to the next scoped slice.
