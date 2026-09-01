@@ -17,7 +17,12 @@ export default function ArchitecturePage() {
         description="A URL-driven list-page system with one parsing boundary, server-rendered results, focused client controls, and page-owned domain logic."
       />
 
-      <ReferenceSummary summary="The URL is the shareable source of truth. Server Components parse and query data, focused Client Components update the URL, and page-owned features compose the shared core." />
+      <ReferenceSummary
+        paragraphs={[
+          "The URL is the shareable source of truth for search, filters, sorting, view, and pagination. Server Components parse that state, call a page-owned query service, and render the resulting records; focused Client Components only update the URL or manage temporary interaction state.",
+          "Each page and its mock Route Handler reuse the same query configuration and domain query function. Selection is the deliberate exception: it stays local to the client because it is temporary UI state rather than shareable list state.",
+        ]}
+      />
 
       <PrimaryFlowDiagram />
       <BoundaryPanels />

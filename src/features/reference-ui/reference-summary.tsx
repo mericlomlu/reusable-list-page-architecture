@@ -1,8 +1,10 @@
 interface ReferenceSummaryProps {
-  summary: string;
+  paragraphs: readonly [string, string];
 }
 
-export function ReferenceSummary({ summary }: ReferenceSummaryProps) {
+export function ReferenceSummary({ paragraphs }: ReferenceSummaryProps) {
+  const [firstParagraph, secondParagraph] = paragraphs;
+
   return (
     <section
       aria-labelledby="tldr-heading"
@@ -11,9 +13,10 @@ export function ReferenceSummary({ summary }: ReferenceSummaryProps) {
       <h2 id="tldr-heading" className="text-lg font-bold text-foreground">
         TL;DR
       </h2>
-      <p className="mt-1.5 max-w-2xl text-body-sm text-muted-foreground">
-        {summary}
-      </p>
+      <div className="mt-1.5 flex max-w-2xl flex-col gap-3 text-body-sm text-muted-foreground">
+        <p>{firstParagraph}</p>
+        <p>{secondParagraph}</p>
+      </div>
     </section>
   );
 }
