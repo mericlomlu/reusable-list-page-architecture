@@ -8,13 +8,16 @@ import { PrimaryFlowDiagram } from "@/features/architecture-reference/primary-fl
 import { SelectionException } from "@/features/architecture-reference/selection-exception";
 import { ReferencePageHeader } from "@/features/reference-ui/reference-page-header";
 import { ReferenceSummary } from "@/features/reference-ui/reference-summary";
+import { buildRouteMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+const PAGE_DESCRIPTION =
+  "A URL-driven list-page system with one parsing boundary, server-rendered results, focused client controls, and page-owned domain logic.";
+
+export const metadata: Metadata = buildRouteMetadata({
   title: "Architecture",
-  description:
-    "A URL-driven list-page system with one parsing boundary, server-rendered results, and page-owned domain logic.",
-  alternates: { canonical: "/reference/architecture" },
-};
+  description: PAGE_DESCRIPTION,
+  path: "/reference/architecture",
+});
 
 export default function ArchitecturePage() {
   return (
@@ -22,7 +25,7 @@ export default function ArchitecturePage() {
       <ReferencePageHeader
         eyebrow="Reference / Architecture"
         title="Architecture"
-        description="A URL-driven list-page system with one parsing boundary, server-rendered results, focused client controls, and page-owned domain logic."
+        description={PAGE_DESCRIPTION}
       />
 
       <ReferenceSummary

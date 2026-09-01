@@ -1,4 +1,6 @@
-const DEV_FALLBACK_URL = "http://localhost:3000";
+/** Confirmed permanent production origin (no custom domain is planned). */
+export const PRODUCTION_SITE_URL =
+  "https://reusable-list-page-architecture.vercel.app";
 
 function stripTrailingSlashes(url: string): string {
   return url.replace(/\/+$/, "");
@@ -19,7 +21,7 @@ function resolveSiteUrl(): string {
     return stripTrailingSlashes(withHttps(vercelProductionUrl));
   }
 
-  return DEV_FALLBACK_URL;
+  return PRODUCTION_SITE_URL;
 }
 
 /** Absolute site origin, resolved once at module load with no trailing slash. */

@@ -1,3 +1,4 @@
+import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site-config";
 import { absoluteUrl } from "@/lib/site-url";
 
 const REPOSITORY_URL =
@@ -6,9 +7,8 @@ const REPOSITORY_URL =
 const STRUCTURED_DATA = {
   "@context": "https://schema.org",
   "@type": "SoftwareSourceCode",
-  name: "Reusable List Page Architecture",
-  description:
-    "An interactive showcase of reusable list page patterns built with Next.js and TypeScript.",
+  name: SITE_NAME,
+  description: SITE_DESCRIPTION,
   programmingLanguage: "TypeScript",
   codeRepository: REPOSITORY_URL,
   author: {

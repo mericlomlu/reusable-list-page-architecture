@@ -16,15 +16,16 @@ import {
   parseListQuery,
   toSearchParams,
 } from "@/features/list-page/query-state";
+import { buildRouteMetadata } from "@/lib/metadata";
 
 const PAGE_DESCRIPTION =
   "Track and triage work across the workspace. Select rows to change status on several issues at once.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildRouteMetadata({
   title: "Issues",
   description: PAGE_DESCRIPTION,
-  alternates: { canonical: "/examples/issues" },
-};
+  path: "/examples/issues",
+});
 
 export default async function IssuesPage(props: PageProps<"/examples/issues">) {
   const rawSearchParams = await props.searchParams;

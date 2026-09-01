@@ -1,9 +1,13 @@
 import { ImageResponse } from "next/og";
+import {
+  SOCIAL_IMAGE_ALT,
+  SOCIAL_IMAGE_SIZE,
+  SOCIAL_IMAGE_TYPE,
+} from "@/lib/site-config";
 
-export const alt =
-  "Reusable List Page Architecture — one list-page system, four distinct product surfaces. Built with Next.js, React, TypeScript, and Tailwind CSS.";
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
+export const alt = SOCIAL_IMAGE_ALT;
+export const size = SOCIAL_IMAGE_SIZE;
+export const contentType = SOCIAL_IMAGE_TYPE;
 
 const BONE = "#f5f0e4";
 const GRAPHITE = "#241c14";

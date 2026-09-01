@@ -10,13 +10,16 @@ import {
   StatesPreview,
 } from "@/features/templates-reference/layer-previews";
 import { TemplateLayerCard } from "@/features/templates-reference/template-layer-card";
+import { buildRouteMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+const PAGE_DESCRIPTION =
+  "Four composition layers, from a bare list to a fully-stateful page. Every example route in this project builds on some or all of them.";
+
+export const metadata: Metadata = buildRouteMetadata({
   title: "Templates",
-  description:
-    "Four composition layers, from a bare list to a fully-stateful page, that every example route builds on.",
-  alternates: { canonical: "/reference/templates" },
-};
+  description: PAGE_DESCRIPTION,
+  path: "/reference/templates",
+});
 
 export default function TemplatesPage() {
   return (
@@ -24,7 +27,7 @@ export default function TemplatesPage() {
       <ReferencePageHeader
         eyebrow="Reference / Templates"
         title="Templates"
-        description="Four composition layers, from a bare list to a fully-stateful page. Every example route in this project builds on some or all of them."
+        description={PAGE_DESCRIPTION}
       />
 
       <ReferenceSummary

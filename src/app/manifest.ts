@@ -1,11 +1,11 @@
 import type { MetadataRoute } from "next";
+import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site-config";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Reusable List Page Architecture",
+    name: SITE_NAME,
     short_name: "List Page Architecture",
-    description:
-      "An interactive showcase of reusable list page patterns built with Next.js and TypeScript.",
+    description: SITE_DESCRIPTION,
     start_url: "/",
     display: "browser",
     background_color: "#f5f0e4",

@@ -16,15 +16,16 @@ import {
   parseListQuery,
   toSearchParams,
 } from "@/features/list-page/query-state";
+import { buildRouteMetadata } from "@/lib/metadata";
 
 const PAGE_DESCRIPTION =
   "Every build across environments, with status shown as icon and label — never color alone.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildRouteMetadata({
   title: "Deployments",
   description: PAGE_DESCRIPTION,
-  alternates: { canonical: "/examples/deployments" },
-};
+  path: "/examples/deployments",
+});
 
 export default async function DeploymentsPage(
   props: PageProps<"/examples/deployments">,

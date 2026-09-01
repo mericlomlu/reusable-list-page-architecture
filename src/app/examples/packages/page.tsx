@@ -16,15 +16,16 @@ import type {
   PackageFilterKey,
   PackageSortKey,
 } from "@/features/packages-example/types";
+import { buildRouteMetadata } from "@/lib/metadata";
 
 const PAGE_DESCRIPTION =
   "Dependencies tracked across the workspace, with update status surfaced before it becomes a problem.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildRouteMetadata({
   title: "Packages",
   description: PAGE_DESCRIPTION,
-  alternates: { canonical: "/examples/packages" },
-};
+  path: "/examples/packages",
+});
 
 export default async function PackagesPage(
   props: PageProps<"/examples/packages">,

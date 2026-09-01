@@ -16,15 +16,16 @@ import {
   parseListQuery,
   toSearchParams,
 } from "@/features/list-page/query-state";
+import { buildRouteMetadata } from "@/lib/metadata";
 
 const PAGE_DESCRIPTION =
   "Every UI primitive in the workspace's library, searchable and filterable by category, framework and status.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildRouteMetadata({
   title: "Components",
   description: PAGE_DESCRIPTION,
-  alternates: { canonical: "/examples/components" },
-};
+  path: "/examples/components",
+});
 
 export default async function ComponentsPage(
   props: PageProps<"/examples/components">,

@@ -3,12 +3,9 @@ import { ThemeProvider } from "next-themes";
 import { AppSidebar } from "@/components/layout/app-sidebar";
 import { MobileNav } from "@/components/layout/mobile-nav";
 import { ibmPlexMono, manrope } from "@/lib/fonts";
+import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site-config";
 import { SITE_URL } from "@/lib/site-url";
 import "./globals.css";
-
-const SITE_NAME = "Reusable List Page Architecture";
-const SITE_DESCRIPTION =
-  "An interactive showcase of reusable list page patterns built with Next.js and TypeScript.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
