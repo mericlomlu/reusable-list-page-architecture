@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { parseDemoState } from "@/features/list-page/demo-state";
 import { ListPageShell } from "@/features/list-page/list-page-shell";
@@ -15,6 +16,16 @@ import type {
   PackageFilterKey,
   PackageSortKey,
 } from "@/features/packages-example/types";
+import { buildRouteMetadata } from "@/lib/metadata";
+
+const PAGE_DESCRIPTION =
+  "Dependencies tracked across the workspace, with update status surfaced before it becomes a problem.";
+
+export const metadata: Metadata = buildRouteMetadata({
+  title: "Packages",
+  description: PAGE_DESCRIPTION,
+  path: "/examples/packages",
+});
 
 export default async function PackagesPage(
   props: PageProps<"/examples/packages">,
@@ -42,7 +53,7 @@ export default async function PackagesPage(
     <ListPageShell
       eyebrow="Examples / Packages"
       title="Packages"
-      description="Dependencies tracked across the workspace, with update status surfaced before it becomes a problem."
+      description={PAGE_DESCRIPTION}
       toolbar={<PackagesToolbar />}
       pagination={
         <PaginationControls

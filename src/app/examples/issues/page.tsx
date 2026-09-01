@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { ISSUE_LIST_QUERY_CONFIG } from "@/features/issues-example/config";
 import { IssuesResults } from "@/features/issues-example/issues-results";
@@ -15,6 +16,16 @@ import {
   parseListQuery,
   toSearchParams,
 } from "@/features/list-page/query-state";
+import { buildRouteMetadata } from "@/lib/metadata";
+
+const PAGE_DESCRIPTION =
+  "Track and triage work across the workspace. Select rows to change status on several issues at once.";
+
+export const metadata: Metadata = buildRouteMetadata({
+  title: "Issues",
+  description: PAGE_DESCRIPTION,
+  path: "/examples/issues",
+});
 
 export default async function IssuesPage(props: PageProps<"/examples/issues">) {
   const rawSearchParams = await props.searchParams;
@@ -40,7 +51,7 @@ export default async function IssuesPage(props: PageProps<"/examples/issues">) {
     <ListPageShell
       eyebrow="Examples / Issues"
       title="Issues"
-      description="Track and triage work across the workspace. Select rows to change status on several issues at once."
+      description={PAGE_DESCRIPTION}
       toolbar={<IssuesToolbar />}
       pagination={
         <PaginationControls
