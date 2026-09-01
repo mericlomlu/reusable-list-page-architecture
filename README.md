@@ -30,7 +30,7 @@ URL search params → shared parser → page-owned query service → server-rend
 - The URL is the shareable source of truth for search, filters, sort, view, and pagination.
 - Server Components parse the URL and query the matching feature's data.
 - Focused Client Components update URL state (toolbar controls) or manage temporary interaction state (selection).
-- Each example page and its Route Handler reuse the same `ListQueryConfig` and query service — the page never fetches its own Route Handler; both call the same function directly.
+- Each example page and its matching Route Handler are separate entry points into the same page-owned query service, which reads a feature-owned in-memory dataset and applies filtering, sorting, and pagination — the page never fetches its own Route Handler.
 
 See [`/reference/architecture`](https://reusable-list-page-architecture.vercel.app/reference/architecture) for the full request-to-render walkthrough.
 
@@ -57,7 +57,7 @@ Features compose the shared core without modifying it.
 
 ## System states and demo parameters
 
-Every example route supports intentional loading, empty, and error states through its mock Route Handler, toggled with a `demoState` query parameter:
+Every example supports intentional loading, empty, and error states through the same page-owned query service used by its Server Component page and matching mock Route Handler. An explicit `demoState` query parameter selects the state:
 
 - `?demoState=loading`
 - `?demoState=empty`
@@ -65,20 +65,15 @@ Every example route supports intentional loading, empty, and error states throug
 
 Try it: [Components — loading](https://reusable-list-page-architecture.vercel.app/examples/components?demoState=loading) · [Issues — error](https://reusable-list-page-architecture.vercel.app/examples/issues?demoState=error)
 
-Issues also exposes an independent `bulkDemoState=error` parameter to simulate a failed bulk status update ([Issues — bulk failure](https://reusable-list-page-architecture.vercel.app/examples/issues?bulkDemoState=error)) without affecting the list's own demo state.
-
-These Route Handlers exist for demonstration only. Bulk status changes return a mock response and are never persisted — the underlying dataset is unchanged on the next fetch.
+Issues also exposes an independent `bulkDemoState=error` parameter to simulate a failed bulk status update ([Issues — bulk failure](https://reusable-list-page-architecture.vercel.app/examples/issues?bulkDemoState=error)) without affecting the list's own demo state. Nothing here is persisted — bulk status changes return a mock response, and the underlying dataset is unchanged on the next fetch.
 
 ## Accessibility and responsive behavior
 
 - Semantic headings, landmarks, and a skip-to-content link.
-- Visible `:focus-visible` treatment throughout, keyboard-operable controls.
-- Accessible mobile navigation drawer (focus trap, Escape to close, focus restoration) built on a Base UI dialog.
-- Semantic, keyboard-navigable Issues table with real `<table>` markup and select-all/indeterminate state.
-- Labeled filters, search, and sort controls with announced result updates.
-- Status is never conveyed by color alone — icon or text accompanies every status indicator.
-- `motion-reduce` variants on interactive transitions.
-- Light, dark, and system themes; responsive layouts at desktop, tablet, and mobile widths.
+- Visible `:focus-visible` treatment and fully keyboard-operable controls.
+- Accessible mobile navigation drawer (focus trap, Escape to close, focus restoration) and a semantic, keyboard-navigable Issues table with select-all/indeterminate state.
+- Labeled filters, search, and sort controls with announced result updates; status is never conveyed by color alone.
+- Reduced-motion support, and responsive light/dark/system-theme layouts at desktop, tablet, and mobile widths.
 
 This isn't a claim of formal WCAG certification — see [`/reference/building-blocks`](https://reusable-list-page-architecture.vercel.app/reference/building-blocks) for how individual primitives are built.
 
@@ -119,7 +114,7 @@ yarn install
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000). No database, authentication, or external service is required — every list is served by a mock Route Handler under `src/app/api/`.
+Open [http://localhost:3000](http://localhost:3000). No database, authentication, or external service is required — each page queries its feature-owned mock dataset through the same query service described above.
 
 Quality checks:
 
@@ -131,13 +126,13 @@ yarn build
 
 ## Deployment and metadata
 
-The app is deployed on [Vercel](https://vercel.com). The production URL is configured as the metadata fallback, and `NEXT_PUBLIC_SITE_URL` remains an optional override for a different environment. Every route ships a favicon, Apple touch icon, Open Graph image, web app manifest, sitemap, robots rules, canonical metadata, and `SoftwareSourceCode` structured data on the Overview page.
+The app is deployed on [Vercel](https://vercel.com) at [reusable-list-page-architecture.vercel.app](https://reusable-list-page-architecture.vercel.app), which is also configured as the metadata fallback (`NEXT_PUBLIC_SITE_URL` remains an optional override). Every route ships the essential discovery and social metadata — icons, an Open Graph image, a web app manifest, a sitemap, robots rules, canonical URLs, and `SoftwareSourceCode` structured data on the Overview page.
 
 ## Trade-offs
 
 These are explicit scope decisions, not gaps to apologize for:
 
-- All data is mock and served from in-memory Route Handlers — there is no database or persistence layer.
+- All data is fictional and stored in feature-owned in-memory datasets. Server Component pages and mock Route Handlers reuse the same domain query functions; there is no database or persistence layer.
 - There is no authentication.
 - Automated tests and Storybook are intentionally outside this project's scope; verification is manual (Biome, TypeScript, production build, and browser inspection).
 - Issues' select-all is scoped to the current page, not the full result set across pages.
