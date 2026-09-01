@@ -1,5 +1,6 @@
 import { PageContainer } from "@/components/layout/page-container";
 import { ReferencePageHeader } from "@/features/reference-ui/reference-page-header";
+import { ReferenceSummary } from "@/features/reference-ui/reference-summary";
 import { CompositionExample } from "@/features/templates-reference/composition-example";
 import {
   BasicListPreview,
@@ -16,6 +17,13 @@ export default function TemplatesPage() {
         eyebrow="Reference / Templates"
         title="Templates"
         description="Four composition layers, from a bare list to a fully-stateful page. Every example route in this project builds on some or all of them."
+      />
+
+      <ReferenceSummary
+        paragraphs={[
+          "Every list page starts with ListPageShell for its shared page structure and PaginationControls for server-rendered navigation. Most examples use ResultsView to render domain-owned rows and cards, while Issues intentionally substitutes its own selectable table. A page-owned toolbar composes search, filters, sorting, and view controls around the shared URL state.",
+          "Selection is added only when the domain requires temporary row state, while loading, empty, filtered-empty, and error presentations remain explicit parts of every complete composition. The templates differ by capability, but they all reuse the same core instead of creating separate page architectures.",
+        ]}
       />
 
       <section aria-labelledby="layers-heading">

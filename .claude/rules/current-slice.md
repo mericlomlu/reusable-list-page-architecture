@@ -1,4 +1,4 @@
-# Current slice: architecture-reference
+# Current slice: reference-tldr
 
 ## History
 
@@ -10,7 +10,7 @@
 - Packages example slice merged via [PR #8](https://github.com/mericlomlu/reusable-list-page-architecture/pull/8) (`feat/packages-example`): `/examples/packages` as the fourth reusable vertical slice, package-specific config, types, mock data, query service, and renderers under `src/features/packages-example/`, and `/api/packages` sharing the reusable query service.
 - Templates reference slice merged via [PR #9](https://github.com/mericlomlu/reusable-list-page-architecture/pull/9) (`feat/templates-reference`): `/reference/templates` as a static presentation page documenting the shared list-page composition layers, with content verified against `src/features/list-page/`.
 - Building blocks reference slice merged via [PR #10](https://github.com/mericlomlu/reusable-list-page-architecture/pull/10) (`feat/building-blocks-reference`): `/reference/building-blocks` cataloging every reusable primitive in `src/features/list-page/` on its own, with boundary tags, previews, and consumer references verified against the implementation.
-- Architecture reference slice opened via [PR #11](https://github.com/mericlomlu/reusable-list-page-architecture/pull/11) (`feat/architecture-reference`): `/reference/architecture` as a static presentation page walking the request-to-render flow (URL → shared parser → page-owned query service → server-rendered results), the client interaction path back into the URL, server/client boundaries, shared-core-vs-page-owned composition, the six-step data pipeline, page/Route Handler API parity, and selection as a deliberate URL-state exception — all verified against `src/features/list-page/` and `src/features/issues-example/`.
+- Architecture reference slice merged via [PR #11](https://github.com/mericlomlu/reusable-list-page-architecture/pull/11) (`feat/architecture-reference`): `/reference/architecture` as a static presentation page walking the request-to-render flow (URL → shared parser → page-owned query service → server-rendered results), the client interaction path back into the URL, server/client boundaries, shared-core-vs-page-owned composition, the six-step data pipeline, page/Route Handler API parity, and selection as a deliberate URL-state exception — all verified against `src/features/list-page/` and `src/features/issues-example/`.
 
 ## Confirmed
 
@@ -26,7 +26,7 @@
 
 ## Implement now
 
-No slice is currently scoped. The remaining known work is listed under "Do not combine yet" below; wait for explicit owner scoping before starting any of it.
+`reference-tldr`: a shared `ReferenceSummary` component (`src/features/reference-ui/reference-summary.tsx`) rendering a concise TL;DR strip directly below `ReferencePageHeader` on `/reference/templates`, `/reference/building-blocks`, and `/reference/architecture`. No new dependency, no page architecture change, no Claude Design import.
 
 ## Do not combine yet
 
@@ -34,4 +34,4 @@ No slice is currently scoped. The remaining known work is listed under "Do not c
 - Final Overview content is out of scope.
 - Vercel linking and deployment happen only after the local build is complete.
 
-When architecture-reference is merged, update this file to the next scoped slice.
+When reference-tldr is merged, update this file to the next scoped slice.

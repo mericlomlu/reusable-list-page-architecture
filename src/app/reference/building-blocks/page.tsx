@@ -19,6 +19,7 @@ import {
 import { PageOwnedNote } from "@/features/building-blocks-reference/page-owned-note";
 import { QueryBoundaryExample } from "@/features/building-blocks-reference/query-boundary-example";
 import { ReferencePageHeader } from "@/features/reference-ui/reference-page-header";
+import { ReferenceSummary } from "@/features/reference-ui/reference-summary";
 
 export default function BuildingBlocksPage() {
   return (
@@ -38,6 +39,13 @@ export default function BuildingBlocksPage() {
             use it.
           </>
         }
+      />
+
+      <ReferenceSummary
+        paragraphs={[
+          "The shared list-page core owns the repeatable mechanics: typed URL parsing and serialization, search and filter controls, sorting, view switching, result layouts, pagination, active-filter links, selection primitives, and system states.",
+          "Each feature keeps its domain decisions outside that core—record types, mock data, filter options, query services, toolbar composition, rows, cards, status presentation, and bulk behavior. New examples compose these primitives without changing their underlying implementation.",
+        ]}
       />
 
       <BlockCatalogSection category={STRUCTURE_RESULTS_CATEGORY}>
