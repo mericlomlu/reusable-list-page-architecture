@@ -4,17 +4,16 @@ interface ReferenceSummaryProps {
 
 export function ReferenceSummary({ summary }: ReferenceSummaryProps) {
   return (
-    <aside
-      aria-label="TL;DR"
-      className="mb-10 flex flex-col gap-1 rounded-lg border border-border bg-card px-6 py-4 sm:flex-row sm:items-baseline sm:gap-3"
+    <section
+      aria-labelledby="tldr-heading"
+      className="mb-10 border-b border-border pb-8"
     >
-      <span
-        aria-hidden="true"
-        className="shrink-0 font-mono text-eyebrow uppercase tracking-wide text-muted-foreground"
-      >
+      <h2 id="tldr-heading" className="text-lg font-bold text-foreground">
         TL;DR
-      </span>
-      <p className="text-body-sm text-foreground">{summary}</p>
-    </aside>
+      </h2>
+      <p className="mt-1.5 max-w-2xl text-body-sm text-muted-foreground">
+        {summary}
+      </p>
+    </section>
   );
 }
