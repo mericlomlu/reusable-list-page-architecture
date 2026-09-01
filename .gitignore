@@ -40,3 +40,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# internal workflow (kept locally, not part of the public repo)
+/.claude/
+/CLAUDE.md
+/AGENTS.md
+/docs/SETUP.md
+/docs/design/claude-design-import.md

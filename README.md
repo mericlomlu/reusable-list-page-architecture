@@ -6,11 +6,15 @@ An interactive showcase of reusable, URL-driven list-page patterns built with Ne
 
 ![Reusable List Page Architecture — one list-page system, four distinct product surfaces. Built with Next.js, React, TypeScript, and Tailwind CSS.](https://reusable-list-page-architecture.vercel.app/opengraph-image)
 
+## TL;DR
+
+This project demonstrates how search, filters, sorting, pagination, view switching, selection, and system states can be shared across different list pages without coupling the architecture to one domain.
+
+Components, Issues, Deployments, and Packages reuse the same URL-driven core while keeping their records, query services, controls, and presentation feature-owned. Explore the [live demo](https://reusable-list-page-architecture.vercel.app) or read the [architecture reference](https://reusable-list-page-architecture.vercel.app/reference/architecture).
+
 ## Why this project exists
 
-Most product surfaces that show a list — components, issues, deployments, packages, and dozens of others — need the same interaction mechanics: search, filters, sorting, a view switcher, pagination, and sometimes selection. That mechanical layer is genuinely reusable. What varies from one list to the next is the domain itself: which fields exist, how a record renders, and what a row means. Mixing the two produces either a rigid one-off list per page or a single component bloated with optional props for every domain it has ever supported.
-
-This repository draws that boundary in code. A shared core in [`src/features/list-page/`](src/features/list-page/) owns URL query parsing, controls, results layout, pagination, selection, and system states. Four feature-owned examples — Components, Issues, Deployments, and Packages — compose that core with their own types, mock data, query services, and renderers, without modifying it. Building a fourth and comparing it against the first three is what confirms the boundary actually holds.
+List-heavy product surfaces often duplicate URL-state and system-state logic, or over-generalize one component until it understands every domain. This project explores a middle path: a small shared architecture with intentionally feature-owned data and presentation, validated through four contrasting examples.
 
 ## Live examples
 
