@@ -1,14 +1,61 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { ThemeProvider } from "next-themes";
 import { AppSidebar } from "@/components/layout/app-sidebar";
 import { MobileNav } from "@/components/layout/mobile-nav";
 import { ibmPlexMono, manrope } from "@/lib/fonts";
+import { SITE_URL } from "@/lib/site-url";
 import "./globals.css";
 
+const SITE_NAME = "Reusable List Page Architecture";
+const SITE_DESCRIPTION =
+  "An interactive showcase of reusable list page patterns built with Next.js and TypeScript.";
+
 export const metadata: Metadata = {
-  title: "Reusable List Page Architecture",
-  description:
-    "An interactive showcase of reusable list page patterns built with Next.js and TypeScript.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE_NAME,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  authors: [{ name: "Meriç Lomlu", url: "https://github.com/mericlomlu" }],
+  creator: "Meriç Lomlu",
+  keywords: [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "App Router",
+    "list page architecture",
+    "URL state",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: SITE_NAME,
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f5f0e4" },
+    { media: "(prefers-color-scheme: dark)", color: "#211d19" },
+  ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

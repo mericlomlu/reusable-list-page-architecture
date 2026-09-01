@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { PageContainer } from "@/components/layout/page-container";
 import { ReferencePageHeader } from "@/features/reference-ui/reference-page-header";
 import { ReferenceSummary } from "@/features/reference-ui/reference-summary";
@@ -9,6 +10,13 @@ import {
   StatesPreview,
 } from "@/features/templates-reference/layer-previews";
 import { TemplateLayerCard } from "@/features/templates-reference/template-layer-card";
+
+export const metadata: Metadata = {
+  title: "Templates",
+  description:
+    "Four composition layers, from a bare list to a fully-stateful page, that every example route builds on.",
+  alternates: { canonical: "/reference/templates" },
+};
 
 export default function TemplatesPage() {
   return (

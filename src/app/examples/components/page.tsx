@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { ComponentsResults } from "@/features/components-example/components-results";
 import { ComponentsToolbar } from "@/features/components-example/components-toolbar";
@@ -15,6 +16,15 @@ import {
   parseListQuery,
   toSearchParams,
 } from "@/features/list-page/query-state";
+
+const PAGE_DESCRIPTION =
+  "Every UI primitive in the workspace's library, searchable and filterable by category, framework and status.";
+
+export const metadata: Metadata = {
+  title: "Components",
+  description: PAGE_DESCRIPTION,
+  alternates: { canonical: "/examples/components" },
+};
 
 export default async function ComponentsPage(
   props: PageProps<"/examples/components">,
@@ -42,7 +52,7 @@ export default async function ComponentsPage(
     <ListPageShell
       eyebrow="Examples / Components"
       title="Components"
-      description="Every UI primitive in the workspace's library, searchable and filterable by category, framework and status."
+      description={PAGE_DESCRIPTION}
       toolbar={<ComponentsToolbar />}
       pagination={
         <PaginationControls

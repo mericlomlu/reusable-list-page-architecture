@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { PageContainer } from "@/components/layout/page-container";
 import {
   CONTROLS_CATEGORY,
@@ -20,6 +21,13 @@ import { PageOwnedNote } from "@/features/building-blocks-reference/page-owned-n
 import { QueryBoundaryExample } from "@/features/building-blocks-reference/query-boundary-example";
 import { ReferencePageHeader } from "@/features/reference-ui/reference-page-header";
 import { ReferenceSummary } from "@/features/reference-ui/reference-summary";
+
+export const metadata: Metadata = {
+  title: "Building Blocks",
+  description:
+    "Every reusable primitive in src/features/list-page/ on its own — what it renders and which examples use it.",
+  alternates: { canonical: "/reference/building-blocks" },
+};
 
 export default function BuildingBlocksPage() {
   return (

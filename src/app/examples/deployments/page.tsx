@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { DEPLOYMENT_LIST_QUERY_CONFIG } from "@/features/deployments-example/config";
 import { DeploymentsResults } from "@/features/deployments-example/deployments-results";
@@ -15,6 +16,15 @@ import {
   parseListQuery,
   toSearchParams,
 } from "@/features/list-page/query-state";
+
+const PAGE_DESCRIPTION =
+  "Every build across environments, with status shown as icon and label — never color alone.";
+
+export const metadata: Metadata = {
+  title: "Deployments",
+  description: PAGE_DESCRIPTION,
+  alternates: { canonical: "/examples/deployments" },
+};
 
 export default async function DeploymentsPage(
   props: PageProps<"/examples/deployments">,
@@ -42,7 +52,7 @@ export default async function DeploymentsPage(
     <ListPageShell
       eyebrow="Examples / Deployments"
       title="Deployments"
-      description="Every build across environments, with status shown as icon and label — never color alone."
+      description={PAGE_DESCRIPTION}
       toolbar={<DeploymentsToolbar />}
       pagination={
         <PaginationControls

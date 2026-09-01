@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { PageContainer } from "@/components/layout/page-container";
 import { ApiParityDiagram } from "@/features/architecture-reference/api-parity-diagram";
 import { BoundaryPanels } from "@/features/architecture-reference/boundary-panels";
@@ -7,6 +8,13 @@ import { PrimaryFlowDiagram } from "@/features/architecture-reference/primary-fl
 import { SelectionException } from "@/features/architecture-reference/selection-exception";
 import { ReferencePageHeader } from "@/features/reference-ui/reference-page-header";
 import { ReferenceSummary } from "@/features/reference-ui/reference-summary";
+
+export const metadata: Metadata = {
+  title: "Architecture",
+  description:
+    "A URL-driven list-page system with one parsing boundary, server-rendered results, and page-owned domain logic.",
+  alternates: { canonical: "/reference/architecture" },
+};
 
 export default function ArchitecturePage() {
   return (

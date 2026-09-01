@@ -5,11 +5,13 @@ import { ExampleShowcase } from "@/features/overview/example-showcase";
 import { Hero } from "@/features/overview/hero";
 import { ReferenceNavigation } from "@/features/overview/reference-navigation";
 import { SharedVsPageOwned } from "@/features/overview/shared-vs-page-owned";
+import { StructuredData } from "@/features/overview/structured-data";
 import { ReferenceSummary } from "@/features/reference-ui/reference-summary";
 
 export default function OverviewPage() {
   return (
     <PageContainer>
+      <StructuredData />
       <Hero />
       <ReferenceSummary
         paragraphs={[
