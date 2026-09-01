@@ -28,7 +28,7 @@
 
 ## Implement now
 
-`metadata-assets`: favicon, application icon, Apple touch icon, root and route metadata, Open Graph image, Twitter metadata, web app manifest, sitemap, robots rules, canonical URLs, and Overview-page `SoftwareSourceCode` structured data — built on a centralized `src/lib/site-url.ts` resolving `NEXT_PUBLIC_SITE_URL` → `VERCEL_PROJECT_PRODUCTION_URL` → a local fallback.
+`metadata-assets` (in review, [PR #14](https://github.com/mericlomlu/reusable-list-page-architecture/pull/14)): favicon, application icon, Apple touch icon, root and route metadata, Open Graph image, Twitter metadata, web app manifest, sitemap, robots rules, canonical URLs, and Overview-page `SoftwareSourceCode` structured data — built on a centralized `src/lib/site-url.ts` resolving `NEXT_PUBLIC_SITE_URL` → `VERCEL_PROJECT_PRODUCTION_URL` → a local fallback.
 
 ## Do not combine yet
 
