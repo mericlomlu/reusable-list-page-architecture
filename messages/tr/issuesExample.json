@@ -9,7 +9,7 @@
     "statusLabel": "Durum",
     "priorityLabel": "Öncelik",
     "labelLabel": "Etiket",
-    "assigneeLabel": "Atanan",
+    "assigneeLabel": "Atanan kişi",
     "status": {
       "open": "Açık",
       "in_progress": "Devam Ediyor",
@@ -30,11 +30,11 @@
     "listAriaLabel": "Sorunlar",
     "emptyFiltered": {
       "title": "Bu filtrelerle eşleşen sorun yok",
-      "description": "Bir filtreyi kaldırmayı veya farklı bir terim aramayı deneyin."
+      "description": "Bir filtreyi kaldırmayı veya farklı bir terimle aramayı deneyin."
     },
     "emptyDefault": {
       "title": "Henüz sorun yok",
-      "description": "Çalışma alanına kayıt eklendiğinde sorunlar burada görünecek."
+      "description": "Yeni bir sorun eklendiğinde burada görünecek."
     },
     "clearAllFilters": "Tüm filtreleri temizle"
   },
@@ -46,7 +46,7 @@
       "status": "Durum",
       "priority": "Öncelik",
       "label": "Etiket",
-      "assignee": "Atanan",
+      "assignee": "Atanan kişi",
       "updated": "Güncellenme"
     }
   },
@@ -56,14 +56,14 @@
   },
   "assignee": {
     "unassignedSrOnly": "Atanmamış",
-    "assigneeSrOnly": "Atanan:"
+    "assigneeSrOnly": "Atanan kişi:"
   },
   "board": {
     "changeStatus": "Durumu değiştir",
     "closeIssues": "Sorunları kapat",
     "dismiss": "Kapat",
     "selectedLiveRegion": "{total} sorundan {selected} tanesi seçildi",
-    "bulkSuccess": "{count} sorun için durum güncellendi (yalnızca demo — kaydedilmedi).",
+    "bulkSuccess": "{count} sorunun durumu güncellendi (yalnızca demo — değişiklikler kaydedilmedi).",
     "errors": {
       "bulk_failed": "Seçili sorunlar güncellenemedi.",
       "invalid_request": "En az bir sorun ve geçerli bir durum seçin.",
@@ -72,7 +72,7 @@
   },
   "error": {
     "title": "Sorunlar yüklenemedi",
-    "description": "Sorun listesi yüklenirken bir sorun oluştu. Tekrar deneyin.",
+    "description": "Sorun listesi yüklenirken bir hata oluştu. Tekrar deneyin.",
     "retry": "Tekrar dene"
   }
 }

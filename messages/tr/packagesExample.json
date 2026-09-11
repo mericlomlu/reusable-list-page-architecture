@@ -9,12 +9,12 @@
     "dependencyLabel": "Bağımlılık",
     "updatesLabel": "Güncellemeler",
     "dependencyType": {
-      "dependency": "Çalışma zamanı",
-      "devDependency": "Geliştirme"
+      "dependency": "Production",
+      "devDependency": "Development"
     },
     "updateStatus": {
       "up-to-date": "Güncel",
-      "minor-update": "Küçük güncelleme",
+      "minor-update": "Küçük güncelleme mevcut",
       "outdated": "Güncel değil"
     }
   },
@@ -27,19 +27,19 @@
     "listAriaLabel": "Paketler",
     "emptyFiltered": {
       "title": "Bu filtrelerle eşleşen paket yok",
-      "description": "Bir filtreyi kaldırmayı veya farklı bir paket adı aramayı deneyin."
+      "description": "Bir filtreyi kaldırmayı veya farklı bir paket adıyla aramayı deneyin."
     },
     "emptyDefault": {
       "title": "Henüz izlenen paket yok",
-      "description": "Çalışma alanına bağımlılık eklendiğinde paketler burada görünecek."
+      "description": "Yeni bir bağımlılık eklendiğinde paketler burada görünecek."
     },
     "clearAllFilters": "Tüm filtreleri temizle"
   },
   "card": {
     "versionSrOnly": "Sürüm:",
     "dependencyType": {
-      "dependency": "Çalışma zamanı bağımlılığı",
-      "devDependency": "Geliştirme bağımlılığı"
+      "dependency": "Production bağımlılığı",
+      "devDependency": "Development bağımlılığı"
     }
   },
   "error": {

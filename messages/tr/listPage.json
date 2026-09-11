@@ -6,8 +6,8 @@
   "multiSelectFilter": {
     "allLabel": "Tümü",
     "selectedCount": "{count} seçildi",
-    "ariaLabelApplied": "{label} filtresi, {value}",
-    "ariaLabelEmpty": "{label} filtresi, filtre uygulanmadı"
+    "ariaLabelApplied": "{label} filtresi: {value}",
+    "ariaLabelEmpty": "{label} filtresi: seçim yok"
   },
   "singleSelectFilter": {
     "allLabel": "Tümü"

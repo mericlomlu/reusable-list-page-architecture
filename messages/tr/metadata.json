@@ -1,44 +1,44 @@
 {
   "site": {
-    "description": "Next.js ve TypeScript ile oluşturulmuş, yeniden kullanılabilir liste sayfası desenlerinin interaktif bir vitrini.",
-    "socialImageAlt": "Reusable List Page Architecture — tek bir liste sayfası sistemi, dört farklı ürün yüzeyi. Next.js, React, TypeScript ve Tailwind CSS ile oluşturuldu."
+    "description": "Next.js ve TypeScript ile geliştirilmiş, yeniden kullanılabilir liste sayfası yapılarını gösteren interaktif bir proje.",
+    "socialImageAlt": "Reusable List Page Architecture — tek bir liste sayfası sistemi, dört farklı kullanım alanı. Next.js, React, TypeScript ve Tailwind CSS ile geliştirildi."
   },
   "componentsPage": {
     "title": "Bileşenler",
-    "description": "Çalışma alanı kütüphanesindeki her UI ilkeli; kategori, framework ve duruma göre aranabilir ve filtrelenebilir.",
+    "description": "Çalışma alanındaki UI bileşenleri; kategori, framework ve duruma göre aranabilir ve filtrelenebilir.",
     "eyebrow": "Örnekler / Bileşenler"
   },
   "issuesPage": {
     "title": "Sorunlar",
-    "description": "Çalışma alanındaki işleri takip edin ve önceliklendirin. Birden çok sorunun durumunu aynı anda değiştirmek için satırları seçin.",
+    "description": "Çalışma alanındaki işleri takip edin ve önceliklendirin. Birden fazla sorunun durumunu aynı anda değiştirmek için satırları seçin.",
     "eyebrow": "Örnekler / Sorunlar"
   },
   "deploymentsPage": {
     "title": "Dağıtımlar",
-    "description": "Ortamlar genelindeki her derleme; durumu yalnızca renkle değil, simge ve etiketle birlikte gösterilir.",
+    "description": "Farklı ortamlardaki build'leri inceleyin; durum bilgileri yalnızca renkle değil, simge ve etiketlerle de gösterilir.",
     "eyebrow": "Örnekler / Dağıtımlar"
   },
   "packagesPage": {
     "title": "Paketler",
-    "description": "Çalışma alanında takip edilen bağımlılıklar; güncelleme durumu bir soruna dönüşmeden önce yüzeye çıkarılır.",
+    "description": "Çalışma alanında kullanılan bağımlılıkları ve güncelleme durumlarını tek yerde takip edin.",
     "eyebrow": "Örnekler / Paketler"
   },
   "architecturePage": {
     "title": "Mimari",
-    "description": "Tek bir ayrıştırma sınırı, sunucu tarafında render edilen sonuçlar, odaklanmış istemci kontrolleri ve sayfaya özgü alan mantığına sahip, URL tabanlı bir liste sayfası sistemi.",
+    "description": "URL tabanlı durum yönetimi, server-side sonuçlar, odaklanmış client kontrolleri ve sayfaya özgü mantığı bir araya getiren liste sayfası mimarisi.",
     "eyebrow": "Referans / Mimari"
   },
   "templatesPage": {
     "title": "Şablonlar",
-    "description": "Yalın bir listeden tamamen durum yönetimli bir sayfaya kadar dört kompozisyon katmanı. Bu projedeki her örnek rota, bunların bir kısmını ya da tamamını temel alır.",
+    "description": "Basit bir listeden tüm durumları yöneten bir sayfaya kadar dört farklı kompozisyon katmanı. Projedeki her örnek, bunların bir kısmını veya tamamını kullanır.",
     "eyebrow": "Referans / Şablonlar"
   },
   "buildingBlocksPage": {
     "title": "Yapı Taşları",
-    "description": "src/features/list-page/ içindeki her yeniden kullanılabilir ilkel tek başına — ne render ettiği ve hangi örneklerin kullandığı.",
+    "description": "src/features/list-page/ içindeki yeniden kullanılabilir yapı taşlarını, ne yaptıklarını ve hangi örneklerde kullanıldıklarını inceleyin.",
     "eyebrow": "Referans / Yapı Taşları"
   },
   "ogImage": {
-    "headline": "Tek bir liste sayfası sistemi. Dört farklı ürün yüzeyi."
+    "headline": "Tek bir liste sayfası sistemi. Dört farklı kullanım alanı."
   }
 }

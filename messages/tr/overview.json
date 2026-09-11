@@ -1,21 +1,21 @@
 {
   "hero": {
-    "heading": "Tek bir liste sayfası sistemi. Dört farklı ürün yüzeyi.",
-    "description": "URL tabanlı arama, filtreleme, sıralama, sayfalama, görünüm değiştirme, seçim, toplu işlemler ve açık sistem durumlarının interaktif bir vitrini — tek bir yeniden kullanılabilir Next.js mimarisi üzerine inşa edildi.",
+    "heading": "Tek bir liste sayfası sistemi. Dört farklı kullanım alanı.",
+    "description": "URL tabanlı arama, filtreleme, sıralama, sayfalama, görünüm değiştirme, seçim, toplu işlemler ve sistem durumlarını tek bir yeniden kullanılabilir Next.js mimarisi üzerinde gösteren interaktif bir proje.",
     "exploreExamples": "Örnekleri keşfet",
     "readArchitecture": "Mimariyi incele"
   },
   "summary": {
-    "paragraph1": "Proje, tekrar eden liste mekaniğini alana özgü sunumdan ayırır. URL ayrıştırma, kontroller, sonuç düzenleri, sayfalama, seçim ilkelleri ve sistem durumları paylaşılan bir çekirdekte yaşarken, her özellik kendi kayıtlarına, filtrelerine, sorgu servisine, araç çubuğu kompozisyonuna ve render bileşenlerine sahiptir.",
-    "paragraph2": "Dört örnek, farklı veri biçimleri ve etkileşim ihtiyaçlarıyla bu sınırı kanıtlar. Eşlik eden referans sayfaları, parçaların nasıl bir araya geldiğini, her ilkelin ne yaptığını ve verinin URL, Server Component'ler, Client Component'ler ve sahte Route Handler'lar arasında nasıl hareket ettiğini açıklar."
+    "paragraph1": "Proje, tekrar eden liste sayfası davranışlarını sayfaya özgü sunum ve iş mantığından ayırır. URL yönetimi, kontroller, sonuç düzenleri, sayfalama, seçim ve sistem durumları ortak bir çekirdekte tutulurken; her özellik kendi verilerini, filtrelerini, sorgu servisini, araç çubuğunu ve görünüm bileşenlerini yönetir.",
+    "paragraph2": "Dört farklı örnek, aynı yapının farklı veri modelleri ve etkileşim ihtiyaçlarıyla nasıl kullanılabildiğini gösterir. Referans sayfaları ise parçaların nasıl bir araya geldiğini, ortak yapıların ne yaptığını ve verinin URL, Server Component'ler, Client Component'ler ve mock Route Handler'lar arasında nasıl aktığını açıklar."
   },
   "exampleShowcase": {
     "heading": "Dört örnek, tek bir temel",
-    "description": "Her rota, alan kararlarını yerel tutarken aynı liste sayfası mimarisini yeniden kullanır.",
+    "description": "Her örnek, kendine özgü davranışlarını korurken aynı liste sayfası mimarisini kullanır.",
     "items": {
       "components": {
         "title": "Bileşenler",
-        "description": "Çok değerli framework filtrelemesi, kategori ve durum filtreleri, sıralama, sayfalama ve liste/ızgara görünümlerine sahip bir bileşen kataloğu.",
+        "description": "Birden fazla framework seçimi, kategori ve durum filtreleri, sıralama, sayfalama ve liste/ızgara görünümleri sunan bir bileşen kataloğu.",
         "tags": [
           "Çoklu seçim filtreleri",
           "Liste ve ızgara",
@@ -25,23 +25,27 @@
       },
       "issues": {
         "title": "Sorunlar",
-        "description": "Paylaşılan temeli semantik tablo render'ı, satır seçimi, tümünü seç ve yalnızca demo amaçlı toplu durum işlemleriyle genişleten bir sorun takip aracı.",
-        "tags": ["Satır seçimi", "Toplu işlemler", "Hata kurtarma"],
+        "description": "Ortak mimariyi tablo görünümü, satır seçimi, tümünü seçme ve demo amaçlı toplu durum işlemleriyle genişleten bir sorun takip örneği.",
+        "tags": [
+          "Satır seçimi",
+          "Toplu işlemler",
+          "Hata yönetimi"
+        ],
         "linkLabel": "Sorunları aç"
       },
       "deployments": {
         "title": "Dağıtımlar",
-        "description": "Ortam, branch, durum ve tarih aralığı filtrelemesinin yanı sıra alana özgü durum ve göreli zaman sunumuna sahip bir dağıtım geçmişi.",
+        "description": "Ortam, branch, durum ve tarih aralığı filtrelerinin yanı sıra dağıtıma özgü durum ve göreli zaman gösterimleri sunan bir deployment geçmişi.",
         "tags": [
           "Tarih aralığı",
           "Durum filtreleri",
-          "Alana özgü biçimlendirme"
+          "Özel biçimlendirme"
         ],
         "linkLabel": "Dağıtımları aç"
       },
       "packages": {
         "title": "Paketler",
-        "description": "Pakete özgü sürüm sıralaması, bağımlılık türü filtrelemesi, güncelleme durumu ve yeniden kullanılabilir liste/ızgara render'ına sahip bir bağımlılık envanteri.",
+        "description": "Sürüme göre sıralama, bağımlılık türü filtreleme, güncelleme durumu ve yeniden kullanılabilir liste/ızgara görünümleri sunan bir bağımlılık envanteri.",
         "tags": [
           "Sürüme göre sıralama",
           "Güncelleme durumu",
@@ -52,77 +56,77 @@
     }
   },
   "sharedVsPageOwned": {
-    "heading": "Paylaşılan çekirdek ile sayfaya özgü kod",
-    "sharedCoreHeading": "Paylaşılan çekirdek",
-    "pageOwnedHeading": "Sayfaya özgü özellik",
+    "heading": "Ortak çekirdek ve sayfaya özgü kod",
+    "sharedCoreHeading": "Ortak çekirdek",
+    "pageOwnedHeading": "Sayfaya özgü yapı",
     "sharedCoreItems": [
       "Sorgu ayrıştırma ve serileştirme",
       "Arama, filtreler, sıralama ve görünümler",
       "Sonuç düzeni ve sayfalama",
       "Etkin filtreler",
-      "Seçim ilkelleri",
-      "Yükleme, boş ve hata durumları"
+      "Seçim davranışları",
+      "Yüklenme, boş ve hata durumları"
     ],
     "pageOwnedItems": [
-      "Türler ve sahte kayıtlar",
+      "Türler ve örnek veriler",
       "Sorgu yapılandırması ve servisi",
-      "Araç çubuğu kompozisyonu",
-      "Satırlar, kartlar ve alana özgü sunum",
-      "Uygulanabilir olduğunda toplu işlem davranışı"
+      "Araç çubuğu düzeni",
+      "Satırlar, kartlar ve sayfaya özgü sunum",
+      "Gerektiğinde toplu işlem davranışları"
     ],
-    "footnote": "Özellikler, paylaşılan çekirdeği değiştirmeden onun üzerine kompozisyon kurar."
+    "footnote": "Her özellik, ortak çekirdeği değiştirmeden ihtiyaç duyduğu yapıyı onun üzerine kurar."
   },
   "architecturePrinciples": {
-    "heading": "Kalıcı sınırlar etrafında tasarlandı",
+    "heading": "Net sorumluluk sınırlarıyla tasarlandı",
     "items": [
       {
-        "title": "Durum olarak URL",
-        "description": "Arama, filtreler, sıralama, görünüm ve sayfalama paylaşılabilir ve geri yüklenebilir kalır."
+        "title": "Durum URL'de",
+        "description": "Arama, filtreler, sıralama, görünüm ve sayfalama URL üzerinden paylaşılabilir ve yeniden oluşturulabilir."
       },
       {
-        "title": "Önce sunucu sonuçları",
-        "description": "Sayfalar URL'yi ayrıştırır, alan sorgu servislerini doğrudan çağırır ve sonuçları sunucuda render eder."
+        "title": "Sonuçlar önce sunucuda",
+        "description": "Sayfalar URL'yi ayrıştırır, ilgili sorgu servislerini doğrudan çağırır ve sonuçları sunucuda render eder."
       },
       {
-        "title": "Odaklanmış istemci sınırları",
-        "description": "Client Component'ler etkileşimli kontrolleri, geçici seçimi, toplu işlem durumunu ve kurtarmayı yönetir."
+        "title": "Odaklanmış client sınırları",
+        "description": "Client Component'ler yalnızca etkileşimli kontrolleri, geçici seçimleri, toplu işlem durumlarını ve hata sonrası toparlanmayı yönetir."
       },
       {
-        "title": "Tek bir alan sorgu fonksiyonu",
-        "description": "Her sayfa ve onun sahte Route Handler'ı aynı yapılandırmayı ve sorgu servisini yeniden kullanır."
+        "title": "Her alan için tek sorgu akışı",
+        "description": "Her sayfa ve ona ait mock Route Handler aynı sorgu yapılandırmasını ve servisini kullanır."
       },
       {
-        "title": "Açık sistem durumları",
-        "description": "Yükleme, boş, filtrelenmiş-boş ve hata davranışı sonradan akla gelen değil, mimarinin bir parçasıdır."
+        "title": "Sistem durumları baştan tasarımın parçası",
+        "description": "Yüklenme, boş sonuç, filtre sonrası boş sonuç ve hata durumları sonradan eklenen detaylar değil, mimarinin doğrudan bir parçasıdır."
       }
     ]
   },
   "referenceNavigation": {
-    "heading": "Sistemi üç farklı açıdan okuyun",
+    "heading": "Sistemi üç farklı açıdan inceleyin",
     "items": {
       "templates": {
         "title": "Şablonlar",
-        "description": "İlkellerin giderek zenginleşen liste sayfası desenlerine nasıl kompoze edildiğini görün.",
+        "description": "Ortak yapı taşlarının giderek daha kapsamlı liste sayfalarına nasıl dönüştüğünü görün.",
         "linkLabel": "Şablonları görüntüle"
       },
       "buildingBlocks": {
         "title": "Yapı Taşları",
-        "description": "Paylaşılan bileşenleri, hook'ları, fonksiyonları, türleri, sınırları ve gerçek kullanıcıları inceleyin.",
+        "description": "Paylaşılan bileşenleri, hook'ları, fonksiyonları, türleri, sınırları ve projede nerelerde kullanıldıklarını inceleyin.",
         "linkLabel": "Yapı Taşlarını görüntüle"
       },
       "architecture": {
         "title": "Mimari",
-        "description": "İstekten render'a akışı, sunucu/istemci sorumluluklarını, sorgu hattını ve seçim istisnasını takip edin.",
+        "description": "Bir isteğin ekrana ulaşana kadar izlediği yolu, server/client sorumluluklarını, sorgu akışını ve seçim davranışını inceleyin.",
         "linkLabel": "Mimariyi görüntüle"
       }
     }
   },
   "closingStatement": {
-    "heading": "Yalnızca ekranları değil, mühendislik kararlarını göstermek için inşa edildi.",
-    "description": "Sahte veriler ve Route Handler'lar projeyi kendi kendine yeterli tutar. Asıl gösterilen ürün; yeniden kullanılabilir sınırlar, erişilebilir etkileşimler, duyarlı (responsive) davranış ve açık ödünleşimlerdir.",
-    "cta": "Bileşenler ile başlayın"
+    "heading": "Yalnızca ekranları değil, arkasındaki mühendislik kararlarını göstermek için geliştirildi.",
+    "description": "Mock veriler ve Route Handler'lar projeyi bağımsız olarak çalışabilir tutar. Asıl amaç; yeniden kullanılabilir sınırları, erişilebilir etkileşimleri, responsive davranışı ve mimari kararların nedenlerini görünür kılmaktır.",
+    "cta": "Bileşenlerle başlayın"
   },
   "linkRecord": {
-    "capabilitiesAriaLabel": "Yetenekler"
+    "capabilitiesAriaLabel": "Özellikler"
   }
 }

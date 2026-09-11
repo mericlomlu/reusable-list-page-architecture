@@ -16,8 +16,8 @@
       "failed": "Başarısız"
     },
     "environment": {
-      "production": "Prodüksiyon",
-      "preview": "Önizleme",
+      "production": "Production",
+      "preview": "Preview",
       "staging": "Staging"
     },
     "dateRange": {
@@ -38,7 +38,7 @@
     },
     "emptyDefault": {
       "title": "Henüz dağıtım yok",
-      "description": "Çalışma alanında derleme olduğunda dağıtımlar burada görünecek."
+      "description": "Yeni bir build oluşturulduğunda dağıtımlar burada görünecek."
     },
     "clearAllFilters": "Tüm filtreleri temizle"
   },

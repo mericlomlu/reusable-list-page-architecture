@@ -1,38 +1,47 @@
 {
-  "summaryParagraph1": "Her liste sayfası, paylaşılan sayfa yapısı için ListPageShell ile ve sunucuda render edilen gezinme için PaginationControls ile başlar. Çoğu örnek, alana özgü satırları ve kartları render etmek için ResultsView kullanırken, Sorunlar kasıtlı olarak kendi seçilebilir tablosunu kullanır. Sayfaya özgü bir araç çubuğu, paylaşılan URL durumu etrafında arama, filtreler, sıralama ve görünüm kontrollerini bir araya getirir.",
-  "summaryParagraph2": "Seçim, yalnızca alan geçici satır durumu gerektirdiğinde eklenir; yükleme, boş, filtrelenmiş-boş ve hata sunumları ise her eksiksiz kompozisyonun açık parçaları olarak kalır. Şablonlar yeteneklerine göre farklılık gösterir, ancak hepsi ayrı sayfa mimarileri oluşturmak yerine aynı çekirdeği yeniden kullanır.",
+  "summaryParagraph1": "Her liste sayfası ortak sayfa yapısı için ListPageShell, server tarafında render edilen navigasyon için ise PaginationControls kullanır. Çoğu örnek, sayfaya özgü satır ve kartları göstermek için ResultsView kullanırken Sorunlar bilinçli olarak kendi seçilebilir tablosunu kullanır. Sayfaya özgü araç çubuğu ise ortak URL durumu üzerinden arama, filtreleme, sıralama ve görünüm kontrollerini bir araya getirir.",
+
+  "summaryParagraph2": "Seçim yalnızca ilgili sayfanın geçici satır durumuna ihtiyaç duyduğu yerlerde eklenir. Yüklenme, boş sonuç, filtre sonrası boş sonuç ve hata durumları ise her tam liste sayfasının doğrudan bir parçasıdır. Şablonlar farklı yeteneklere sahip olsa da ayrı mimariler oluşturmak yerine aynı ortak çekirdeği kullanır.",
+
   "layersHeading": "Kompozisyon katmanları",
-  "layersDescription": "Her katman, bir öncekinin üzerine <code>src/features/list-page/</code> içinden küçük bir yapı taşı kümesi ekler.",
+
+  "layersDescription": "Her katman, bir öncekinin üzerine <code>src/features/list-page/</code> içinden küçük bir yapı taşı grubu ekler.",
+
   "buildingBlocksUsedAriaLabel": "Kullanılan yapı taşları",
+
   "layers": {
     "basicList": {
       "title": "Temel Liste",
-      "description": "ListPageShell, ResultsView ve PaginationControls ile kompoze edilir. toolbar zorunlu bir prop'tur, ancak temel bir kompozisyon buna null veya minimal içerik geçebilir — diğer her katman yalnızca aynı yuvaya ve children'a daha fazlasını koyar.",
-      "exampleLabel": "Paketler, üzerine arama ve iki filtre katmanlar",
-      "previewLabel": "Önizleme: arama veya filtre kontrolü olmadan bir paket adı ve sürümü gösteren üç bağımlılık satırı."
+      "description": "ListPageShell, ResultsView ve PaginationControls ile oluşturulur. toolbar zorunlu bir prop olsa da temel kullanımda null veya minimum içerik verilebilir. Sonraki katmanlar aynı alanlara yeni yetenekler ekler.",
+      "exampleLabel": "Paketler örneği bunun üzerine arama ve iki filtre ekler",
+      "previewLabel": "Önizleme: arama veya filtre kontrolü olmadan paket adı ve sürümünü gösteren üç bağımlılık satırı."
     },
+
     "searchFilters": {
       "title": "Arama ve Filtreler",
-      "description": "Sayfaya özgü bir araç çubuğu; SearchField, SingleSelectFilter veya MultiSelectFilter, SortMenu ve ViewSwitcher'ı kompoze eder, ardından useListQueryState'i bir kez çağırır. Debounce edilmiş arama geçerli URL girdisinin yerini alır; filtre, sıralama, görünüm ve sayfalama değişiklikleri ise her biri yeni, gezinilebilir bir girdi ekler — böylece geri düğmesi ve kopyalanmış bir bağlantı hâlâ doğru listeyi geri yükler.",
-      "exampleLabel": "Bileşenler, tekli ve çoklu değerli bir filtreyi birleştirir",
-      "previewLabel": "Önizleme: bir arama alanı, uygulanmış bir kategori filtresi ve her biri bir durum noktası ve etiket gösteren iki bileşen satırı."
+      "description": "Sayfaya özgü araç çubuğu; SearchField, SingleSelectFilter veya MultiSelectFilter, SortMenu ve ViewSwitcher bileşenlerini bir araya getirir ve useListQueryState'i tek noktadan kullanır. Debounce edilmiş arama mevcut URL girdisini günceller; filtre, sıralama, görünüm ve sayfalama değişiklikleri ise tarayıcı geçmişine yeni bir giriş ekler. Böylece geri tuşu ve paylaşılan bağlantılar doğru liste durumunu geri yükleyebilir.",
+      "exampleLabel": "Bileşenler, tekli ve çoklu seçim filtrelerini birlikte kullanır",
+      "previewLabel": "Önizleme: arama alanı, etkin kategori filtresi ve durum bilgisi içeren iki bileşen satırı."
     },
+
     "selection": {
       "title": "Seçim ve Toplu İşlemler",
-      "description": "URL dışında kasıtlı olarak tutulan satır düzeyinde seçim ekler — bu, paylaşılabilir liste durumu değil, sayfa durumudur. Bir şey işaretlendiğinde SelectionToolbar görünür ve sayfaya özgü toplu işlemleri açığa çıkarır; ResultsView tablo başlıklarını, tümünü seçmeyi veya belirsiz (indeterminate) seçimi modellemediği için sayfa kendi seçilebilir tablosunu render eder.",
-      "exampleLabel": "Buna ihtiyaç duyan tek örnek Sorunlar'dır",
-      "previewLabel": "Önizleme: iki işaretli sorun satırının üzerinde, Durumu değiştir işlemiyle birlikte 2 seçildi yazan bir seçim araç çubuğu."
+      "description": "Satır seçimi bilinçli olarak URL dışında tutulur; çünkü paylaşılabilir liste durumunun değil, geçici sayfa durumunun bir parçasıdır. Bir veya daha fazla satır seçildiğinde SelectionToolbar görünür ve sayfaya özgü toplu işlemleri sunar. ResultsView tablo başlıklarını, tümünü seçme davranışını ve indeterminate seçim durumunu modellemediği için bu örnek kendi seçilebilir tablosunu render eder.",
+      "exampleLabel": "Bu yapıya ihtiyaç duyan tek örnek Sorunlar'dır",
+      "previewLabel": "Önizleme: iki seçili sorun satırının üzerinde, \"2 seçildi\" bilgisi ve Durumu değiştir işlemi bulunan araç çubuğu."
     },
+
     "systemStates": {
       "title": "Sistem Durumları",
-      "description": "Her örnek; ListSkeleton, ListErrorState ve useDemoErrorRecovery ile bir loading.tsx ve error.tsx rota segmenti uygular, ayrıca kendi results bileşeni içinde ListEmptyState kullanan bir boş ve filtrelenmiş-boş dalı bulunur. Route Handler'lar, özel bir araç olmadan her durumun önizlenebilmesi için açık bir demoState sorgu parametresi kabul eder.",
-      "exampleLabel": "Dağıtımlar'a ?demoState=error eklemeyi deneyin",
-      "previewLabel": "Önizleme: farklı genişliklerde üç yükleme iskelet çubuğu."
+      "description": "Her örnekte ListSkeleton, ListErrorState ve useDemoErrorRecovery kullanan loading.tsx ve error.tsx dosyaları bulunur. Results bileşeni ise ListEmptyState ile hem boş sonucu hem de filtre sonrası boş sonucu ele alır. Route Handler'lar, bu durumların ek bir araca ihtiyaç olmadan görüntülenebilmesi için demoState query parametresini destekler.",
+      "exampleLabel": "Dağıtımlar URL'sine ?demoState=error eklemeyi deneyin",
+      "previewLabel": "Önizleme: farklı genişliklerde üç yüklenme iskeleti."
     }
   },
+
   "composition": {
-    "heading": "Bir sayfa bunları nasıl kompoze eder",
-    "description": "Her gerçek örneğin inşa edildiği şekilde inşa edilmiş kurgusal bir Widgets örneği: bir Server Component sayfa, URL'yi bir kez ayrıştırır ve paylaşılan kabuğu render eder; dar bir Client Component araç çubuğu ise etkileşimli kontrolleri yönetir ve aynı URL'ye geri yazar.",
+    "heading": "Bir sayfa bunları nasıl bir araya getirir?",
+    "description": "Gerçek örneklerle aynı yapıyı kullanan kurgusal bir Widgets sayfası: Server Component URL'yi bir kez ayrıştırır ve ortak sayfa yapısını render eder. Küçük bir Client Component araç çubuğu ise etkileşimli kontrolleri yönetir ve değişiklikleri aynı URL durumuna yazar.",
     "pageCaption": "Server Component — src/app/examples/widgets/page.tsx",
     "toolbarCaption": "Client Component — src/features/widgets-example/widgets-toolbar.tsx"
   }

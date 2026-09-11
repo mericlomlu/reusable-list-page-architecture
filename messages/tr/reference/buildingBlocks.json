@@ -1,139 +1,170 @@
 {
-  "pageDescription": "Şablonlar, bunların dört katmana nasıl kompoze edildiğini gösterir. Bu sayfa bunu tersine çevirir: <code>src/features/list-page/</code> içindeki her ilkel tek başına — ne render ettiği, bir Server Component mi, bir Client Component mi yoksa bir client hook mu olduğu ve hangi örneklerin onu gerçekten kullandığı.",
-  "summaryParagraph1": "Paylaşılan liste sayfası çekirdeği, tekrar eden mekaniğe sahiptir: tipli URL ayrıştırma ve serileştirme, arama ve filtre kontrolleri, sıralama, görünüm değiştirme, sonuç düzenleri, sayfalama, etkin filtre bağlantıları, seçim ilkelleri ve sistem durumları.",
-  "summaryParagraph2": "Her özellik, alan kararlarını bu çekirdeğin dışında tutar — kayıt türleri, sahte veriler, filtre seçenekleri, sorgu servisleri, araç çubuğu kompozisyonu, satırlar, kartlar, durum sunumu ve toplu işlem davranışı. Yeni örnekler, bu ilkelleri altta yatan uygulamalarını değiştirmeden kompoze eder.",
+  "pageDescription": "Şablonlar, bu yapı taşlarının dört farklı katmanda nasıl bir araya geldiğini gösterir. Bu sayfa ise tersinden bakar: <code>src/features/list-page/</code> içindeki her ortak yapı taşını tek tek; ne render ettiğini, Server Component, Client Component veya client hook olup olmadığını ve hangi örneklerde kullanıldığını gösterir.",
+
+  "summaryParagraph1": "Ortak liste sayfası çekirdeği, tekrar eden davranışları kapsar: tipli URL ayrıştırma ve serileştirme, arama ve filtre kontrolleri, sıralama, görünüm değiştirme, sonuç düzenleri, sayfalama, etkin filtre bağlantıları, seçim davranışları ve sistem durumları.",
+
+  "summaryParagraph2": "Her özellik, kendine özgü kararları bu çekirdeğin dışında tutar: kayıt türleri, mock veriler, filtre seçenekleri, sorgu servisleri, araç çubuğu düzeni, satırlar, kartlar, durum gösterimleri ve toplu işlem davranışları. Yeni örnekler, ortak yapı taşlarının iç uygulamasını değiştirmeden onları kullanır.",
+
   "usedByLabel": "{consumers} tarafından kullanılır.",
+
   "categories": {
     "structure-results": {
       "title": "Yapı ve Sonuçlar",
-      "description": "Her liste sayfasına dış şeklini veren, kayıtlarını render eden ve içlerindeki metadata'yı biçimlendiren bloklar — bir kaydın içeriği hakkında başka hiçbir şey bilmeden.",
-      "previewLabel": "Önizleme: bir araç çubuğu şeridi, iki sonuç satırı ve bir sayfalama şeridi içeren şematik bir sayfa kabuğu.",
+      "description": "Liste sayfasının temel düzenini oluşturan, kayıtları render eden ve metadata'yı biçimlendiren yapı taşları. Bunların hiçbiri kaydın kendi iş mantığını bilmek zorunda değildir.",
+      "previewLabel": "Önizleme: araç çubuğu, iki sonuç satırı ve sayfalama alanı içeren örnek bir liste sayfası.",
+
       "blocks": {
         "ListPageShell": {
-          "summary": "Sayfa düzeyinde düzen: bir başlık/açıklama başlığı, sayfanın kendi araç çubuğu için bir yuva, children olarak sonuçlar ve isteğe bağlı bir sayfalama yuvası. Kendisi \"use client\" direktifi taşımaz, bu yüzden hem bir Server Component olan page.tsx'ten hem de bir Client Component olan error.tsx'ten güvenle render edilir.",
-          "consumers": "her örneğin page.tsx, loading.tsx ve error.tsx dosyaları (Bileşenler, Sorunlar, Dağıtımlar, Paketler)"
+          "summary": "Sayfa düzeyindeki temel düzeni sağlar: başlık ve açıklama alanı, sayfanın kendi araç çubuğu için bir alan, sonuçlar için children ve isteğe bağlı sayfalama alanı. Kendisi \"use client\" kullanmadığı için hem Server Component olan page.tsx'ten hem de Client Component olan error.tsx'ten render edilebilir.",
+          "consumers": "tüm örneklerin page.tsx, loading.tsx ve error.tsx dosyaları (Bileşenler, Sorunlar, Dağıtımlar, Paketler)"
         },
+
         "ResultsView": {
-          "summary": "Bir öğe kümesi için liste ve ızgara düzeni arasında geçiş yapar, öğe türüne göre generic'tir ve her öğenin markup'ını renderListItem ve renderGridItem aracılığıyla sayfaya geri devreder.",
-          "consumers": "Bileşenler, Dağıtımlar ve Paketler'in results bileşenleri — Sorunlar bunun yerine, ızgara kırılım noktalarını aynı tutmak için dışa aktarılan RESULTS_GRID_CLASS_NAME sabitini yeniden kullanarak kendi seçilebilir tablosunu render eder"
+          "summary": "Bir veri kümesini liste veya ızgara görünümünde render eder. Öğe türünden bağımsızdır; her kaydın nasıl gösterileceğini renderListItem ve renderGridItem üzerinden ilgili sayfaya bırakır.",
+          "consumers": "Bileşenler, Dağıtımlar ve Paketler'in results bileşenleri. Sorunlar ise seçilebilir kendi tablosunu kullanır; aynı responsive kırılım noktalarını korumak için dışa aktarılan RESULTS_GRID_CLASS_NAME sabitinden yararlanır."
         },
+
         "formatRelativeTime": {
-          "summary": "Projenin yalnızca tarih içeren ISO dizelerinden birini (örn. \"2026-08-15\") bugünün tarihiyle karşılaştırarak \"3g önce\" veya \"bugün\" gibi kısa, dile duyarlı bir göreli etikete dönüştürür.",
-          "consumers": "Bileşenler ve Sorunlar'ın list-row ve grid-card render bileşenleri"
+          "summary": "Tarih içeren bir ISO değerini (ör. \"2026-08-15\") bugünün tarihiyle karşılaştırıp \"3g önce\" veya \"bugün\" gibi kısa ve dile duyarlı bir etikete dönüştürür.",
+          "consumers": "Bileşenler ve Sorunlar'ın liste satırı ve grid kartı bileşenleri"
         }
       }
     },
+
     "query-navigation": {
-      "title": "Sorgu ve Gezinme",
-      "description": "URL arama parametrelerini tipli liste durumuna ve geri dönüştüren tek ayrıştırma sınırı, artı buna yazan client hook.",
-      "previewLabel": "Önizleme: arama, sıralama ve sayfa sorgu parametrelerini gösteren bir URL çubuğu.",
+      "title": "Sorgu ve Navigasyon",
+      "description": "URL search parametreleri ile tipli liste durumu arasındaki ortak sınır ve bu durumu URL'ye yazan client hook.",
+      "previewLabel": "Önizleme: arama, sıralama ve sayfa parametrelerini içeren bir URL.",
+
       "blocks": {
         "Query types": {
-          "summary": "ViewMode, SortOption, FilterOption, FilterValues, ListQueryConfig ve ParsedListQuery, her örneğin URL durumunu aynı şekilde tipler; böylece yeni bir örnek yalnızca kendi sıralama anahtarlarını ve filtre anahtarlarını sağlar.",
-          "consumers": "her örneğin config, sorgu servisi ve araç çubuğu"
+          "summary": "ViewMode, SortOption, FilterOption, FilterValues, ListQueryConfig ve ParsedListQuery tüm örneklerde URL durumunu aynı yapıyla tanımlar. Yeni bir örneğin yalnızca kendi sıralama ve filtre anahtarlarını sağlaması yeterlidir.",
+          "consumers": "tüm örneklerin config, sorgu servisi ve araç çubuğu"
         },
+
         "parseListQuery / buildListQueryString": {
-          "summary": "parseListQuery, bir sayfanın ListQueryConfig'ine göre bir URLSearchParams'ı ParsedListQuery'ye okur; buildListQueryString ise tersini yapar. toSearchParams ve emptyFilterValues, bir Server Component'in searchParams nesnesinden ve boş durum varsayılanından aynı sınırı destekler.",
-          "consumers": "her örneğin page.tsx, route.ts ve useListQueryState'i — her zaman aynı config'e göre"
+          "summary": "parseListQuery, URLSearchParams değerlerini sayfanın ListQueryConfig'ine göre ParsedListQuery nesnesine dönüştürür. buildListQueryString ise bu işlemin tersini yapar. toSearchParams ve emptyFilterValues da Server Component searchParams değerleri ve boş filtre varsayımları için aynı yapıyı destekler.",
+          "consumers": "tüm örneklerin page.tsx, route.ts ve useListQueryState kullanımları; her zaman aynı config üzerinden"
         },
+
         "useListQueryState": {
-          "summary": "Geçerli URL'yi useSearchParams ile okur ve setSearch, setSort, setView, setSingleFilter ve toggleMultiFilter'ı dışa açar — her biri buildListQueryString ile oluşturulan bir sorgu dizesini push veya replace eder. Sayfalama bağlantıları bunun yerine sunucu tarafında render edilir, bu yüzden sayfalama kasıtlı olarak bu hook'un bir parçası değildir.",
-          "consumers": "her örneğin araç çubuğu client bileşeni"
+          "summary": "Geçerli URL'yi useSearchParams ile okur ve setSearch, setSort, setView, setSingleFilter ve toggleMultiFilter fonksiyonlarını sunar. Her biri buildListQueryString ile oluşturulan query string'i push veya replace eder. Sayfalama bağlantıları server tarafında render edildiği için sayfalama bilinçli olarak bu hook'un dışında tutulur.",
+          "consumers": "tüm örneklerin client araç çubuğu bileşenleri"
         }
       }
     },
+
     "controls": {
       "title": "Arama, Filtreler, Sıralama ve Görünümler",
-      "description": "Sayfaya özgü bir araç çubuğunun bir araya getirdiği etkileşimli kontroller; her biri yalnızca bir sorgu durumu parçasını okumayı ve bildirmeyi bilir.",
-      "previewLabel": "Önizleme: bir arama alanı, uygulanmış bir filtre, bir sıralama kontrolü ve bir liste/ızgara görünüm geçişi içeren bir araç çubuğu şeridi.",
+      "description": "Sayfaya özgü araç çubuklarında kullanılan etkileşimli kontroller. Her biri yalnızca kendi sorumlu olduğu sorgu durumu bölümünü okur ve günceller.",
+      "previewLabel": "Önizleme: arama alanı, etkin bir filtre, sıralama kontrolü ve liste/ızgara görünüm seçimi.",
+
       "blocks": {
         "SearchField": {
-          "summary": "Öndeki bir arama simgesine sahip, debounce edilmiş metin girişi (varsayılan 300ms); her karakterde bir URL güncellemesi göndermemek için kendi taslak durumunu tutar.",
-          "consumers": "her örneğin araç çubuğu"
+          "summary": "Arama simgesiyle birlikte debounce edilmiş bir metin alanı (varsayılan 300ms). Her tuş vuruşunda URL'yi güncellememek için geçici değeri kendi içinde tutar.",
+          "consumers": "tüm örneklerin araç çubuğu"
         },
+
         "SingleSelectFilter": {
-          "summary": "En fazla bir değer tutan, radio group'lu bir dropdown olarak render edilen bir filtre; tetikleyici her zaman geçerli seçimi düz metin olarak gösterir.",
-          "consumers": "her örneğin araç çubuğu"
+          "summary": "Tek bir değer seçilebilen ve radio group içeren dropdown filtre. Tetikleyici her zaman geçerli seçimi metin olarak gösterir.",
+          "consumers": "tüm örneklerin araç çubuğu"
         },
+
         "MultiSelectFilter": {
-          "summary": "Aynı anda birden fazla değer tutan, bir onay kutusu popover'ı olarak render edilen bir filtre; birden fazla değer uygulandığında tetikleyici etiketi \"N seçildi\" olarak daralır.",
-          "consumers": "Bileşenler'in framework filtresi, şu anda tek kullanıcısı"
+          "summary": "Aynı anda birden fazla değer seçilebilen checkbox tabanlı popover filtre. Birden fazla değer seçildiğinde tetikleyicide \"N seçildi\" özeti gösterilir.",
+          "consumers": "Bileşenler'deki framework filtresi; şu anda tek kullanım alanı"
         },
+
         "SortMenu": {
-          "summary": "Bir sayfanın sıralama seçenekleri için tek bir dropdown, sıralama anahtarına göre generic'tir; etkin seçenek her zaman tetikleyicide metin olarak gösterilir, asla yalnızca bir simge olarak değil.",
-          "consumers": "her örneğin araç çubuğu"
+          "summary": "Sayfanın sıralama seçeneklerini gösteren dropdown. Sıralama anahtarından bağımsız çalışır ve aktif seçenek tetikleyicide her zaman metin olarak gösterilir.",
+          "consumers": "tüm örneklerin araç çubuğu"
         },
+
         "ViewSwitcher": {
-          "summary": "Liste görünümü ile ızgara görünümü arasında iki seçenekli bir toggle group.",
-          "consumers": "her örneğin araç çubuğu"
+          "summary": "Liste ve ızgara görünümü arasında geçiş sağlayan iki seçenekli kontrol.",
+          "consumers": "tüm örneklerin araç çubuğu"
         }
       }
     },
+
     "pagination-filters": {
       "title": "Sayfalama ve Etkin Filtreler",
-      "description": "Sorgu durumunu düz bağlantılar olarak geri okuyan sunucuda render edilmiş bloklar; böylece hem sayfalama hem de bir filtreyi temizleme, client JavaScript olmadan çalışır.",
-      "previewLabel": "Önizleme: kaldırılabilir bir filtre rozetinin yanında numaralandırılmış sayfalama kontrolleri.",
+      "description": "Sorgu durumunu gerçek bağlantılara dönüştüren server-rendered yapı taşları. Böylece hem sayfalama hem de filtre kaldırma işlemleri client JavaScript olmadan da çalışabilir.",
+      "previewLabel": "Önizleme: kaldırılabilir bir filtre etiketi ve numaralandırılmış sayfalama kontrolleri.",
+
       "blocks": {
         "PaginationControls": {
-          "summary": "Numaralandırılmış sayfa bağlantıları artı Önceki/Sonraki, \"84 içinden 1–20 gösteriliyor\" aralık etiketiyle eşleştirilmiş. Her bağlantı, sayfa tarafından sağlanan bir buildHref'ten oluşturulan gerçek bir Link'tir ve geçerli sayfa aria-current=\"page\" değerini korur.",
-          "consumers": "her örnek sayfa"
+          "summary": "Numaralandırılmış sayfa bağlantıları, Önceki/Sonraki kontrolleri ve \"84 içinden 1–20 gösteriliyor\" gibi bir sonuç aralığı etiketi sunar. Her bağlantı sayfanın sağladığı buildHref ile oluşturulan gerçek bir Link'tir ve aktif sayfa aria-current=\"page\" değerini korur.",
+          "consumers": "tüm örnek sayfalar"
         },
+
         "ActiveFilters": {
-          "summary": "Sayfanın kendisinin oluşturduğu bir ActiveFilterPill nesneleri listesinden, uygulanan her filtre için kaldırılabilir bir rozet artı bir \"Tümünü temizle\" bağlantısı render eder; hiçbir filtre etkin olmadığında hiçbir şey render etmez.",
-          "consumers": "her örneğin results bileşeni"
+          "summary": "Sayfanın oluşturduğu ActiveFilterPill listesinden etkin her filtre için kaldırılabilir bir etiket ve \"Tümünü temizle\" bağlantısı render eder. Hiç filtre etkin değilse hiçbir şey göstermez.",
+          "consumers": "tüm örneklerin results bileşenleri"
         }
       }
     },
+
     "selection-bulk-actions": {
       "title": "Seçim ve Toplu İşlemler",
-      "description": "Yalnızca istemciye ait seçim durumu ve bunu yüzeye çıkaran araç çubuğu, kasıtlı olarak yukarıdaki paylaşılabilir URL durumunun dışında tutulur.",
-      "previewLabel": "Önizleme: yanında sayfaya özgü bir toplu işlem bulunan, \"2 seçildi\" yazan bir seçim başlığı.",
+      "description": "Yalnızca client tarafında tutulan seçim durumu ve bunu kullanan araç çubuğu. Bu durum bilinçli olarak paylaşılabilir URL durumunun dışında tutulur.",
+      "previewLabel": "Önizleme: \"2 seçildi\" bilgisinin ve sayfaya özgü toplu işlemin yer aldığı seçim araç çubuğu.",
+
       "blocks": {
         "useSelection": {
-          "summary": "Kayıt id'sine göre anahtarlanan, yalnızca istemciye ait seçim durumu — selectedIds, selectedCount, isSelected, toggle, selectAll, removeMany, clear. Sonuç kümesi değiştiğinde seçimi sıfırlamak için bir sayfa, genellikle etkin sorgudan türetilen bir key aracılığıyla bunu yeniden mount eder.",
-          "consumers": "Sorunlar, şu anda satır seçimine sahip tek örnek"
+          "summary": "Kayıt id'sine göre yönetilen, yalnızca client tarafında yaşayan seçim durumu. selectedIds, selectedCount, isSelected, toggle, selectAll, removeMany ve clear fonksiyonlarını sunar. Sonuç kümesi değiştiğinde seçimi sıfırlamak için genellikle aktif sorgudan türetilen bir key ile yeniden mount edilir.",
+          "consumers": "Sorunlar; şu anda satır seçimi kullanan tek örnek"
         },
+
         "SelectionToolbar": {
-          "summary": "selectedCount sıfırın üzerine çıktığında görünür; sayıyı, bazı görünür satırlar işaretlenmemişken \"Bu sayfadaki N öğenin tümünü seç\" işlemini ve gerçek toplu işlemler için sayfaya özgü bir actions yuvasını gösterir. Bir toplu işlem devam ederken pending bayrağı seçim değişikliklerini devre dışı bırakır.",
+          "summary": "selectedCount sıfırdan büyük olduğunda görünür. Seçili kayıt sayısını, gerektiğinde \"Bu sayfadaki N öğenin tümünü seç\" işlemini ve sayfaya özgü toplu işlemler için bir actions alanını gösterir. Bir toplu işlem sürerken pending durumu seçim değişikliklerini devre dışı bırakır.",
           "consumers": "Sorunlar"
         }
       }
     },
+
     "system-states": {
-      "title": "Yükleme, Boş, Hata ve Demo Durumu Kurtarma",
-      "description": "Bir listenin içinde bulunabileceği her durum için paylaşılan sunum, artı her sahte uç noktanın bunları istek üzerine simüle etmek için kullandığı kurtarma hook'u ve sorgu parametresi.",
-      "previewLabel": "Önizleme: bir yükleme iskelet çubuğu, bir sonuç yok göstergesi ve bir tekrar deneme göstergesinin üst üste dizilmesi.",
+      "title": "Yüklenme, Boş, Hata ve Demo Durumları",
+      "description": "Bir listenin karşılaşabileceği temel durumlar için ortak sunum bileşenleri ve demo sırasında bu durumların istenerek tetiklenmesini sağlayan yardımcı yapılar.",
+      "previewLabel": "Önizleme: yüklenme iskeleti, boş sonuç durumu ve tekrar deneme alanı.",
+
       "blocks": {
         "ListSkeleton": {
-          "summary": "Sayfa tarafından sağlanan gridTemplateColumns ve columnCount ile şekillendirilen, sabit yükseklikte yer tutucu satırlar; böylece yükleme durumu gerçek satır düzeniyle eşleşir ve veri geldiğinde hiçbir şey kaymaz.",
-          "consumers": "her örneğin loading.tsx dosyası"
+          "summary": "Sayfanın sağladığı gridTemplateColumns ve columnCount değerlerine göre şekillenen sabit yükseklikte placeholder satırlar. Böylece yüklenme durumu gerçek satır düzenine yakın kalır ve veri geldiğinde gereksiz yerleşim kayması oluşmaz.",
+          "consumers": "tüm örneklerin loading.tsx dosyaları"
         },
+
         "ListEmptyState": {
-          "summary": "Simge, tek cümlelik başlık ve açıklama ile isteğe bağlı bir işlem; bir results bileşeni, \"hiç veri yok\" ile \"bu filtreler için sonuç yok\" durumlarını ayırt etmek için kendi metnini sağlar.",
-          "consumers": "her örneğin results bileşeni"
+          "summary": "Simge, kısa başlık, açıklama ve isteğe bağlı bir işlem gösterir. Results bileşeni \"hiç veri yok\" ile \"bu filtrelerle sonuç yok\" durumları için farklı metinler sağlayabilir.",
+          "consumers": "tüm örneklerin results bileşenleri"
         },
+
         "ListErrorState": {
-          "summary": "Boş durumla aynı şekle sahip, hata için stillendirilmiş, zorunlu bir işlem içerir — her zaman useDemoErrorRecovery tarafından yönlendirilen tekrar deneme düğmesi. Kendisi \"use client\" direktifi taşımaz; geçerli her kullanıcının Client Component olması yalnızca Next.js'in error.tsx'in kendisinin client runtime'ına dahil olmasını gerektirmesinden kaynaklanır.",
-          "consumers": "her örneğin error.tsx dosyası (bir Client Component)"
+          "summary": "Boş durum bileşenine benzer bir yapı kullanır ancak hata görünümü için biçimlendirilmiştir ve zorunlu bir işlem içerir. Bu projede işlem her zaman useDemoErrorRecovery tarafından yönetilen tekrar deneme düğmesidir. Bileşenin kendisi \"use client\" kullanmaz.",
+          "consumers": "tüm örneklerin error.tsx dosyaları"
         },
+
         "useDemoErrorRecovery": {
-          "summary": "Her error.tsx tarafından paylaşılır. Simüle edilmiş bir hatadan kurtulmak için ?demoState=error sorgu parametresini temizler ve URL kaybolduğunu doğruladığında yeniden render eder, ya da gerçek bir fırlatılan hata için sayfanın kendi retry()'ını çağırır.",
-          "consumers": "her örneğin error.tsx dosyası"
+          "summary": "Tüm error.tsx dosyaları tarafından kullanılır. Simüle edilmiş hatalarda ?demoState=error parametresini URL'den kaldırır; gerçek bir hata durumunda ise sayfanın retry() fonksiyonunu çağırır.",
+          "consumers": "tüm örneklerin error.tsx dosyaları"
         },
+
         "DemoState helpers": {
-          "summary": "DemoState ve parseDemoState, her sahte Route Handler'ın ve örnek sayfanın kabul ettiği açık bir ?demoState= sorgu parametresini (default, loading, empty veya error) okur; böylece herhangi bir durum özel bir araç olmadan önizlenebilir. simulateLatency, bir Route Handler yanıtına yapay bir gecikme ekler.",
-          "consumers": "her /api/* rotası ve örnek page.tsx"
+          "summary": "DemoState ve parseDemoState, örnek sayfaların ve mock Route Handler'ların desteklediği ?demoState= parametresini okur: default, loading, empty veya error. Böylece sistem durumları ek bir araca gerek kalmadan doğrudan URL üzerinden görüntülenebilir. simulateLatency ise Route Handler yanıtına yapay gecikme ekler.",
+          "consumers": "tüm /api/* rotaları ve örnek page.tsx dosyaları"
         }
       }
     }
   },
+
   "pageOwnedNote": {
-    "heading": "Sayfaya özgü kalan nedir",
-    "description": "Öğe render bileşenleri (liste satırları, ızgara kartları), sorgu servisleri, sahte veriler, filtre seçenek listeleri ve yukarıdaki kontrolleri birbirine bağlayan araç çubuğu, hepsi her örneğin kendi feature klasöründe yaşar — örneğin <code>src/features/components-example/</code> — asla paylaşılan <code>src/features/list-page/</code> çekirdeğinde değil. Bu sayfa ilkelleri tek başlarına kataloglar; bir sayfaya nasıl kompoze edildikleri <templatesLink>Şablonlar</templatesLink>'dır."
+    "heading": "Sayfaya özgü neler kalır?",
+    "description": "Liste satırları ve grid kartları gibi render bileşenleri, sorgu servisleri, mock veriler, filtre seçenekleri ve ortak kontrolleri bir araya getiren araç çubuğu her örneğin kendi feature klasöründe tutulur. Örneğin <code>src/features/components-example/</code>. Bunlar hiçbir zaman ortak <code>src/features/list-page/</code> çekirdeğinin içine taşınmaz. Bu sayfa yapı taşlarını tek tek gösterir; bir sayfada nasıl bir araya geldiklerini görmek için <templatesLink>Şablonlar</templatesLink> bölümüne bakabilirsiniz."
   },
+
   "queryBoundaryExample": {
-    "heading": "Tek config, üç çağrı noktası",
-    "description": "Kurgusal bir Snapshots örneği, tam olarak aynı <code>ListQueryConfig</code>'i bir Server Component'ten, bir Route Handler'dan ve (useListQueryState aracılığıyla) bir Client Component'ten parseListQuery'ye geçirir — böylece üçü URL'nin ne anlama geldiği konusunda asla anlaşmazlığa düşmez.",
-    "caption": "src/features/snapshots-example/query-config.ts üç sınırdan tüketiliyor"
+    "heading": "Tek config, üç kullanım noktası",
+    "description": "Kurgusal Snapshots örneğinde aynı <code>ListQueryConfig</code>; Server Component, Route Handler ve useListQueryState üzerinden Client Component tarafından parseListQuery'ye aktarılır. Böylece URL'nin nasıl yorumlanacağı konusunda üç farklı uygulama oluşmaz.",
+    "caption": "src/features/snapshots-example/query-config.ts üç farklı sınırda ortak kullanılıyor"
   }
 }

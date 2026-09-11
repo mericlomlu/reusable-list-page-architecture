@@ -1,8 +1,8 @@
 {
-  "skipToContent": "İçeriğe atla",
-  "openNavigation": "Gezinmeyi aç",
-  "navigationTitle": "Gezinme",
-  "primaryNav": "Birincil",
+  "skipToContent": "İçeriğe geç",
+  "openNavigation": "Menüyü aç",
+  "navigationTitle": "Menü",
+  "primaryNav": "Ana menü",
   "sheetClose": "Kapat",
   "localeToggle": {
     "label": "Dil"

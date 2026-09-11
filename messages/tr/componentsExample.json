@@ -11,10 +11,10 @@
     "statusLabel": "Durum",
     "category": {
       "forms": "Formlar",
-      "navigation": "Gezinme",
+      "navigation": "Navigasyon",
       "feedback": "Geri Bildirim",
-      "data-display": "Veri Görüntüleme",
-      "overlays": "Kaplamalar"
+      "data-display": "Veri Gösterimi",
+      "overlays": "Katmanlar"
     },
     "framework": {
       "react": "React",
@@ -37,11 +37,11 @@
     "listAriaLabel": "Bileşenler",
     "emptyFiltered": {
       "title": "Bu filtrelerle eşleşen bileşen yok",
-      "description": "Bir filtreyi kaldırmayı veya farklı bir terim aramayı deneyin."
+      "description": "Bir filtreyi kaldırmayı veya farklı bir terimle aramayı deneyin."
     },
     "emptyDefault": {
       "title": "Henüz bileşen yok",
-      "description": "Kütüphaneye kayıt eklendiğinde bileşenler burada görünecek."
+      "description": "Kütüphaneye bileşen eklendiğinde burada görünecek."
     },
     "clearAllFilters": "Tüm filtreleri temizle"
   },
