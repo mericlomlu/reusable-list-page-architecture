@@ -1,8 +1,4 @@
-import type {
-  FilterOption,
-  ListQueryConfig,
-  SortOption,
-} from "@/features/list-page/types";
+import type { ListQueryConfig } from "@/features/list-page/types";
 import type {
   PackageDependencyType,
   PackageFilterKey,
@@ -15,32 +11,27 @@ export const PACKAGE_PAGE_SIZE = 8;
 export const PACKAGE_LIST_GRID_COLUMNS = "1fr 90px 130px 150px";
 export const PACKAGE_LIST_COLUMN_COUNT = 4;
 
-export const DEPENDENCY_TYPE_LABEL: Record<PackageDependencyType, string> = {
-  dependency: "Runtime dependency",
-  devDependency: "Dev dependency",
-};
-
-export const DEPENDENCY_TYPE_OPTIONS: readonly FilterOption[] = [
-  { value: "dependency", label: "Runtime" },
-  { value: "devDependency", label: "Dev" },
+/**
+ * Filter/sort values, kept separate from their display labels: labels are
+ * locale-dependent and resolved at render time via the "packagesExample"
+ * message namespace, while these value lists stay stable for query-string
+ * matching and `ListQueryConfig`.
+ */
+export const DEPENDENCY_TYPE_VALUES: readonly PackageDependencyType[] = [
+  "dependency",
+  "devDependency",
 ];
 
-export const UPDATE_STATUS_LABEL: Record<PackageUpdateStatus, string> = {
-  "up-to-date": "Up to date",
-  "minor-update": "Minor update",
-  outdated: "Outdated",
-};
-
-export const UPDATE_STATUS_OPTIONS: readonly FilterOption[] = [
-  { value: "up-to-date", label: "Up to date" },
-  { value: "minor-update", label: "Minor update" },
-  { value: "outdated", label: "Outdated" },
+export const UPDATE_STATUS_VALUES: readonly PackageUpdateStatus[] = [
+  "up-to-date",
+  "minor-update",
+  "outdated",
 ];
 
-export const SORT_OPTIONS: readonly SortOption<PackageSortKey>[] = [
-  { value: "version", label: "Version" },
-  { value: "name", label: "Name" },
-  { value: "updateStatus", label: "Update status" },
+export const SORT_VALUES: readonly PackageSortKey[] = [
+  "version",
+  "name",
+  "updateStatus",
 ];
 
 export const PACKAGE_LIST_QUERY_CONFIG: ListQueryConfig<
@@ -48,7 +39,7 @@ export const PACKAGE_LIST_QUERY_CONFIG: ListQueryConfig<
   PackageFilterKey
 > = {
   defaultSort: "version",
-  sortValues: SORT_OPTIONS.map((option) => option.value),
+  sortValues: SORT_VALUES,
   defaultView: "list",
   filterKeys: ["dependencyType", "updateStatus"],
   singleValueFilterKeys: ["dependencyType", "updateStatus"],

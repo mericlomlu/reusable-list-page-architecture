@@ -1,11 +1,10 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { buttonVariants } from "@/components/ui/button";
 import {
-  BRANCH_OPTIONS,
-  DATE_RANGE_OPTIONS,
+  DATE_RANGE_VALUES,
   DEPLOYMENT_LIST_QUERY_CONFIG,
-  ENVIRONMENT_OPTIONS,
-  STATUS_OPTIONS,
+  ENVIRONMENT_VALUES,
+  STATUS_VALUES,
 } from "@/features/deployments-example/config";
 import { DeploymentGridCard } from "@/features/deployments-example/deployment-grid-card";
 import { DeploymentListRow } from "@/features/deployments-example/deployment-list-row";
@@ -24,16 +23,19 @@ import {
   emptyFilterValues,
 } from "@/features/list-page/query-state";
 import { ResultsView } from "@/features/list-page/results-view";
-import type { FilterOption, ParsedListQuery } from "@/features/list-page/types";
+import type { ParsedListQuery } from "@/features/list-page/types";
+import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
 const DEPLOYMENTS_PATH = "/examples/deployments";
 
-const FILTER_OPTIONS: Record<DeploymentFilterKey, readonly FilterOption[]> = {
-  status: STATUS_OPTIONS,
-  environment: ENVIRONMENT_OPTIONS,
-  branch: BRANCH_OPTIONS,
-  dateRange: DATE_RANGE_OPTIONS,
+const TRANSLATABLE_FILTER_VALUES: Record<
+  Exclude<DeploymentFilterKey, "branch">,
+  readonly string[]
+> = {
+  status: STATUS_VALUES,
+  environment: ENVIRONMENT_VALUES,
+  dateRange: DATE_RANGE_VALUES,
 };
 
 interface DeploymentsResultsProps {
@@ -45,12 +47,19 @@ export function DeploymentsResults({
   records,
   query,
 }: DeploymentsResultsProps) {
+  const t = useTranslations("deploymentsExample");
+
+  function resolveFilterLabel(key: DeploymentFilterKey, value: string): string {
+    if (key === "branch") return value;
+    return TRANSLATABLE_FILTER_VALUES[key].includes(value)
+      ? t(`filters.${key}.${value}`)
+      : value;
+  }
+
   const pills: ActiveFilterPill[] = [];
   for (const key of DEPLOYMENT_LIST_QUERY_CONFIG.filterKeys) {
     for (const value of query.filters[key]) {
-      const label =
-        FILTER_OPTIONS[key].find((option) => option.value === value)?.label ??
-        value;
+      const label = resolveFilterLabel(key, value);
       const nextFilters = {
         ...query.filters,
         [key]: query.filters[key].filter((entry) => entry !== value),
@@ -93,13 +102,13 @@ export function DeploymentsResults({
         <ListEmptyState
           title={
             isFiltered
-              ? "No deployments match these filters"
-              : "No deployments yet"
+              ? t("results.emptyFiltered.title")
+              : t("results.emptyDefault.title")
           }
           description={
             isFiltered
-              ? "Try removing a filter or widening the date range."
-              : "Deployments will appear here once the workspace has builds."
+              ? t("results.emptyFiltered.description")
+              : t("results.emptyDefault.description")
           }
           action={
             isFiltered ? (
@@ -107,7 +116,7 @@ export function DeploymentsResults({
                 href={resetAllHref}
                 className={cn(buttonVariants({ variant: "outline" }))}
               >
-                Clear all filters
+                {t("results.clearAllFilters")}
               </Link>
             ) : undefined
           }
@@ -119,7 +128,7 @@ export function DeploymentsResults({
           getItemKey={(record) => record.id}
           renderListItem={(record) => <DeploymentListRow record={record} />}
           renderGridItem={(record) => <DeploymentGridCard record={record} />}
-          listAriaLabel="Deployments"
+          listAriaLabel={t("results.listAriaLabel")}
         />
       )}
     </>

@@ -1,0 +1,78 @@
+{
+  "itemLabel": "issues",
+  "loadingLabel": "Loading issues",
+  "toolbar": {
+    "searchLabel": "Search issues",
+    "searchPlaceholder": "Search issues…"
+  },
+  "filters": {
+    "statusLabel": "Status",
+    "priorityLabel": "Priority",
+    "labelLabel": "Label",
+    "assigneeLabel": "Assignee",
+    "status": {
+      "open": "Open",
+      "in_progress": "In Progress",
+      "closed": "Closed"
+    },
+    "priority": {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "unassigned": "Unassigned"
+  },
+  "sort": {
+    "updated": "Updated",
+    "created": "Created"
+  },
+  "results": {
+    "listAriaLabel": "Issues",
+    "emptyFiltered": {
+      "title": "No issues match these filters",
+      "description": "Try removing a filter or searching a different term."
+    },
+    "emptyDefault": {
+      "title": "No issues yet",
+      "description": "Issues will appear here once the workspace has entries."
+    },
+    "clearAllFilters": "Clear all filters"
+  },
+  "table": {
+    "selectAllOnPage": "Select all issues on this page",
+    "deselectAllOnPage": "Deselect all issues on this page",
+    "columns": {
+      "issue": "Issue",
+      "status": "Status",
+      "priority": "Priority",
+      "label": "Label",
+      "assignee": "Assignee",
+      "updated": "Updated"
+    }
+  },
+  "card": {
+    "selectIssue": "Select issue #{number}: {title}",
+    "updatedSrOnly": "Updated"
+  },
+  "assignee": {
+    "unassignedSrOnly": "Unassigned",
+    "assigneeSrOnly": "Assignee:"
+  },
+  "board": {
+    "changeStatus": "Change status",
+    "closeIssues": "Close issues",
+    "dismiss": "Dismiss",
+    "selectedLiveRegion": "{selected} of {total} issues selected",
+    "bulkSuccess": "Updated status for {count, plural, one {# issue} other {# issues}} (demo only — not saved).",
+    "errors": {
+      "bulk_failed": "Couldn't update the selected issues.",
+      "invalid_request": "Select at least one issue and a valid status.",
+      "malformed_response": "Received an unexpected response while updating issues."
+    }
+  },
+  "error": {
+    "title": "Couldn't load issues",
+    "description": "Something went wrong while loading the issue list. Try again.",
+    "retry": "Retry"
+  }
+}

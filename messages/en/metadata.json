@@ -1,0 +1,44 @@
+{
+  "site": {
+    "description": "An interactive showcase of reusable list page patterns built with Next.js and TypeScript.",
+    "socialImageAlt": "Reusable List Page Architecture — one list-page system, four distinct product surfaces. Built with Next.js, React, TypeScript, and Tailwind CSS."
+  },
+  "componentsPage": {
+    "title": "Components",
+    "description": "Every UI primitive in the workspace's library, searchable and filterable by category, framework and status.",
+    "eyebrow": "Examples / Components"
+  },
+  "issuesPage": {
+    "title": "Issues",
+    "description": "Track and triage work across the workspace. Select rows to change status on several issues at once.",
+    "eyebrow": "Examples / Issues"
+  },
+  "deploymentsPage": {
+    "title": "Deployments",
+    "description": "Every build across environments, with status shown as icon and label — never color alone.",
+    "eyebrow": "Examples / Deployments"
+  },
+  "packagesPage": {
+    "title": "Packages",
+    "description": "Dependencies tracked across the workspace, with update status surfaced before it becomes a problem.",
+    "eyebrow": "Examples / Packages"
+  },
+  "architecturePage": {
+    "title": "Architecture",
+    "description": "A URL-driven list-page system with one parsing boundary, server-rendered results, focused client controls, and page-owned domain logic.",
+    "eyebrow": "Reference / Architecture"
+  },
+  "templatesPage": {
+    "title": "Templates",
+    "description": "Four composition layers, from a bare list to a fully-stateful page. Every example route in this project builds on some or all of them.",
+    "eyebrow": "Reference / Templates"
+  },
+  "buildingBlocksPage": {
+    "title": "Building Blocks",
+    "description": "Every reusable primitive in src/features/list-page/ on its own — what it renders and which examples use it.",
+    "eyebrow": "Reference / Building Blocks"
+  },
+  "ogImage": {
+    "headline": "One list-page system. Four distinct product surfaces."
+  }
+}

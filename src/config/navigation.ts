@@ -11,52 +11,62 @@ import {
 } from "@/components/icons/nav-icons";
 
 export interface NavItem {
-  readonly label: string;
+  /** Key into the "nav" message namespace's `items` object. */
+  readonly labelKey: string;
   readonly href: string;
   readonly icon: NavIconComponent;
 }
 
 export interface NavGroup {
   readonly id: string;
-  readonly label?: string;
+  /** Key into the "nav" message namespace's `groups` object. */
+  readonly labelKey?: string;
   readonly items: readonly NavItem[];
 }
 
 export const navigationConfig: readonly NavGroup[] = [
   {
     id: "overview",
-    items: [{ label: "Overview", href: "/", icon: OverviewIcon }],
+    items: [{ labelKey: "items.overview", href: "/", icon: OverviewIcon }],
   },
   {
     id: "examples",
-    label: "Examples",
+    labelKey: "groups.examples",
     items: [
       {
-        label: "Components",
+        labelKey: "items.components",
         href: "/examples/components",
         icon: ComponentsIcon,
       },
-      { label: "Issues", href: "/examples/issues", icon: IssuesIcon },
+      { labelKey: "items.issues", href: "/examples/issues", icon: IssuesIcon },
       {
-        label: "Deployments",
+        labelKey: "items.deployments",
         href: "/examples/deployments",
         icon: DeploymentsIcon,
       },
-      { label: "Packages", href: "/examples/packages", icon: PackagesIcon },
+      {
+        labelKey: "items.packages",
+        href: "/examples/packages",
+        icon: PackagesIcon,
+      },
     ],
   },
   {
     id: "reference",
-    label: "Reference",
+    labelKey: "groups.reference",
     items: [
-      { label: "Templates", href: "/reference/templates", icon: TemplatesIcon },
       {
-        label: "Building Blocks",
+        labelKey: "items.templates",
+        href: "/reference/templates",
+        icon: TemplatesIcon,
+      },
+      {
+        labelKey: "items.buildingBlocks",
         href: "/reference/building-blocks",
         icon: BuildingBlocksIcon,
       },
       {
-        label: "Architecture",
+        labelKey: "items.architecture",
         href: "/reference/architecture",
         icon: ArchitectureIcon,
       },

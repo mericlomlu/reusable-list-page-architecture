@@ -1,12 +1,12 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { buttonVariants } from "@/components/ui/button";
 import { ComponentGridCard } from "@/features/components-example/component-grid-card";
 import { ComponentListRow } from "@/features/components-example/component-list-row";
 import {
-  CATEGORY_OPTIONS,
+  CATEGORY_VALUES,
   COMPONENT_LIST_QUERY_CONFIG,
-  FRAMEWORK_OPTIONS,
-  STATUS_OPTIONS,
+  FRAMEWORK_VALUES,
+  STATUS_VALUES,
 } from "@/features/components-example/config";
 import type {
   ComponentFilterKey,
@@ -23,15 +23,16 @@ import {
   emptyFilterValues,
 } from "@/features/list-page/query-state";
 import { ResultsView } from "@/features/list-page/results-view";
-import type { FilterOption, ParsedListQuery } from "@/features/list-page/types";
+import type { ParsedListQuery } from "@/features/list-page/types";
+import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
 const COMPONENTS_PATH = "/examples/components";
 
-const FILTER_OPTIONS: Record<ComponentFilterKey, readonly FilterOption[]> = {
-  category: CATEGORY_OPTIONS,
-  framework: FRAMEWORK_OPTIONS,
-  status: STATUS_OPTIONS,
+const FILTER_VALUES: Record<ComponentFilterKey, readonly string[]> = {
+  category: CATEGORY_VALUES,
+  framework: FRAMEWORK_VALUES,
+  status: STATUS_VALUES,
 };
 
 interface ComponentsResultsProps {
@@ -40,12 +41,13 @@ interface ComponentsResultsProps {
 }
 
 export function ComponentsResults({ records, query }: ComponentsResultsProps) {
+  const t = useTranslations("componentsExample");
   const pills: ActiveFilterPill[] = [];
   for (const key of COMPONENT_LIST_QUERY_CONFIG.filterKeys) {
     for (const value of query.filters[key]) {
-      const label =
-        FILTER_OPTIONS[key].find((option) => option.value === value)?.label ??
-        value;
+      const label = FILTER_VALUES[key].includes(value)
+        ? t(`filters.${key}.${value}`)
+        : value;
       const nextFilters = {
         ...query.filters,
         [key]: query.filters[key].filter((entry) => entry !== value),
@@ -88,13 +90,13 @@ export function ComponentsResults({ records, query }: ComponentsResultsProps) {
         <ListEmptyState
           title={
             isFiltered
-              ? "No components match these filters"
-              : "No components yet"
+              ? t("results.emptyFiltered.title")
+              : t("results.emptyDefault.title")
           }
           description={
             isFiltered
-              ? "Try removing a filter or searching a different term."
-              : "Components will appear here once the library has entries."
+              ? t("results.emptyFiltered.description")
+              : t("results.emptyDefault.description")
           }
           action={
             isFiltered ? (
@@ -102,7 +104,7 @@ export function ComponentsResults({ records, query }: ComponentsResultsProps) {
                 href={resetAllHref}
                 className={cn(buttonVariants({ variant: "outline" }))}
               >
-                Clear all filters
+                {t("results.clearAllFilters")}
               </Link>
             ) : undefined
           }
@@ -114,7 +116,7 @@ export function ComponentsResults({ records, query }: ComponentsResultsProps) {
           getItemKey={(record) => record.id}
           renderListItem={(record) => <ComponentListRow record={record} />}
           renderGridItem={(record) => <ComponentGridCard record={record} />}
-          listAriaLabel="Components"
+          listAriaLabel={t("results.listAriaLabel")}
         />
       )}
     </>

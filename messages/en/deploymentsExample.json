@@ -1,0 +1,55 @@
+{
+  "itemLabel": "deployments",
+  "loadingLabel": "Loading deployments",
+  "toolbar": {
+    "searchLabel": "Search deployments",
+    "searchPlaceholder": "Search branch or commit…"
+  },
+  "filters": {
+    "statusLabel": "Status",
+    "environmentLabel": "Environment",
+    "branchLabel": "Branch",
+    "dateLabel": "Date",
+    "status": {
+      "ready": "Ready",
+      "building": "Building",
+      "failed": "Failed"
+    },
+    "environment": {
+      "production": "Production",
+      "preview": "Preview",
+      "staging": "Staging"
+    },
+    "dateRange": {
+      "24h": "Last 24 hours",
+      "7d": "Last 7 days",
+      "30d": "Last 30 days"
+    }
+  },
+  "sort": {
+    "newest": "Newest",
+    "oldest": "Oldest"
+  },
+  "results": {
+    "listAriaLabel": "Deployments",
+    "emptyFiltered": {
+      "title": "No deployments match these filters",
+      "description": "Try removing a filter or widening the date range."
+    },
+    "emptyDefault": {
+      "title": "No deployments yet",
+      "description": "Deployments will appear here once the workspace has builds."
+    },
+    "clearAllFilters": "Clear all filters"
+  },
+  "card": {
+    "branchSrOnly": "Branch:",
+    "environmentSrOnly": "Environment:",
+    "deployedSrOnly": "Deployed"
+  },
+  "error": {
+    "title": "Couldn't load deployments",
+    "description": "Something went wrong while loading the deployment list. Try again.",
+    "retry": "Retry"
+  }
+}

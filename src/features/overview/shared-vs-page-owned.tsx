@@ -1,24 +1,8 @@
+import { useTranslations } from "next-intl";
 import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@/components/icons/list-icons";
-
-const SHARED_CORE: readonly string[] = [
-  "Query parsing and serialization",
-  "Search, filters, sorting, and views",
-  "Results layout and pagination",
-  "Active filters",
-  "Selection primitives",
-  "Loading, empty, and error states",
-];
-
-const PAGE_OWNED: readonly string[] = [
-  "Types and mock records",
-  "Query configuration and service",
-  "Toolbar composition",
-  "Rows, cards, and domain presentation",
-  "Bulk-action behavior where applicable",
-];
 
 interface CompositionColumnProps {
   heading: string;
@@ -47,20 +31,24 @@ function CompositionColumn({
 }
 
 export function SharedVsPageOwned() {
+  const t = useTranslations("overview.sharedVsPageOwned");
+  const sharedCoreItems = t.raw("sharedCoreItems") as readonly string[];
+  const pageOwnedItems = t.raw("pageOwnedItems") as readonly string[];
+
   return (
     <section aria-labelledby="shared-vs-page-owned-heading" className="mt-10">
       <h2
         id="shared-vs-page-owned-heading"
         className="text-lg font-bold text-foreground"
       >
-        Shared core vs. page-owned code
+        {t("heading")}
       </h2>
 
       <div className="mt-5 flex flex-col items-stretch lg:flex-row">
         <CompositionColumn
-          heading="Shared core"
+          heading={t("sharedCoreHeading")}
           pathLabel="src/features/list-page/"
-          items={SHARED_CORE}
+          items={sharedCoreItems}
         />
         <div
           aria-hidden="true"
@@ -70,14 +58,14 @@ export function SharedVsPageOwned() {
           <ChevronRightIcon className="hidden size-4 text-primary lg:block" />
         </div>
         <CompositionColumn
-          heading="Page-owned feature"
+          heading={t("pageOwnedHeading")}
           pathLabel="src/features/issues-example/"
-          items={PAGE_OWNED}
+          items={pageOwnedItems}
         />
       </div>
 
       <p className="mt-4 max-w-2xl text-body-sm text-foreground">
-        Features compose the shared core without modifying it.
+        {t("footnote")}
       </p>
     </section>
   );

@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { ChevronDownIcon } from "@/components/icons/list-icons";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -20,18 +21,20 @@ interface MultiSelectFilterProps {
 
 export function MultiSelectFilter({
   label,
-  allLabel = "All",
+  allLabel,
   options,
   selectedValues,
   onToggle,
 }: MultiSelectFilterProps) {
+  const t = useTranslations("listPage.multiSelectFilter");
+  const resolvedAllLabel = allLabel ?? t("allLabel");
   const triggerLabel =
     selectedValues.length === 0
-      ? allLabel
+      ? resolvedAllLabel
       : selectedValues.length === 1
         ? (options.find((option) => option.value === selectedValues[0])
-            ?.label ?? allLabel)
-        : `${selectedValues.length} selected`;
+            ?.label ?? resolvedAllLabel)
+        : t("selectedCount", { count: selectedValues.length });
 
   return (
     <Popover>
@@ -40,7 +43,11 @@ export function MultiSelectFilter({
           <Button
             variant="outline"
             className="font-normal text-foreground"
-            aria-label={`${label} filter, ${triggerLabel === allLabel ? "no filter applied" : triggerLabel}`}
+            aria-label={
+              triggerLabel === resolvedAllLabel
+                ? t("ariaLabelEmpty", { label })
+                : t("ariaLabelApplied", { label, value: triggerLabel })
+            }
           >
             {label}: {triggerLabel}
             <ChevronDownIcon className="size-3 text-muted-foreground" />

@@ -1,0 +1,40 @@
+{
+  "activeFilters": {
+    "removeFilter": "{label} filtresini kaldır",
+    "clearAll": "Tümünü temizle"
+  },
+  "multiSelectFilter": {
+    "allLabel": "Tümü",
+    "selectedCount": "{count} seçildi",
+    "ariaLabelApplied": "{label} filtresi, {value}",
+    "ariaLabelEmpty": "{label} filtresi, filtre uygulanmadı"
+  },
+  "singleSelectFilter": {
+    "allLabel": "Tümü"
+  },
+  "sortMenu": {
+    "sortLabel": "Sırala: {label}"
+  },
+  "viewSwitcher": {
+    "ariaLabel": "Görünüm",
+    "listView": "Liste görünümü",
+    "gridView": "Izgara görünümü"
+  },
+  "pagination": {
+    "noItems": "Gösterilecek {itemLabel} yok",
+    "showingRange": "{total} {itemLabel} içinden {rangeStart}–{rangeEnd} arası gösteriliyor",
+    "ariaLabel": "Sayfalama",
+    "previousPage": "Önceki sayfa",
+    "nextPage": "Sonraki sayfa",
+    "page": "Sayfa {page}",
+    "prev": "Önceki",
+    "next": "Sonraki"
+  },
+  "selectionToolbar": {
+    "ariaLabel": "Toplu işlemler",
+    "selectedCount": "{count} seçildi",
+    "pendingLabel": "Güncelleniyor…",
+    "selectAllOnPage": "Bu sayfadaki {count} {itemLabel} öğesinin tümünü seç",
+    "cancel": "Vazgeç"
+  }
+}

@@ -1,6 +1,7 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import type { IconComponent } from "@/components/icons/icon";
 import { ChevronRightIcon } from "@/components/icons/list-icons";
+import { Link } from "@/i18n/navigation";
 
 interface LinkRecordProps {
   icon: IconComponent;
@@ -19,6 +20,8 @@ export function LinkRecord({
   linkLabel,
   href,
 }: LinkRecordProps) {
+  const t = useTranslations("overview.linkRecord");
+
   return (
     <li className="flex flex-col gap-4 px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:px-6">
       <div className="flex gap-3.5">
@@ -37,7 +40,7 @@ export function LinkRecord({
           </p>
           {tags && tags.length > 0 ? (
             <ul
-              aria-label="Capabilities"
+              aria-label={t("capabilitiesAriaLabel")}
               className="mt-1 flex flex-wrap gap-1.5"
             >
               {tags.map((tag) => (

@@ -1,8 +1,12 @@
+import { useLocale, useTranslations } from "next-intl";
 import { StatusDot } from "@/features/components-example/status-dot";
 import type { ComponentRecord } from "@/features/components-example/types";
 import { formatRelativeTime } from "@/features/list-page/format-relative-time";
 
 export function ComponentGridCard({ record }: { record: ComponentRecord }) {
+  const locale = useLocale();
+  const t = useTranslations("componentsExample.card");
+
   return (
     <li className="flex flex-col gap-2.5 rounded-lg border border-border bg-card p-[18px]">
       <p className="text-record-title font-bold text-foreground">
@@ -14,8 +18,8 @@ export function ComponentGridCard({ record }: { record: ComponentRecord }) {
       <div className="mt-1 flex items-center justify-between">
         <StatusDot status={record.status} />
         <p className="font-mono text-meta text-muted-foreground">
-          <span className="sr-only">Updated </span>
-          {formatRelativeTime(record.updatedAt)}
+          <span className="sr-only">{t("updatedSrOnly")} </span>
+          {formatRelativeTime(record.updatedAt, locale)}
         </p>
       </div>
     </li>

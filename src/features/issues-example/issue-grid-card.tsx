@@ -1,5 +1,6 @@
 "use client";
 
+import { useLocale, useTranslations } from "next-intl";
 import { Checkbox } from "@/components/ui/checkbox";
 import { AssigneeAvatar } from "@/features/issues-example/assignee-avatar";
 import { PriorityLabel } from "@/features/issues-example/priority-label";
@@ -20,6 +21,9 @@ export function IssueGridCard({
   onToggle,
   disabled = false,
 }: IssueGridCardProps) {
+  const locale = useLocale();
+  const t = useTranslations("issuesExample");
+
   return (
     <li className="flex flex-col gap-2.5 rounded-lg border border-border bg-card p-[18px]">
       <div className="flex items-start justify-between gap-2">
@@ -30,7 +34,10 @@ export function IssueGridCard({
           checked={selected}
           onCheckedChange={onToggle}
           disabled={disabled}
-          aria-label={`Select issue #${record.number}: ${record.title}`}
+          aria-label={t("card.selectIssue", {
+            number: record.number,
+            title: record.title,
+          })}
           className="mt-0.5 shrink-0"
         />
       </div>
@@ -47,8 +54,8 @@ export function IssueGridCard({
       <div className="mt-1 flex items-center justify-between">
         <AssigneeAvatar assignee={record.assignee} />
         <p className="font-mono text-meta text-muted-foreground">
-          <span className="sr-only">Updated </span>
-          {formatRelativeTime(record.updatedAt)}
+          <span className="sr-only">{t("card.updatedSrOnly")} </span>
+          {formatRelativeTime(record.updatedAt, locale)}
         </p>
       </div>
     </li>

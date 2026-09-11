@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import type { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 
@@ -28,24 +29,25 @@ export function SelectionToolbar({
   onClear,
   actions,
   pending = false,
-  pendingLabel = "Updating…",
+  pendingLabel,
 }: SelectionToolbarProps) {
+  const t = useTranslations("listPage.selectionToolbar");
   if (selectedCount === 0) return null;
 
   const allVisibleSelected = selectedCount >= totalVisible;
 
   return (
     <section
-      aria-label="Bulk actions"
+      aria-label={t("ariaLabel")}
       aria-busy={pending}
       className="mb-3.5 flex flex-wrap items-center gap-x-4 gap-y-2 rounded-lg border border-primary/30 bg-primary/10 px-4 py-2.5"
     >
       <p className="text-body-sm font-semibold text-foreground">
-        {selectedCount} selected
+        {t("selectedCount", { count: selectedCount })}
       </p>
       {pending ? (
         <output className="text-body-sm text-muted-foreground">
-          {pendingLabel}
+          {pendingLabel ?? t("pendingLabel")}
         </output>
       ) : null}
       {allVisibleSelected ? null : (
@@ -55,14 +57,14 @@ export function SelectionToolbar({
           onClick={onSelectAllVisible}
           disabled={pending}
         >
-          Select all {totalVisible} {itemLabel} on this page
+          {t("selectAllOnPage", { count: totalVisible, itemLabel })}
         </Button>
       )}
       <div className="flex-1" />
       <div className="flex items-center gap-2">
         {actions}
         <Button variant="ghost" size="sm" onClick={onClear} disabled={pending}>
-          Cancel
+          {t("cancel")}
         </Button>
       </div>
     </section>

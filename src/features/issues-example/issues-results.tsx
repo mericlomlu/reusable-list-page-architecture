@@ -1,11 +1,13 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { buttonVariants } from "@/components/ui/button";
 import {
-  ASSIGNEE_OPTIONS,
+  ASSIGNEE_FILTER_VALUES,
+  ASSIGNEES,
   ISSUE_LIST_QUERY_CONFIG,
-  LABEL_OPTIONS,
-  PRIORITY_OPTIONS,
-  STATUS_OPTIONS,
+  LABEL_VALUES,
+  PRIORITY_VALUES,
+  STATUS_VALUES,
+  UNASSIGNED_FILTER_VALUE,
 } from "@/features/issues-example/config";
 import { IssueBoard } from "@/features/issues-example/issue-board";
 import type {
@@ -22,16 +24,21 @@ import {
   buildListQueryString,
   emptyFilterValues,
 } from "@/features/list-page/query-state";
-import type { FilterOption, ParsedListQuery } from "@/features/list-page/types";
+import type { ParsedListQuery } from "@/features/list-page/types";
+import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
 const ISSUES_PATH = "/examples/issues";
 
-const FILTER_OPTIONS: Record<IssueFilterKey, readonly FilterOption[]> = {
-  status: STATUS_OPTIONS,
-  priority: PRIORITY_OPTIONS,
-  label: LABEL_OPTIONS,
-  assignee: ASSIGNEE_OPTIONS,
+const ASSIGNEE_NAME_BY_ID = new Map(
+  ASSIGNEES.map((assignee) => [assignee.id, assignee.name]),
+);
+
+const FILTER_VALUES: Record<IssueFilterKey, readonly string[]> = {
+  status: STATUS_VALUES,
+  priority: PRIORITY_VALUES,
+  label: LABEL_VALUES,
+  assignee: ASSIGNEE_FILTER_VALUES,
 };
 
 interface IssuesResultsProps {
@@ -40,12 +47,23 @@ interface IssuesResultsProps {
 }
 
 export function IssuesResults({ records, query }: IssuesResultsProps) {
+  const t = useTranslations("issuesExample");
+
+  function resolveFilterLabel(key: IssueFilterKey, value: string): string {
+    if (!FILTER_VALUES[key].includes(value)) return value;
+    if (key === "label") return value;
+    if (key === "assignee") {
+      return value === UNASSIGNED_FILTER_VALUE
+        ? t("filters.unassigned")
+        : (ASSIGNEE_NAME_BY_ID.get(value) ?? value);
+    }
+    return t(`filters.${key}.${value}`);
+  }
+
   const pills: ActiveFilterPill[] = [];
   for (const key of ISSUE_LIST_QUERY_CONFIG.filterKeys) {
     for (const value of query.filters[key]) {
-      const label =
-        FILTER_OPTIONS[key].find((option) => option.value === value)?.label ??
-        value;
+      const label = resolveFilterLabel(key, value);
       const nextFilters = {
         ...query.filters,
         [key]: query.filters[key].filter((entry) => entry !== value),
@@ -97,11 +115,15 @@ export function IssuesResults({ records, query }: IssuesResultsProps) {
       <ActiveFilters pills={pills} clearHref={clearFiltersHref} />
       {records.length === 0 ? (
         <ListEmptyState
-          title={isFiltered ? "No issues match these filters" : "No issues yet"}
+          title={
+            isFiltered
+              ? t("results.emptyFiltered.title")
+              : t("results.emptyDefault.title")
+          }
           description={
             isFiltered
-              ? "Try removing a filter or searching a different term."
-              : "Issues will appear here once the workspace has entries."
+              ? t("results.emptyFiltered.description")
+              : t("results.emptyDefault.description")
           }
           action={
             isFiltered ? (
@@ -109,7 +131,7 @@ export function IssuesResults({ records, query }: IssuesResultsProps) {
                 href={resetAllHref}
                 className={cn(buttonVariants({ variant: "outline" }))}
               >
-                Clear all filters
+                {t("results.clearAllFilters")}
               </Link>
             ) : undefined
           }

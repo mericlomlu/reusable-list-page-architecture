@@ -1,0 +1,136 @@
+{
+  "summaryParagraph1": "URL, arama, filtreler, sıralama, görünüm ve sayfalama için paylaşılabilir gerçek kaynaktır (source of truth). Server Component'ler bu durumu ayrıştırır, sayfaya özgü bir sorgu servisini çağırır ve sonuçtaki kayıtları render eder; odaklanmış Client Component'ler yalnızca URL'yi günceller veya geçici etkileşim durumunu yönetir.",
+  "summaryParagraph2": "Her sayfa ve onun sahte Route Handler'ı aynı sorgu yapılandırmasını ve alan sorgu fonksiyonunu yeniden kullanır. Seçim kasıtlı bir istisnadır: paylaşılabilir liste durumu değil, geçici bir UI durumu olduğu için istemcide yerel kalır.",
+  "boundaryPanels": {
+    "heading": "Sunucu ve istemci sınırları",
+    "description": "Bir liste sayfasının büyük kısmı sade sunucu render'ıdır. Client Component'ler yalnızca bir kişinin aktif olarak etkileşimde bulunduğu noktalarda devreye girer.",
+    "serverOwnedHeading": "Sunucuya ait",
+    "clientOwnedHeading": "İstemciye ait",
+    "serverOwnedItems": [
+      "Arama parametrelerini ayrıştır",
+      "Sahte veriyi sorgula",
+      "Geçersiz sayfaları yönlendir",
+      "Sonuçları render et",
+      "Sayfalama bağlantılarını render et",
+      "Etkin filtre kaldırma bağlantılarını render et"
+    ],
+    "clientOwnedItems": [
+      "Taslak arama girdisi",
+      "Filtre, sıralama ve görünüm kontrolleri",
+      "Seçim durumu",
+      "Toplu işlem bekleme durumu",
+      "Hata kurtarma etkileşimi"
+    ],
+    "footnote": "Client Component'ler etkileşim sınırlarında kalır; liste verisi sayfa tarafından tarayıcıda tekrar getirilmez."
+  },
+  "coreComposition": {
+    "heading": "Paylaşılan çekirdek ile sayfaya özgü kod",
+    "description": "Her örnek aynı paylaşılan ilkelleri içe aktarır ve bunları kendi alan koduyla kompoze eder — paylaşılan çekirdeği asla çatallamaz veya düzenlemez.",
+    "sharedCoreHeading": "Paylaşılan liste sayfası çekirdeği",
+    "pageOwnedHeading": "Sayfaya özgü özellik",
+    "sharedCoreItems": [
+      "Sorgu ayrıştırma ve serileştirme",
+      "Arama ve filtre kontrolleri",
+      "Sıralama ve görünüm değiştirme",
+      "Sonuç düzeni",
+      "Sayfalama",
+      "Etkin filtreler",
+      "Seçim ilkelleri",
+      "Yükleme, boş ve hata durumları"
+    ],
+    "pageOwnedItems": [
+      "Türler ve filtre seçenekleri",
+      "Sahte kayıtlar",
+      "Sorgu servisi",
+      "Araç çubuğu kompozisyonu",
+      "Liste satırları ve ızgara kartları",
+      "Durum ve alana özgü sunum",
+      "Uygulanabilir olduğunda toplu işlem davranışı"
+    ],
+    "footnote": "Sayfaya özgü özellikler, paylaşılan çekirdeği yalnızca dışa aktardığı yapı taşları üzerinden kompoze eder — onu asla doğrudan değiştirmezler."
+  },
+  "pipelineSteps": {
+    "heading": "Veri işleme hattı",
+    "description": "Bir sayfa isteği sırasıyla altı adımdan geçer. Ortadaki dört adım, eşleşen Route Handler ile paylaşılan sayfaya özgü sorgu servisi içinde çalışır; yalnızca sayfa, sunulan sayfayı istenen sayfayla karşılaştırıp farklıysa yönlendiren son adımı gerçekleştirir.",
+    "steps": [
+      "URL durumunu ayrıştır ve normalleştir",
+      "Kayıtları ara ve filtrele",
+      "Filtrelenmiş kümeyi sırala",
+      "İstenen sayfayı geçerli bir aralığa sınırla",
+      "Sıralanmış kümeyi sayfalara ayır ve sunulan sayfayı döndür",
+      "Sunulan sayfayı istenen sayfayla karşılaştır, farklıysa yönlendir"
+    ]
+  },
+  "primaryFlow": {
+    "heading": "İstekten render'a akış",
+    "description": "Bir örnek sayfa (<code>page.tsx</code>) liste durumunu URL'den çeker ve sonuçları sunucuda render etmeden önce aşağıdaki aynı iki adımdan geçirir.",
+    "clientPathLabel": "İstemci etkileşim yolu",
+    "feedsBack": "Bu diyagramın en üstündeki <code>URL Search Params</code>'a geri besleme yapar.",
+    "serverFlow": [
+      {
+        "label": "URL Search Params",
+        "description": "Arama, filtreler, sıralama, görünüm ve sayfa bilgisinin tümü sorgu dizesinde (query string) yaşar."
+      },
+      {
+        "label": "Paylaşılan Sorgu Ayrıştırıcı",
+        "description": "parseListQuery(), ham parametreleri tek, tipli ve varsayılan değerlere sahip bir sorgu nesnesine dönüştürür."
+      },
+      {
+        "label": "Sayfaya Özgü Sorgu Servisi",
+        "description": "Her örneğin kendi query-service.ts dosyası kayıtlarını filtreler, sıralar ve sayfalara ayırır."
+      },
+      {
+        "label": "Sunucuda Render Edilen Sonuçlar",
+        "description": "Server Component; kayıtları, sayfalama bağlantılarını ve etkin filtre bağlantılarını render eder."
+      }
+    ],
+    "clientFlow": [
+      {
+        "label": "Arama / Filtreler / Sıralama / Görünüm",
+        "description": "Sayfaya özgü araç çubuğu, geçerli sorguyu URL'den okur."
+      },
+      {
+        "label": "useListQueryState",
+        "description": "Aynı ayrıştırıcı ve yapılandırmadan bir sonraki sorgu dizesini oluşturur."
+      },
+      {
+        "label": "Güncellenmiş URL",
+        "description": "Ona gitmek, yukarıdaki sunucu akışını yeni sorguyla yeniden render eder."
+      }
+    ],
+    "annotations": [
+      "URL, listenin tamamı için paylaşılabilir gerçek kaynaktır (source of truth).",
+      "Aynı sorgu yapılandırması sayfa, Route Handler ve istemci araç çubuğu tarafından kullanılır.",
+      "Arama, geçerli URL girdisinin yerini alır; filtreler, sıralama, görünüm ve sayfalama ise her biri yeni, gezinilebilir bir girdi ekler.",
+      "Filtreleme her zaman sıralamadan önce, sıralama ise her zaman sayfalamadan önce çalışır."
+    ]
+  },
+  "apiParity": {
+    "heading": "API eşdeğerliği",
+    "description": "Bir örnek sayfa ve onun sahte Route Handler'ı, aynı sorgu mantığının iki bağımsız uygulaması değil, aynı sorgu mantığına açılan iki giriş noktasıdır.",
+    "pageNode": {
+      "label": "page.tsx",
+      "description": "Server Component"
+    },
+    "routeNode": {
+      "label": "route.ts",
+      "description": "Route Handler"
+    },
+    "queryServiceNode": {
+      "label": "query-service.ts",
+      "description": "Sahte veri kümesini filtreler, sıralar ve sayfalara ayırır."
+    },
+    "footnote": "Sayfa kendi Route Handler'ını getirmez (fetch). Her iki giriş noktası da aynı alan sorgu fonksiyonunu doğrudan yeniden kullanır."
+  },
+  "selectionException": {
+    "heading": "Seçim, kasıtlı bir istisnadır",
+    "description": "Sorunlar (Issues), satır seçimine sahip tek örnektir ve kasıtlı olarak yukarıdaki URL-öncelikli kuraldan sapar.",
+    "points": [
+      "Seçim, URL dışında tutulan yerel istemci durumudur.",
+      "Arama, filtreler, sıralama veya sayfa değiştiğinde sıfırlanır — liste ve ızgara görünümü arasında geçiş yapmak onu sıfırlamaz.",
+      "Tümünü seç, yalnızca geçerli sayfada görünen sorunlarla sınırlıdır.",
+      "Başarılı bir toplu durum güncellemesi, veriyi tamamen yeniden getirmeden yerel olarak uygulanır — sunucu tarafında hiçbir şey kalıcı olarak saklanmaz.",
+      "Başarısız bir güncelleme, tekrar denenebilmesi için geçerli seçimi olduğu gibi bırakır."
+    ]
+  }
+}

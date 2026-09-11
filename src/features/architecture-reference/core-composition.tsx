@@ -1,28 +1,8 @@
+import { useTranslations } from "next-intl";
 import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@/components/icons/list-icons";
-
-const SHARED_CORE: readonly string[] = [
-  "Query parsing and serialization",
-  "Search and filter controls",
-  "Sorting and view switching",
-  "Results layout",
-  "Pagination",
-  "Active filters",
-  "Selection primitives",
-  "Loading, empty, and error states",
-];
-
-const PAGE_OWNED: readonly string[] = [
-  "Types and filter options",
-  "Mock records",
-  "Query service",
-  "Toolbar composition",
-  "List rows and grid cards",
-  "Status and domain presentation",
-  "Bulk-action behavior, where applicable",
-];
 
 interface CompositionColumnProps {
   heading: string;
@@ -51,24 +31,27 @@ function CompositionColumn({
 }
 
 export function CoreComposition() {
+  const t = useTranslations("reference.architecture.coreComposition");
+  const sharedCoreItems = t.raw("sharedCoreItems") as readonly string[];
+  const pageOwnedItems = t.raw("pageOwnedItems") as readonly string[];
+
   return (
     <section aria-labelledby="core-composition-heading" className="mt-10">
       <h2
         id="core-composition-heading"
         className="text-lg font-bold text-foreground"
       >
-        Shared core vs. page-owned code
+        {t("heading")}
       </h2>
       <p className="mt-1.5 max-w-2xl text-body-sm text-muted-foreground">
-        Every example imports the same shared primitives and composes them with
-        its own domain code — it never forks or edits the shared core.
+        {t("description")}
       </p>
 
       <div className="mt-5 flex flex-col items-stretch lg:flex-row">
         <CompositionColumn
-          heading="Shared list-page core"
+          heading={t("sharedCoreHeading")}
           pathLabel="src/features/list-page/"
-          items={SHARED_CORE}
+          items={sharedCoreItems}
         />
         <div
           aria-hidden="true"
@@ -78,15 +61,14 @@ export function CoreComposition() {
           <ChevronRightIcon className="hidden size-4 text-primary lg:block" />
         </div>
         <CompositionColumn
-          heading="Page-owned feature"
+          heading={t("pageOwnedHeading")}
           pathLabel="src/features/issues-example/"
-          items={PAGE_OWNED}
+          items={pageOwnedItems}
         />
       </div>
 
       <p className="mt-4 max-w-2xl text-body-sm text-foreground">
-        Page-owned features compose the shared core through its exported
-        building blocks — they never modify it directly.
+        {t("footnote")}
       </p>
     </section>
   );

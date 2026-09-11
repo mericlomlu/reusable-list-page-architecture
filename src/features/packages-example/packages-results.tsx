@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { buttonVariants } from "@/components/ui/button";
 import {
   type ActiveFilterPill,
@@ -10,11 +10,11 @@ import {
   emptyFilterValues,
 } from "@/features/list-page/query-state";
 import { ResultsView } from "@/features/list-page/results-view";
-import type { FilterOption, ParsedListQuery } from "@/features/list-page/types";
+import type { ParsedListQuery } from "@/features/list-page/types";
 import {
-  DEPENDENCY_TYPE_OPTIONS,
+  DEPENDENCY_TYPE_VALUES,
   PACKAGE_LIST_QUERY_CONFIG,
-  UPDATE_STATUS_OPTIONS,
+  UPDATE_STATUS_VALUES,
 } from "@/features/packages-example/config";
 import { PackageGridCard } from "@/features/packages-example/package-grid-card";
 import { PackageListRow } from "@/features/packages-example/package-list-row";
@@ -23,13 +23,14 @@ import type {
   PackageRecord,
   PackageSortKey,
 } from "@/features/packages-example/types";
+import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
 const PACKAGES_PATH = "/examples/packages";
 
-const FILTER_OPTIONS: Record<PackageFilterKey, readonly FilterOption[]> = {
-  dependencyType: DEPENDENCY_TYPE_OPTIONS,
-  updateStatus: UPDATE_STATUS_OPTIONS,
+const FILTER_VALUES: Record<PackageFilterKey, readonly string[]> = {
+  dependencyType: DEPENDENCY_TYPE_VALUES,
+  updateStatus: UPDATE_STATUS_VALUES,
 };
 
 interface PackagesResultsProps {
@@ -38,12 +39,13 @@ interface PackagesResultsProps {
 }
 
 export function PackagesResults({ records, query }: PackagesResultsProps) {
+  const t = useTranslations("packagesExample");
   const pills: ActiveFilterPill[] = [];
   for (const key of PACKAGE_LIST_QUERY_CONFIG.filterKeys) {
     for (const value of query.filters[key]) {
-      const label =
-        FILTER_OPTIONS[key].find((option) => option.value === value)?.label ??
-        value;
+      const label = FILTER_VALUES[key].includes(value)
+        ? t(`filters.${key}.${value}`)
+        : value;
       const nextFilters = {
         ...query.filters,
         [key]: query.filters[key].filter((entry) => entry !== value),
@@ -86,13 +88,13 @@ export function PackagesResults({ records, query }: PackagesResultsProps) {
         <ListEmptyState
           title={
             isFiltered
-              ? "No packages match these filters"
-              : "No packages tracked yet"
+              ? t("results.emptyFiltered.title")
+              : t("results.emptyDefault.title")
           }
           description={
             isFiltered
-              ? "Try removing a filter or searching a different package name."
-              : "Packages will appear here once dependencies are added to the workspace."
+              ? t("results.emptyFiltered.description")
+              : t("results.emptyDefault.description")
           }
           action={
             isFiltered ? (
@@ -100,7 +102,7 @@ export function PackagesResults({ records, query }: PackagesResultsProps) {
                 href={resetAllHref}
                 className={cn(buttonVariants({ variant: "outline" }))}
               >
-                Clear all filters
+                {t("results.clearAllFilters")}
               </Link>
             ) : undefined
           }
@@ -112,7 +114,7 @@ export function PackagesResults({ records, query }: PackagesResultsProps) {
           getItemKey={(record) => record.id}
           renderListItem={(record) => <PackageListRow record={record} />}
           renderGridItem={(record) => <PackageGridCard record={record} />}
-          listAriaLabel="Packages"
+          listAriaLabel={t("results.listAriaLabel")}
         />
       )}
     </>

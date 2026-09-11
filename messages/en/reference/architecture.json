@@ -1,0 +1,136 @@
+{
+  "summaryParagraph1": "The URL is the shareable source of truth for search, filters, sorting, view, and pagination. Server Components parse that state, call a page-owned query service, and render the resulting records; focused Client Components only update the URL or manage temporary interaction state.",
+  "summaryParagraph2": "Each page and its mock Route Handler reuse the same query configuration and domain query function. Selection is the deliberate exception: it stays local to the client because it is temporary UI state rather than shareable list state.",
+  "boundaryPanels": {
+    "heading": "Server and client boundaries",
+    "description": "Most of a list page is plain server rendering. Client Components only take over at the points where a person is actively interacting.",
+    "serverOwnedHeading": "Server-owned",
+    "clientOwnedHeading": "Client-owned",
+    "serverOwnedItems": [
+      "Parse search params",
+      "Query mock data",
+      "Redirect invalid pages",
+      "Render results",
+      "Render pagination links",
+      "Render active-filter removal links"
+    ],
+    "clientOwnedItems": [
+      "Draft search input",
+      "Filter, sort, and view controls",
+      "Selection state",
+      "Bulk-action pending state",
+      "Error recovery interaction"
+    ],
+    "footnote": "Client Components stay at interaction boundaries; list data is not fetched again by the page in the browser."
+  },
+  "coreComposition": {
+    "heading": "Shared core vs. page-owned code",
+    "description": "Every example imports the same shared primitives and composes them with its own domain code — it never forks or edits the shared core.",
+    "sharedCoreHeading": "Shared list-page core",
+    "pageOwnedHeading": "Page-owned feature",
+    "sharedCoreItems": [
+      "Query parsing and serialization",
+      "Search and filter controls",
+      "Sorting and view switching",
+      "Results layout",
+      "Pagination",
+      "Active filters",
+      "Selection primitives",
+      "Loading, empty, and error states"
+    ],
+    "pageOwnedItems": [
+      "Types and filter options",
+      "Mock records",
+      "Query service",
+      "Toolbar composition",
+      "List rows and grid cards",
+      "Status and domain presentation",
+      "Bulk-action behavior, where applicable"
+    ],
+    "footnote": "Page-owned features compose the shared core through its exported building blocks — they never modify it directly."
+  },
+  "pipelineSteps": {
+    "heading": "Data-processing pipeline",
+    "description": "A page request runs through six steps, in order. The middle four run inside the page-owned query service — shared by the matching Route Handler — and only the page performs the final step, comparing the served page to the requested one and redirecting when they differ.",
+    "steps": [
+      "Parse and normalize URL state",
+      "Search and filter records",
+      "Sort the filtered set",
+      "Clamp the requested page to a valid range",
+      "Paginate the sorted set and return the served page",
+      "Compare the served page to the requested page, then redirect if they differ"
+    ]
+  },
+  "primaryFlow": {
+    "heading": "Request-to-render flow",
+    "description": "An example page (<code>page.tsx</code>) pulls its list state from the URL and pushes it through the same two steps below before rendering results on the server.",
+    "clientPathLabel": "Client interaction path",
+    "feedsBack": "Feeds back into <code>URL Search Params</code> at the top of this diagram.",
+    "serverFlow": [
+      {
+        "label": "URL Search Params",
+        "description": "Search, filters, sort, view, and page all live in the query string."
+      },
+      {
+        "label": "Shared Query Parser",
+        "description": "parseListQuery() turns raw params into one typed, defaulted query object."
+      },
+      {
+        "label": "Page-Owned Query Service",
+        "description": "Each example's own query-service.ts filters, sorts, and paginates its records."
+      },
+      {
+        "label": "Server-Rendered Results",
+        "description": "The Server Component renders the records, pagination links, and active-filter links."
+      }
+    ],
+    "clientFlow": [
+      {
+        "label": "Search / Filters / Sort / View",
+        "description": "The page-owned toolbar reads the current query from the URL."
+      },
+      {
+        "label": "useListQueryState",
+        "description": "Builds the next query string from that same parser and config."
+      },
+      {
+        "label": "Updated URL",
+        "description": "Navigating to it re-renders the server flow above with the new query."
+      }
+    ],
+    "annotations": [
+      "URL is the shareable source of truth for the whole list.",
+      "The same query config is used by the page, the Route Handler, and the client toolbar.",
+      "Search replaces the current URL entry; filters, sort, view, and pagination each push a new, navigable one.",
+      "Filtering always runs before sorting, and sorting always runs before pagination."
+    ]
+  },
+  "apiParity": {
+    "heading": "API parity",
+    "description": "An example page and its mock Route Handler are two entry points into the same query logic, not two independent implementations of it.",
+    "pageNode": {
+      "label": "page.tsx",
+      "description": "Server Component"
+    },
+    "routeNode": {
+      "label": "route.ts",
+      "description": "Route Handler"
+    },
+    "queryServiceNode": {
+      "label": "query-service.ts",
+      "description": "Filters, sorts, and paginates the mock dataset"
+    },
+    "footnote": "The page does not fetch its own Route Handler. Both entry points reuse the same domain query function directly."
+  },
+  "selectionException": {
+    "heading": "Selection is a deliberate exception",
+    "description": "Issues is the only example with row selection, and it intentionally breaks from the URL-first rule above.",
+    "points": [
+      "Selection is local client state, kept out of the URL.",
+      "It resets whenever the search, filters, sort, or page changes — switching between list and grid view does not reset it.",
+      "Select-all is scoped to the issues visible on the current page.",
+      "A successful bulk status update applies locally, without a full data refetch — nothing is persisted server-side.",
+      "A failed update leaves the current selection in place so it can be retried."
+    ]
+  }
+}

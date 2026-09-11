@@ -1,14 +1,9 @@
+import { useTranslations } from "next-intl";
 import type { IconComponent } from "@/components/icons/icon";
 import { CheckIcon, ClockIcon } from "@/components/icons/list-icons";
 import { CloseIcon } from "@/components/icons/nav-icons";
 import type { DeploymentStatus } from "@/features/deployments-example/types";
 import { cn } from "@/lib/utils";
-
-const STATUS_LABEL: Record<DeploymentStatus, string> = {
-  ready: "Ready",
-  building: "Building",
-  failed: "Failed",
-};
 
 const STATUS_ICON: Record<DeploymentStatus, IconComponent> = {
   ready: CheckIcon,
@@ -32,6 +27,7 @@ export function DeploymentStatusBadge({
 }: {
   status: DeploymentStatus;
 }) {
+  const t = useTranslations("deploymentsExample.filters.status");
   const Icon = STATUS_ICON[status];
   return (
     <span className="inline-flex items-center gap-1.5 text-caption font-semibold text-foreground">
@@ -39,7 +35,7 @@ export function DeploymentStatusBadge({
         className={cn("size-3 shrink-0", STATUS_ICON_CLASS[status])}
         strokeWidth={2}
       />
-      {STATUS_LABEL[status]}
+      {t(status)}
     </span>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { useLocale, useTranslations } from "next-intl";
 import { Checkbox } from "@/components/ui/checkbox";
 import { AssigneeAvatar } from "@/features/issues-example/assignee-avatar";
 import { PriorityLabel } from "@/features/issues-example/priority-label";
@@ -21,6 +22,9 @@ export function IssueRow({
   onToggle,
   disabled = false,
 }: IssueRowProps) {
+  const locale = useLocale();
+  const t = useTranslations("issuesExample");
+
   return (
     <tr
       aria-selected={selected}
@@ -34,7 +38,10 @@ export function IssueRow({
           checked={selected}
           onCheckedChange={onToggle}
           disabled={disabled}
-          aria-label={`Select issue #${record.number}: ${record.title}`}
+          aria-label={t("card.selectIssue", {
+            number: record.number,
+            title: record.title,
+          })}
         />
       </td>
       <td className="px-3 py-3 align-top">
@@ -58,8 +65,8 @@ export function IssueRow({
         <AssigneeAvatar assignee={record.assignee} />
       </td>
       <td className="px-3 py-3 align-top font-mono text-meta text-muted-foreground">
-        <span className="sr-only">Updated </span>
-        {formatRelativeTime(record.updatedAt)}
+        <span className="sr-only">{t("card.updatedSrOnly")} </span>
+        {formatRelativeTime(record.updatedAt, locale)}
       </td>
     </tr>
   );

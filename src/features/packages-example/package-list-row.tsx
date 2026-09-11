@@ -1,11 +1,11 @@
-import {
-  DEPENDENCY_TYPE_LABEL,
-  PACKAGE_LIST_GRID_COLUMNS,
-} from "@/features/packages-example/config";
+import { useTranslations } from "next-intl";
+import { PACKAGE_LIST_GRID_COLUMNS } from "@/features/packages-example/config";
 import { PackageStatusDot } from "@/features/packages-example/package-status-dot";
 import type { PackageRecord } from "@/features/packages-example/types";
 
 export function PackageListRow({ record }: { record: PackageRecord }) {
+  const t = useTranslations("packagesExample.card");
+
   return (
     <li
       className="grid items-center gap-4 border-t border-border bg-card px-[18px] py-4 first:border-t-0"
@@ -20,11 +20,11 @@ export function PackageListRow({ record }: { record: PackageRecord }) {
         </p>
       </div>
       <p className="font-mono text-meta text-muted-foreground">
-        <span className="sr-only">Version: </span>
+        <span className="sr-only">{t("versionSrOnly")} </span>
         {record.version}
       </p>
       <p className="text-body-sm text-muted-foreground">
-        {DEPENDENCY_TYPE_LABEL[record.dependencyType]}
+        {t(`dependencyType.${record.dependencyType}`)}
       </p>
       <PackageStatusDot status={record.updateStatus} />
     </li>

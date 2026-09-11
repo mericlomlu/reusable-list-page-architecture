@@ -1,0 +1,50 @@
+{
+  "itemLabel": "packages",
+  "loadingLabel": "Loading packages",
+  "toolbar": {
+    "searchLabel": "Search packages",
+    "searchPlaceholder": "Search packages…"
+  },
+  "filters": {
+    "dependencyLabel": "Dependency",
+    "updatesLabel": "Updates",
+    "dependencyType": {
+      "dependency": "Runtime",
+      "devDependency": "Dev"
+    },
+    "updateStatus": {
+      "up-to-date": "Up to date",
+      "minor-update": "Minor update",
+      "outdated": "Outdated"
+    }
+  },
+  "sort": {
+    "version": "Version",
+    "name": "Name",
+    "updateStatus": "Update status"
+  },
+  "results": {
+    "listAriaLabel": "Packages",
+    "emptyFiltered": {
+      "title": "No packages match these filters",
+      "description": "Try removing a filter or searching a different package name."
+    },
+    "emptyDefault": {
+      "title": "No packages tracked yet",
+      "description": "Packages will appear here once dependencies are added to the workspace."
+    },
+    "clearAllFilters": "Clear all filters"
+  },
+  "card": {
+    "versionSrOnly": "Version:",
+    "dependencyType": {
+      "dependency": "Runtime dependency",
+      "devDependency": "Dev dependency"
+    }
+  },
+  "error": {
+    "title": "Couldn't load packages",
+    "description": "Something went wrong while loading the package list. Try again.",
+    "retry": "Retry"
+  }
+}

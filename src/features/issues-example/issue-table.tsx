@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Checkbox } from "@/components/ui/checkbox";
 import { IssueRow } from "@/features/issues-example/issue-row";
 import type { IssueRecord } from "@/features/issues-example/types";
@@ -23,10 +24,12 @@ export function IssueTable({
   onToggleAll,
   disabled = false,
 }: IssueTableProps) {
+  const t = useTranslations("issuesExample");
+
   return (
     <div className="overflow-x-auto rounded-lg border border-border">
       <table className="w-full min-w-[760px] border-collapse text-left">
-        <caption className="sr-only">Issues</caption>
+        <caption className="sr-only">{t("results.listAriaLabel")}</caption>
         <thead>
           <tr className="border-b border-border bg-muted/50 font-mono text-label font-bold tracking-wide text-muted-foreground uppercase">
             <th scope="col" className="w-11 px-3 py-2.5">
@@ -37,28 +40,28 @@ export function IssueTable({
                 disabled={disabled}
                 aria-label={
                   allSelected
-                    ? "Deselect all issues on this page"
-                    : "Select all issues on this page"
+                    ? t("table.deselectAllOnPage")
+                    : t("table.selectAllOnPage")
                 }
               />
             </th>
             <th scope="col" className="px-3 py-2.5">
-              Issue
+              {t("table.columns.issue")}
             </th>
             <th scope="col" className="w-28 px-3 py-2.5">
-              Status
+              {t("table.columns.status")}
             </th>
             <th scope="col" className="w-24 px-3 py-2.5">
-              Priority
+              {t("table.columns.priority")}
             </th>
             <th scope="col" className="w-28 px-3 py-2.5">
-              Label
+              {t("table.columns.label")}
             </th>
             <th scope="col" className="w-16 px-3 py-2.5">
-              Assignee
+              {t("table.columns.assignee")}
             </th>
             <th scope="col" className="w-24 px-3 py-2.5">
-              Updated
+              {t("table.columns.updated")}
             </th>
           </tr>
         </thead>

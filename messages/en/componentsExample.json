@@ -1,0 +1,57 @@
+{
+  "itemLabel": "components",
+  "loadingLabel": "Loading components",
+  "toolbar": {
+    "searchLabel": "Search components",
+    "searchPlaceholder": "Search components…"
+  },
+  "filters": {
+    "categoryLabel": "Category",
+    "frameworkLabel": "Framework",
+    "statusLabel": "Status",
+    "category": {
+      "forms": "Forms",
+      "navigation": "Navigation",
+      "feedback": "Feedback",
+      "data-display": "Data Display",
+      "overlays": "Overlays"
+    },
+    "framework": {
+      "react": "React",
+      "vue": "Vue",
+      "svelte": "Svelte",
+      "angular": "Angular"
+    },
+    "status": {
+      "stable": "Stable",
+      "beta": "Beta",
+      "deprecated": "Deprecated"
+    }
+  },
+  "sort": {
+    "updated": "Updated",
+    "name": "Name",
+    "status": "Status"
+  },
+  "results": {
+    "listAriaLabel": "Components",
+    "emptyFiltered": {
+      "title": "No components match these filters",
+      "description": "Try removing a filter or searching a different term."
+    },
+    "emptyDefault": {
+      "title": "No components yet",
+      "description": "Components will appear here once the library has entries."
+    },
+    "clearAllFilters": "Clear all filters"
+  },
+  "card": {
+    "updatedSrOnly": "Updated",
+    "frameworkSrOnly": "Framework:"
+  },
+  "error": {
+    "title": "Couldn't load components",
+    "description": "Something went wrong while loading the component list. Try again.",
+    "retry": "Retry"
+  }
+}

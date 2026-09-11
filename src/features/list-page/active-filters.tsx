@@ -1,5 +1,6 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { CloseIcon } from "@/components/icons/nav-icons";
+import { Link } from "@/i18n/navigation";
 
 export interface ActiveFilterPill {
   readonly key: string;
@@ -13,6 +14,8 @@ interface ActiveFiltersProps {
 }
 
 export function ActiveFilters({ pills, clearHref }: ActiveFiltersProps) {
+  const t = useTranslations("listPage.activeFilters");
+
   if (pills.length === 0) return null;
 
   return (
@@ -29,7 +32,9 @@ export function ActiveFilters({ pills, clearHref }: ActiveFiltersProps) {
             className="-m-1 rounded-full p-1.5 text-primary hover:bg-primary/15 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-ring"
           >
             <CloseIcon className="size-2.5" />
-            <span className="sr-only">Remove {pill.label} filter</span>
+            <span className="sr-only">
+              {t("removeFilter", { label: pill.label })}
+            </span>
           </Link>
         </span>
       ))}
@@ -38,7 +43,7 @@ export function ActiveFilters({ pills, clearHref }: ActiveFiltersProps) {
         scroll={false}
         className="text-caption text-muted-foreground underline decoration-muted-foreground/50 underline-offset-2 hover:text-foreground"
       >
-        Clear all
+        {t("clearAll")}
       </Link>
     </div>
   );

@@ -1,19 +1,4 @@
-const SERVER_OWNED: readonly string[] = [
-  "Parse search params",
-  "Query mock data",
-  "Redirect invalid pages",
-  "Render results",
-  "Render pagination links",
-  "Render active-filter removal links",
-];
-
-const CLIENT_OWNED: readonly string[] = [
-  "Draft search input",
-  "Filter, sort, and view controls",
-  "Selection state",
-  "Bulk-action pending state",
-  "Error recovery interaction",
-];
+import { useTranslations } from "next-intl";
 
 interface BoundaryPanelProps {
   heading: string;
@@ -59,24 +44,32 @@ function ClientBoundaryPanel({ heading, items }: BoundaryPanelProps) {
 }
 
 export function BoundaryPanels() {
+  const t = useTranslations("reference.architecture.boundaryPanels");
+  const serverOwnedItems = t.raw("serverOwnedItems") as readonly string[];
+  const clientOwnedItems = t.raw("clientOwnedItems") as readonly string[];
+
   return (
     <section aria-labelledby="boundaries-heading" className="mt-10">
       <h2 id="boundaries-heading" className="text-lg font-bold text-foreground">
-        Server and client boundaries
+        {t("heading")}
       </h2>
       <p className="mt-1.5 max-w-2xl text-body-sm text-muted-foreground">
-        Most of a list page is plain server rendering. Client Components only
-        take over at the points where a person is actively interacting.
+        {t("description")}
       </p>
 
       <div className="mt-5 flex flex-col gap-4 lg:flex-row lg:items-stretch">
-        <ServerBoundaryPanel heading="Server-owned" items={SERVER_OWNED} />
-        <ClientBoundaryPanel heading="Client-owned" items={CLIENT_OWNED} />
+        <ServerBoundaryPanel
+          heading={t("serverOwnedHeading")}
+          items={serverOwnedItems}
+        />
+        <ClientBoundaryPanel
+          heading={t("clientOwnedHeading")}
+          items={clientOwnedItems}
+        />
       </div>
 
       <p className="mt-4 max-w-2xl text-body-sm text-foreground">
-        Client Components stay at interaction boundaries; list data is not
-        fetched again by the page in the browser.
+        {t("footnote")}
       </p>
     </section>
   );

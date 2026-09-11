@@ -1,0 +1,57 @@
+{
+  "itemLabel": "bileşen",
+  "loadingLabel": "Bileşenler yükleniyor",
+  "toolbar": {
+    "searchLabel": "Bileşen ara",
+    "searchPlaceholder": "Bileşen ara…"
+  },
+  "filters": {
+    "categoryLabel": "Kategori",
+    "frameworkLabel": "Framework",
+    "statusLabel": "Durum",
+    "category": {
+      "forms": "Formlar",
+      "navigation": "Gezinme",
+      "feedback": "Geri Bildirim",
+      "data-display": "Veri Görüntüleme",
+      "overlays": "Kaplamalar"
+    },
+    "framework": {
+      "react": "React",
+      "vue": "Vue",
+      "svelte": "Svelte",
+      "angular": "Angular"
+    },
+    "status": {
+      "stable": "Kararlı",
+      "beta": "Beta",
+      "deprecated": "Kullanımdan Kaldırıldı"
+    }
+  },
+  "sort": {
+    "updated": "Güncellenme",
+    "name": "Ad",
+    "status": "Durum"
+  },
+  "results": {
+    "listAriaLabel": "Bileşenler",
+    "emptyFiltered": {
+      "title": "Bu filtrelerle eşleşen bileşen yok",
+      "description": "Bir filtreyi kaldırmayı veya farklı bir terim aramayı deneyin."
+    },
+    "emptyDefault": {
+      "title": "Henüz bileşen yok",
+      "description": "Kütüphaneye kayıt eklendiğinde bileşenler burada görünecek."
+    },
+    "clearAllFilters": "Tüm filtreleri temizle"
+  },
+  "card": {
+    "updatedSrOnly": "Güncellendi",
+    "frameworkSrOnly": "Framework:"
+  },
+  "error": {
+    "title": "Bileşenler yüklenemedi",
+    "description": "Bileşen listesi yüklenirken bir sorun oluştu. Tekrar deneyin.",
+    "retry": "Tekrar dene"
+  }
+}

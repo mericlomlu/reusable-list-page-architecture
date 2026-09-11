@@ -4,6 +4,27 @@ export interface BulkUpdateStatusResult {
   readonly updatedIds: readonly string[];
 }
 
+export type BulkUpdateIssuesErrorCode =
+  | "bulk_failed"
+  | "invalid_request"
+  | "malformed_response";
+
+/**
+ * Locale-agnostic by design: this runs outside the `[locale]` route segment
+ * (the mock API route it calls has no request-scoped locale), so it carries
+ * a stable reason code rather than a message. The calling Client Component
+ * maps the code to translated copy where it's displayed.
+ */
+export class BulkUpdateIssuesError extends Error {
+  readonly code: BulkUpdateIssuesErrorCode;
+
+  constructor(code: BulkUpdateIssuesErrorCode) {
+    super(code);
+    this.name = "BulkUpdateIssuesError";
+    this.code = code;
+  }
+}
+
 function isBulkUpdateStatusResult(
   value: unknown,
 ): value is BulkUpdateStatusResult {
@@ -15,6 +36,14 @@ function isBulkUpdateStatusResult(
     (value as { updatedIds: unknown[] }).updatedIds.every(
       (id) => typeof id === "string",
     )
+  );
+}
+
+function isErrorCode(value: unknown): value is BulkUpdateIssuesErrorCode {
+  return (
+    value === "bulk_failed" ||
+    value === "invalid_request" ||
+    value === "malformed_response"
   );
 }
 
@@ -41,18 +70,18 @@ export async function bulkUpdateIssueStatus(
   const body: unknown = await response.json().catch(() => null);
 
   if (!response.ok) {
-    const message =
+    const code =
       body &&
       typeof body === "object" &&
-      "error" in body &&
-      typeof body.error === "string"
-        ? body.error
-        : "Failed to update issues.";
-    throw new Error(message);
+      "code" in body &&
+      isErrorCode(body.code)
+        ? body.code
+        : "bulk_failed";
+    throw new BulkUpdateIssuesError(code);
   }
 
   if (!isBulkUpdateStatusResult(body)) {
-    throw new Error("Received an unexpected response while updating issues.");
+    throw new BulkUpdateIssuesError("malformed_response");
   }
 
   return body;

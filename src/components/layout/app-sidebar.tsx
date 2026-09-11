@@ -1,7 +1,9 @@
-import Link from "next/link";
+import { Suspense } from "react";
 import { LogoMark } from "@/components/icons/nav-icons";
 import { SidebarNav } from "@/components/layout/sidebar-nav";
+import { LocaleToggle } from "@/components/locale-toggle";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { Link } from "@/i18n/navigation";
 
 export function AppSidebar() {
   return (
@@ -23,7 +25,12 @@ export function AppSidebar() {
       <div className="min-h-0 flex-1 overflow-y-auto">
         <SidebarNav />
       </div>
-      <ThemeToggle />
+      <div className="flex gap-2">
+        <ThemeToggle />
+        <Suspense fallback={null}>
+          <LocaleToggle />
+        </Suspense>
+      </div>
     </aside>
   );
 }

@@ -1,0 +1,40 @@
+{
+  "activeFilters": {
+    "removeFilter": "Remove {label} filter",
+    "clearAll": "Clear all"
+  },
+  "multiSelectFilter": {
+    "allLabel": "All",
+    "selectedCount": "{count} selected",
+    "ariaLabelApplied": "{label} filter, {value}",
+    "ariaLabelEmpty": "{label} filter, no filter applied"
+  },
+  "singleSelectFilter": {
+    "allLabel": "All"
+  },
+  "sortMenu": {
+    "sortLabel": "Sort: {label}"
+  },
+  "viewSwitcher": {
+    "ariaLabel": "View",
+    "listView": "List view",
+    "gridView": "Grid view"
+  },
+  "pagination": {
+    "noItems": "No {itemLabel} to show",
+    "showingRange": "Showing {rangeStart}–{rangeEnd} of {total} {itemLabel}",
+    "ariaLabel": "Pagination",
+    "previousPage": "Previous page",
+    "nextPage": "Next page",
+    "page": "Page {page}",
+    "prev": "Prev",
+    "next": "Next"
+  },
+  "selectionToolbar": {
+    "ariaLabel": "Bulk actions",
+    "selectedCount": "{count} selected",
+    "pendingLabel": "Updating…",
+    "selectAllOnPage": "Select all {count} {itemLabel} on this page",
+    "cancel": "Cancel"
+  }
+}

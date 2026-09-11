@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { GridViewIcon, ListViewIcon } from "@/components/icons/list-icons";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import type { ViewMode } from "@/features/list-page/types";
@@ -10,9 +11,11 @@ interface ViewSwitcherProps {
 }
 
 export function ViewSwitcher({ value, onChange }: ViewSwitcherProps) {
+  const t = useTranslations("listPage.viewSwitcher");
+
   return (
     <ToggleGroup
-      aria-label="View"
+      aria-label={t("ariaLabel")}
       value={[value]}
       onValueChange={(next) => {
         const [selected] = next;
@@ -24,14 +27,14 @@ export function ViewSwitcher({ value, onChange }: ViewSwitcherProps) {
     >
       <ToggleGroupItem
         value="list"
-        aria-label="List view"
+        aria-label={t("listView")}
         className="rounded-sm data-[state=on]:bg-accent"
       >
         <ListViewIcon className="size-[15px]" />
       </ToggleGroupItem>
       <ToggleGroupItem
         value="grid"
-        aria-label="Grid view"
+        aria-label={t("gridView")}
         className="rounded-sm data-[state=on]:bg-accent"
       >
         <GridViewIcon className="size-[15px]" />

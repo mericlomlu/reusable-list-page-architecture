@@ -1,14 +1,12 @@
 import type {
   IssueAssignee,
   IssueFilterKey,
+  IssueLabel,
+  IssuePriority,
   IssueSortKey,
   IssueStatus,
 } from "@/features/issues-example/types";
-import type {
-  FilterOption,
-  ListQueryConfig,
-  SortOption,
-} from "@/features/list-page/types";
+import type { ListQueryConfig } from "@/features/list-page/types";
 
 export const ISSUE_PAGE_SIZE = 8;
 
@@ -21,64 +19,62 @@ export const ASSIGNEES: readonly IssueAssignee[] = [
 
 export const UNASSIGNED_FILTER_VALUE = "unassigned";
 
-export const STATUS_OPTIONS: readonly FilterOption[] = [
-  { value: "open", label: "Open" },
-  { value: "in_progress", label: "In Progress" },
-  { value: "closed", label: "Closed" },
+/**
+ * Filter/sort values, kept separate from their display labels: labels are
+ * locale-dependent and resolved at render time via the "issuesExample"
+ * message namespace, while these value lists stay stable for query-string
+ * matching and `ListQueryConfig`. `LABEL_VALUES` are left untranslated by
+ * design — they mirror the same tag words rendered directly on issue
+ * records (mock data), so translating only the filter side would desync
+ * from the record chips.
+ */
+export const STATUS_VALUES: readonly IssueStatus[] = [
+  "open",
+  "in_progress",
+  "closed",
 ];
 
-export const PRIORITY_OPTIONS: readonly FilterOption[] = [
-  { value: "high", label: "High" },
-  { value: "medium", label: "Medium" },
-  { value: "low", label: "Low" },
+export const PRIORITY_VALUES: readonly IssuePriority[] = [
+  "high",
+  "medium",
+  "low",
 ];
 
-export const LABEL_OPTIONS: readonly FilterOption[] = [
-  { value: "bug", label: "bug" },
-  { value: "enhancement", label: "enhancement" },
-  { value: "ux", label: "ux" },
-  { value: "content", label: "content" },
-  { value: "docs", label: "docs" },
-  { value: "performance", label: "performance" },
+export const LABEL_VALUES: readonly IssueLabel[] = [
+  "bug",
+  "enhancement",
+  "ux",
+  "content",
+  "docs",
+  "performance",
 ];
 
-export const ASSIGNEE_OPTIONS: readonly FilterOption[] = [
-  { value: UNASSIGNED_FILTER_VALUE, label: "Unassigned" },
-  ...ASSIGNEES.map((assignee) => ({
-    value: assignee.id,
-    label: assignee.name,
-  })),
+export const ASSIGNEE_FILTER_VALUES: readonly string[] = [
+  UNASSIGNED_FILTER_VALUE,
+  ...ASSIGNEES.map((assignee) => assignee.id),
 ];
 
-export const SORT_OPTIONS: readonly SortOption<IssueSortKey>[] = [
-  { value: "updated", label: "Updated" },
-  { value: "created", label: "Created" },
-];
+export const SORT_VALUES: readonly IssueSortKey[] = ["updated", "created"];
 
 export const ISSUE_LIST_QUERY_CONFIG: ListQueryConfig<
   IssueSortKey,
   IssueFilterKey
 > = {
   defaultSort: "updated",
-  sortValues: SORT_OPTIONS.map((option) => option.value),
+  sortValues: SORT_VALUES,
   defaultView: "list",
   filterKeys: ["status", "priority", "label", "assignee"],
   singleValueFilterKeys: ["status", "priority", "label", "assignee"],
   pageSize: ISSUE_PAGE_SIZE,
 };
 
-export const BULK_STATUS_ACTIONS: readonly {
-  readonly status: IssueStatus;
-  readonly label: string;
-}[] = [
-  { status: "open", label: "Open" },
-  { status: "in_progress", label: "In Progress" },
-  { status: "closed", label: "Closed" },
+export const BULK_STATUS_VALUES: readonly IssueStatus[] = [
+  "open",
+  "in_progress",
+  "closed",
 ];
 
-const VALID_ISSUE_STATUSES: ReadonlySet<string> = new Set(
-  BULK_STATUS_ACTIONS.map((action) => action.status),
-);
+const VALID_ISSUE_STATUSES: ReadonlySet<string> = new Set(BULK_STATUS_VALUES);
 
 export function isIssueStatus(value: string): value is IssueStatus {
   return VALID_ISSUE_STATUSES.has(value);

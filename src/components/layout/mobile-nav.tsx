@@ -1,9 +1,10 @@
 "use client";
 
-import Link from "next/link";
-import { useState } from "react";
+import { useTranslations } from "next-intl";
+import { Suspense, useState } from "react";
 import { LogoMark, MenuIcon } from "@/components/icons/nav-icons";
 import { SidebarNav } from "@/components/layout/sidebar-nav";
+import { LocaleToggle } from "@/components/locale-toggle";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,9 +14,11 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { Link } from "@/i18n/navigation";
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
+  const t = useTranslations("common");
 
   return (
     <header className="flex items-center justify-between border-b border-border px-4 py-3 md:hidden">
@@ -39,21 +42,28 @@ export function MobileNav() {
               variant="outline"
               size="icon"
               className="size-11"
-              aria-label="Open navigation"
+              aria-label={t("openNavigation")}
             />
           }
         >
           <MenuIcon aria-hidden="true" className="size-4" />
         </SheetTrigger>
-        <SheetContent side="left" className="w-72 gap-0 p-0">
+        <SheetContent
+          side="left"
+          className="w-72 gap-0 p-0"
+          closeLabel={t("sheetClose")}
+        >
           <SheetHeader className="border-b border-border">
-            <SheetTitle>Navigation</SheetTitle>
+            <SheetTitle>{t("navigationTitle")}</SheetTitle>
           </SheetHeader>
           <div className="min-h-0 flex-1 overflow-y-auto p-4">
             <SidebarNav onNavigate={() => setOpen(false)} />
           </div>
-          <div className="border-t border-border p-4">
+          <div className="flex gap-2 border-t border-border p-4">
             <ThemeToggle />
+            <Suspense fallback={null}>
+              <LocaleToggle />
+            </Suspense>
           </div>
         </SheetContent>
       </Sheet>

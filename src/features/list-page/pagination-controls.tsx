@@ -1,7 +1,8 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import type { ReactNode } from "react";
 import { MoreHorizontalIcon } from "@/components/icons/list-icons";
 import { buttonVariants } from "@/components/ui/button";
+import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
 interface PaginationControlsProps {
@@ -44,6 +45,7 @@ export function PaginationControls({
   buildHref,
   itemLabel,
 }: PaginationControlsProps) {
+  const t = useTranslations("listPage.pagination");
   const pageCount = Math.max(1, Math.ceil(total / pageSize));
   const rangeStart = total === 0 ? 0 : (page - 1) * pageSize + 1;
   const rangeEnd = Math.min(total, page * pageSize);
@@ -53,16 +55,16 @@ export function PaginationControls({
     <div className="flex flex-col items-center justify-between gap-3 sm:flex-row">
       <p aria-live="polite" className="text-caption text-muted-foreground">
         {total === 0
-          ? `No ${itemLabel} to show`
-          : `Showing ${rangeStart}–${rangeEnd} of ${total} ${itemLabel}`}
+          ? t("noItems", { itemLabel })
+          : t("showingRange", { rangeStart, rangeEnd, total, itemLabel })}
       </p>
-      <nav aria-label="Pagination" className="flex items-center gap-1">
+      <nav aria-label={t("ariaLabel")} className="flex items-center gap-1">
         <PageLink
           href={buildHref(Math.max(1, page - 1))}
           disabled={page <= 1}
-          label="Previous page"
+          label={t("previousPage")}
         >
-          Prev
+          {t("prev")}
         </PageLink>
         {pageNumbers.map((entry, index) =>
           entry === "ellipsis" ? (
@@ -78,7 +80,7 @@ export function PaginationControls({
               key={entry}
               href={buildHref(entry)}
               isCurrent={entry === page}
-              label={`Page ${entry}`}
+              label={t("page", { page: entry })}
             >
               {entry}
             </PageLink>
@@ -87,9 +89,9 @@ export function PaginationControls({
         <PageLink
           href={buildHref(Math.min(pageCount, page + 1))}
           disabled={page >= pageCount}
-          label="Next page"
+          label={t("nextPage")}
         >
-          Next
+          {t("next")}
         </PageLink>
       </nav>
     </div>

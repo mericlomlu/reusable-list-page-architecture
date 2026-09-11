@@ -23,10 +23,7 @@ export async function POST(request: Request) {
   await simulateLatency(BULK_LATENCY_MS);
 
   if (isDemoState(body?.demoState) && body.demoState === "error") {
-    return NextResponse.json(
-      { error: "Couldn't update the selected issues. Try again." },
-      { status: 500 },
-    );
+    return NextResponse.json({ code: "bulk_failed" }, { status: 500 });
   }
 
   const ids = Array.isArray(body?.ids)
@@ -35,10 +32,7 @@ export async function POST(request: Request) {
   const status = typeof body?.status === "string" ? body.status : undefined;
 
   if (ids.length === 0 || !status || !isIssueStatus(status)) {
-    return NextResponse.json(
-      { error: "Select at least one issue and a valid status." },
-      { status: 400 },
-    );
+    return NextResponse.json({ code: "invalid_request" }, { status: 400 });
   }
 
   return NextResponse.json({ updatedIds: ids });

@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { ChevronDownIcon } from "@/components/icons/list-icons";
 import { Button } from "@/components/ui/button";
 import {
@@ -21,13 +22,15 @@ interface SingleSelectFilterProps {
 
 export function SingleSelectFilter({
   label,
-  allLabel = "All",
+  allLabel,
   options,
   value,
   onChange,
 }: SingleSelectFilterProps) {
+  const t = useTranslations("listPage.singleSelectFilter");
+  const resolvedAllLabel = allLabel ?? t("allLabel");
   const selectedLabel =
-    options.find((option) => option.value === value)?.label ?? allLabel;
+    options.find((option) => option.value === value)?.label ?? resolvedAllLabel;
 
   return (
     <DropdownMenu>
@@ -44,7 +47,9 @@ export function SingleSelectFilter({
           value={value ?? ""}
           onValueChange={(next) => onChange(next === "" ? undefined : next)}
         >
-          <DropdownMenuRadioItem value="">{allLabel}</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="">
+            {resolvedAllLabel}
+          </DropdownMenuRadioItem>
           {options.map((option) => (
             <DropdownMenuRadioItem key={option.value} value={option.value}>
               {option.label}

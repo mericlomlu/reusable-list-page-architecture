@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import type { ReactNode } from "react";
 import type { BuildingBlockCategory } from "@/features/building-blocks-reference/block-catalog";
 import { BuildingBlockRow } from "@/features/building-blocks-reference/building-block-row";
@@ -12,24 +13,33 @@ export function BlockCatalogSection({
   category,
   children,
 }: BlockCatalogSectionProps) {
+  const t = useTranslations(
+    `reference.buildingBlocks.categories.${category.id}`,
+  );
   const headingId = `${category.id}-heading`;
 
   return (
     <section aria-labelledby={headingId} className="mt-10 first:mt-0">
       <h2 id={headingId} className="text-lg font-bold text-foreground">
-        {category.title}
+        {t("title")}
       </h2>
       <p className="mt-1.5 max-w-2xl text-body-sm text-muted-foreground">
-        {category.description}
+        {t("description")}
       </p>
       <div className="mt-4 grid gap-4 lg:grid-cols-[1fr_220px]">
         <ul className="list-none overflow-hidden rounded-lg border border-border">
           {category.blocks.map((block) => (
-            <BuildingBlockRow key={block.name} {...block} />
+            <BuildingBlockRow
+              key={block.name}
+              name={block.name}
+              boundary={block.boundary}
+              summary={t(`blocks.${block.name}.summary`)}
+              consumers={t(`blocks.${block.name}.consumers`)}
+            />
           ))}
         </ul>
         <DecorativePreviewFigure
-          label={category.previewLabel}
+          label={t("previewLabel")}
           className="rounded-lg border border-border bg-card"
         >
           {children}

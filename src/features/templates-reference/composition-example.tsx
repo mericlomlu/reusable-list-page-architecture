@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { CodeFigure } from "@/features/reference-ui/code-figure";
 
 const PAGE_EXAMPLE = `export default async function WidgetsPage(
@@ -78,29 +79,22 @@ export function WidgetsToolbar() {
 }`;
 
 export function CompositionExample() {
+  const t = useTranslations("reference.templates.composition");
+
   return (
     <section aria-labelledby="composition-heading" className="mt-10">
       <h2
         id="composition-heading"
         className="text-lg font-bold text-foreground"
       >
-        How a page composes them
+        {t("heading")}
       </h2>
       <p className="mt-1.5 max-w-2xl text-body-sm text-muted-foreground">
-        A fictional Widgets example, built the way every real example is: a
-        Server Component page parses the URL once and renders the shared shell,
-        while a narrow Client Component toolbar owns the interactive controls
-        and writes back to that same URL.
+        {t("description")}
       </p>
       <div className="mt-5 grid gap-4 lg:grid-cols-2">
-        <CodeFigure
-          caption="Server Component — src/app/examples/widgets/page.tsx"
-          code={PAGE_EXAMPLE}
-        />
-        <CodeFigure
-          caption="Client Component — src/features/widgets-example/widgets-toolbar.tsx"
-          code={TOOLBAR_EXAMPLE}
-        />
+        <CodeFigure caption={t("pageCaption")} code={PAGE_EXAMPLE} />
+        <CodeFigure caption={t("toolbarCaption")} code={TOOLBAR_EXAMPLE} />
       </div>
     </section>
   );

@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
+import { routing } from "@/i18n/routing";
 import {
   SITE_NAME,
-  SOCIAL_IMAGE_ALT,
   SOCIAL_IMAGE_PATH,
   SOCIAL_IMAGE_SIZE,
   SOCIAL_IMAGE_TYPE,
 } from "@/lib/site-config";
 import { absoluteUrl } from "@/lib/site-url";
+
+const OPEN_GRAPH_LOCALE: Record<string, string> = {
+  en: "en_US",
+  tr: "tr_TR",
+};
 
 interface RouteMetadataInput {
   /** Route title, e.g. "Components" — the root layout's title template adds the site name suffix. */
@@ -14,6 +19,10 @@ interface RouteMetadataInput {
   description: string;
   /** Site-relative canonical path, e.g. "/examples/components". */
   path: string;
+  /** The requesting locale, used for openGraph.locale and hreflang alternates. */
+  locale: string;
+  /** Translated alt text for the shared Open Graph/Twitter image. */
+  socialImageAlt: string;
 }
 
 /**
@@ -30,29 +39,40 @@ export function buildRouteMetadata({
   title,
   description,
   path,
+  locale,
+  socialImageAlt,
 }: RouteMetadataInput): Metadata {
-  const url = absoluteUrl(path);
+  const url = absoluteUrl(path, locale);
   const socialTitle = `${title} | ${SITE_NAME}`;
 
   const image = {
-    url: absoluteUrl(SOCIAL_IMAGE_PATH),
+    url: absoluteUrl(SOCIAL_IMAGE_PATH, locale),
     width: SOCIAL_IMAGE_SIZE.width,
     height: SOCIAL_IMAGE_SIZE.height,
-    alt: SOCIAL_IMAGE_ALT,
+    alt: socialImageAlt,
     type: SOCIAL_IMAGE_TYPE,
   };
 
   return {
     title,
     description,
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      languages: {
+        ...Object.fromEntries(
+          routing.locales.map((loc) => [loc, absoluteUrl(path, loc)]),
+        ),
+        "x-default": absoluteUrl(path, routing.defaultLocale),
+      },
+    },
     openGraph: {
       type: "website",
       url,
       siteName: SITE_NAME,
       title: socialTitle,
       description,
-      locale: "en_US",
+      locale:
+        OPEN_GRAPH_LOCALE[locale] ?? OPEN_GRAPH_LOCALE[routing.defaultLocale],
       images: [image],
     },
     twitter: {

@@ -1,0 +1,16 @@
+{
+  "groups": {
+    "examples": "Examples",
+    "reference": "Reference"
+  },
+  "items": {
+    "overview": "Overview",
+    "components": "Components",
+    "issues": "Issues",
+    "deployments": "Deployments",
+    "packages": "Packages",
+    "templates": "Templates",
+    "buildingBlocks": "Building Blocks",
+    "architecture": "Architecture"
+  }
+}

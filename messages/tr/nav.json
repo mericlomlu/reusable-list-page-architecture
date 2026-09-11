@@ -1,0 +1,16 @@
+{
+  "groups": {
+    "examples": "Örnekler",
+    "reference": "Referans"
+  },
+  "items": {
+    "overview": "Genel Bakış",
+    "components": "Bileşenler",
+    "issues": "Sorunlar",
+    "deployments": "Dağıtımlar",
+    "packages": "Paketler",
+    "templates": "Şablonlar",
+    "buildingBlocks": "Yapı Taşları",
+    "architecture": "Mimari"
+  }
+}

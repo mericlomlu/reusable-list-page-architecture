@@ -1,0 +1,78 @@
+{
+  "itemLabel": "sorun",
+  "loadingLabel": "Sorunlar yükleniyor",
+  "toolbar": {
+    "searchLabel": "Sorun ara",
+    "searchPlaceholder": "Sorun ara…"
+  },
+  "filters": {
+    "statusLabel": "Durum",
+    "priorityLabel": "Öncelik",
+    "labelLabel": "Etiket",
+    "assigneeLabel": "Atanan",
+    "status": {
+      "open": "Açık",
+      "in_progress": "Devam Ediyor",
+      "closed": "Kapalı"
+    },
+    "priority": {
+      "high": "Yüksek",
+      "medium": "Orta",
+      "low": "Düşük"
+    },
+    "unassigned": "Atanmamış"
+  },
+  "sort": {
+    "updated": "Güncellenme",
+    "created": "Oluşturulma"
+  },
+  "results": {
+    "listAriaLabel": "Sorunlar",
+    "emptyFiltered": {
+      "title": "Bu filtrelerle eşleşen sorun yok",
+      "description": "Bir filtreyi kaldırmayı veya farklı bir terim aramayı deneyin."
+    },
+    "emptyDefault": {
+      "title": "Henüz sorun yok",
+      "description": "Çalışma alanına kayıt eklendiğinde sorunlar burada görünecek."
+    },
+    "clearAllFilters": "Tüm filtreleri temizle"
+  },
+  "table": {
+    "selectAllOnPage": "Bu sayfadaki tüm sorunları seç",
+    "deselectAllOnPage": "Bu sayfadaki tüm sorunların seçimini kaldır",
+    "columns": {
+      "issue": "Sorun",
+      "status": "Durum",
+      "priority": "Öncelik",
+      "label": "Etiket",
+      "assignee": "Atanan",
+      "updated": "Güncellenme"
+    }
+  },
+  "card": {
+    "selectIssue": "#{number} numaralı sorunu seç: {title}",
+    "updatedSrOnly": "Güncellendi"
+  },
+  "assignee": {
+    "unassignedSrOnly": "Atanmamış",
+    "assigneeSrOnly": "Atanan:"
+  },
+  "board": {
+    "changeStatus": "Durumu değiştir",
+    "closeIssues": "Sorunları kapat",
+    "dismiss": "Kapat",
+    "selectedLiveRegion": "{total} sorundan {selected} tanesi seçildi",
+    "bulkSuccess": "{count} sorun için durum güncellendi (yalnızca demo — kaydedilmedi).",
+    "errors": {
+      "bulk_failed": "Seçili sorunlar güncellenemedi.",
+      "invalid_request": "En az bir sorun ve geçerli bir durum seçin.",
+      "malformed_response": "Sorunlar güncellenirken beklenmeyen bir yanıt alındı."
+    }
+  },
+  "error": {
+    "title": "Sorunlar yüklenemedi",
+    "description": "Sorun listesi yüklenirken bir sorun oluştu. Tekrar deneyin.",
+    "retry": "Tekrar dene"
+  }
+}

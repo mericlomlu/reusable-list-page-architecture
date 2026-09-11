@@ -1,0 +1,39 @@
+{
+  "summaryParagraph1": "Every list page starts with ListPageShell for its shared page structure and PaginationControls for server-rendered navigation. Most examples use ResultsView to render domain-owned rows and cards, while Issues intentionally substitutes its own selectable table. A page-owned toolbar composes search, filters, sorting, and view controls around the shared URL state.",
+  "summaryParagraph2": "Selection is added only when the domain requires temporary row state, while loading, empty, filtered-empty, and error presentations remain explicit parts of every complete composition. The templates differ by capability, but they all reuse the same core instead of creating separate page architectures.",
+  "layersHeading": "Composition layers",
+  "layersDescription": "Each layer adds a small set of building blocks from <code>src/features/list-page/</code> on top of the one before it.",
+  "buildingBlocksUsedAriaLabel": "Building blocks used",
+  "layers": {
+    "basicList": {
+      "title": "Basic List",
+      "description": "ListPageShell composed with ResultsView and PaginationControls. toolbar is a required prop, but a basic composition can pass it null or minimal content — every other layer just puts more into that same slot and into children.",
+      "exampleLabel": "Packages layers search and two filters on top",
+      "previewLabel": "Preview: three dependency rows showing a package name and version, with no search or filter controls."
+    },
+    "searchFilters": {
+      "title": "Search & Filters",
+      "description": "A page-owned toolbar composes SearchField, SingleSelectFilter or MultiSelectFilter, SortMenu, and ViewSwitcher, then calls useListQueryState once. Debounced search replaces the current URL entry, while filter, sort, view, and pagination changes each push a new, navigable one — so the back button and a copied link still restore the right list.",
+      "exampleLabel": "Components combines a single and a multi-value filter",
+      "previewLabel": "Preview: a search field, an applied category filter, and two component rows each showing a status dot and label."
+    },
+    "selection": {
+      "title": "Selection & Bulk Actions",
+      "description": "Adds row-level selection that is deliberately kept out of the URL — it's page state, not shareable list state. SelectionToolbar appears once anything is checked and exposes page-owned bulk actions; the page renders its own selectable table because ResultsView doesn't model table headers, select-all, or indeterminate selection.",
+      "exampleLabel": "Issues is the only example that needs it",
+      "previewLabel": "Preview: a selection toolbar reading 2 selected with a Change status action, above two checked issue rows."
+    },
+    "systemStates": {
+      "title": "System States",
+      "description": "Every example implements a loading.tsx and error.tsx route segment with ListSkeleton, ListErrorState, and useDemoErrorRecovery, plus an empty and filtered-empty branch inside its own results component using ListEmptyState. Route Handlers accept an explicit demoState query parameter so every state can be previewed without special tooling.",
+      "exampleLabel": "Try appending ?demoState=error to Deployments",
+      "previewLabel": "Preview: three loading skeleton bars of varying width."
+    }
+  },
+  "composition": {
+    "heading": "How a page composes them",
+    "description": "A fictional Widgets example, built the way every real example is: a Server Component page parses the URL once and renders the shared shell, while a narrow Client Component toolbar owns the interactive controls and writes back to that same URL.",
+    "pageCaption": "Server Component — src/app/examples/widgets/page.tsx",
+    "toolbarCaption": "Client Component — src/features/widgets-example/widgets-toolbar.tsx"
+  }
+}

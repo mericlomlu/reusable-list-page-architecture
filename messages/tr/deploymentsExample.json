@@ -1,0 +1,55 @@
+{
+  "itemLabel": "dağıtım",
+  "loadingLabel": "Dağıtımlar yükleniyor",
+  "toolbar": {
+    "searchLabel": "Dağıtım ara",
+    "searchPlaceholder": "Branch veya commit ara…"
+  },
+  "filters": {
+    "statusLabel": "Durum",
+    "environmentLabel": "Ortam",
+    "branchLabel": "Branch",
+    "dateLabel": "Tarih",
+    "status": {
+      "ready": "Hazır",
+      "building": "Derleniyor",
+      "failed": "Başarısız"
+    },
+    "environment": {
+      "production": "Prodüksiyon",
+      "preview": "Önizleme",
+      "staging": "Staging"
+    },
+    "dateRange": {
+      "24h": "Son 24 saat",
+      "7d": "Son 7 gün",
+      "30d": "Son 30 gün"
+    }
+  },
+  "sort": {
+    "newest": "En yeni",
+    "oldest": "En eski"
+  },
+  "results": {
+    "listAriaLabel": "Dağıtımlar",
+    "emptyFiltered": {
+      "title": "Bu filtrelerle eşleşen dağıtım yok",
+      "description": "Bir filtreyi kaldırmayı veya tarih aralığını genişletmeyi deneyin."
+    },
+    "emptyDefault": {
+      "title": "Henüz dağıtım yok",
+      "description": "Çalışma alanında derleme olduğunda dağıtımlar burada görünecek."
+    },
+    "clearAllFilters": "Tüm filtreleri temizle"
+  },
+  "card": {
+    "branchSrOnly": "Branch:",
+    "environmentSrOnly": "Ortam:",
+    "deployedSrOnly": "Dağıtıldı"
+  },
+  "error": {
+    "title": "Dağıtımlar yüklenemedi",
+    "description": "Dağıtım listesi yüklenirken bir sorun oluştu. Tekrar deneyin.",
+    "retry": "Tekrar dene"
+  }
+}

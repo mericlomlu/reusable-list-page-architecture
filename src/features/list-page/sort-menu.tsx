@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { SortIcon } from "@/components/icons/list-icons";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,6 +23,7 @@ export function SortMenu<TSortKey extends string>({
   value,
   onChange,
 }: SortMenuProps<TSortKey>) {
+  const t = useTranslations("listPage.sortMenu");
   const selectedLabel =
     options.find((option) => option.value === value)?.label ?? "";
 
@@ -30,7 +32,7 @@ export function SortMenu<TSortKey extends string>({
       <DropdownMenuTrigger
         render={
           <Button variant="outline" className="font-normal text-foreground">
-            Sort: {selectedLabel}
+            {t("sortLabel", { label: selectedLabel })}
             <SortIcon className="size-3 text-muted-foreground" />
           </Button>
         }

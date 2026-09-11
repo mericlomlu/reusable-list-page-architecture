@@ -1,6 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import { CloseIcon } from "@/components/icons/nav-icons";
 import { Button } from "@/components/ui/button";
@@ -10,8 +11,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { bulkUpdateIssueStatus } from "@/features/issues-example/bulk-actions";
-import { BULK_STATUS_ACTIONS } from "@/features/issues-example/config";
+import {
+  BulkUpdateIssuesError,
+  bulkUpdateIssueStatus,
+} from "@/features/issues-example/bulk-actions";
+import { BULK_STATUS_VALUES } from "@/features/issues-example/config";
 import { IssueGridCard } from "@/features/issues-example/issue-grid-card";
 import { IssueTable } from "@/features/issues-example/issue-table";
 import type { IssueRecord, IssueStatus } from "@/features/issues-example/types";
@@ -33,6 +37,7 @@ interface Feedback {
 }
 
 export function IssueBoard({ records, view }: IssueBoardProps) {
+  const t = useTranslations("issuesExample");
   const selection = useSelection();
   const searchParams = useSearchParams();
   const simulateBulkFailure =
@@ -86,18 +91,15 @@ export function IssueBoard({ records, view }: IssueBoardProps) {
       });
       setFeedback({
         type: "success",
-        message: `Updated status for ${result.updatedIds.length} ${
-          result.updatedIds.length === 1 ? "issue" : "issues"
-        } (demo only — not saved).`,
+        message: t("board.bulkSuccess", { count: result.updatedIds.length }),
       });
       selection.removeMany(result.updatedIds);
     } catch (error) {
+      const code =
+        error instanceof BulkUpdateIssuesError ? error.code : "bulk_failed";
       setFeedback({
         type: "error",
-        message:
-          error instanceof Error
-            ? error.message
-            : "Couldn't update the selected issues.",
+        message: t(`board.errors.${code}`),
       });
     } finally {
       setPending(false);
@@ -125,14 +127,14 @@ export function IssueBoard({ records, view }: IssueBoardProps) {
             className="-m-1 shrink-0 rounded-full p-1.5 text-current hover:bg-foreground/10 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-ring"
           >
             <CloseIcon className="size-3" />
-            <span className="sr-only">Dismiss</span>
+            <span className="sr-only">{t("board.dismiss")}</span>
           </button>
         </div>
       ) : null}
       <SelectionToolbar
         selectedCount={selection.selectedCount}
         totalVisible={visibleIds.length}
-        itemLabel="issues"
+        itemLabel={t("itemLabel")}
         onSelectAllVisible={() => selection.selectAll(visibleIds)}
         onClear={selection.clear}
         pending={pending}
@@ -142,17 +144,17 @@ export function IssueBoard({ records, view }: IssueBoardProps) {
               <DropdownMenuTrigger
                 render={
                   <Button variant="outline" size="sm" disabled={pending}>
-                    Change status
+                    {t("board.changeStatus")}
                   </Button>
                 }
               />
               <DropdownMenuContent align="end">
-                {BULK_STATUS_ACTIONS.map((action) => (
+                {BULK_STATUS_VALUES.map((status) => (
                   <DropdownMenuItem
-                    key={action.status}
-                    onClick={() => applyBulkStatus(action.status)}
+                    key={status}
+                    onClick={() => applyBulkStatus(status)}
                   >
-                    {action.label}
+                    {t(`filters.status.${status}`)}
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
@@ -163,16 +165,22 @@ export function IssueBoard({ records, view }: IssueBoardProps) {
               disabled={pending}
               onClick={() => applyBulkStatus("closed")}
             >
-              Close issues
+              {t("board.closeIssues")}
             </Button>
           </>
         }
       />
       <p aria-live="polite" className="sr-only">
-        {selection.selectedCount} of {visibleIds.length} issues selected
+        {t("board.selectedLiveRegion", {
+          selected: selection.selectedCount,
+          total: visibleIds.length,
+        })}
       </p>
       {view === "grid" ? (
-        <ul aria-label="Issues" className={RESULTS_GRID_CLASS_NAME}>
+        <ul
+          aria-label={t("results.listAriaLabel")}
+          className={RESULTS_GRID_CLASS_NAME}
+        >
           {effectiveRecords.map((record) => (
             <IssueGridCard
               key={record.id}
