@@ -25,7 +25,7 @@ export function AppSidebar() {
       <div className="min-h-0 flex-1 overflow-y-auto">
         <SidebarNav />
       </div>
-      <div className="flex gap-2">
+      <div className="flex flex-col gap-2">
         <ThemeToggle />
         <Suspense fallback={null}>
           <LocaleToggle />

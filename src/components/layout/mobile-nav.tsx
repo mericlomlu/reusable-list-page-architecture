@@ -59,7 +59,7 @@ export function MobileNav() {
           <div className="min-h-0 flex-1 overflow-y-auto p-4">
             <SidebarNav onNavigate={() => setOpen(false)} />
           </div>
-          <div className="flex gap-2 border-t border-border p-4">
+          <div className="flex flex-col gap-2 border-t border-border p-4">
             <ThemeToggle />
             <Suspense fallback={null}>
               <LocaleToggle />
